@@ -7,7 +7,6 @@ use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
-use std::time::Duration;
 
 mod entity;
 mod view;
@@ -33,12 +32,9 @@ pub fn main() {
 fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
     let mut gs = GameState::new();
     let mut event_pump = context.event_pump().unwrap();
-    let mut i = 0;
     while !gs.is_game_over {
-        i = (i + 1) % 255;
         handle_events(&mut gs, &mut event_pump);
         draw_game(canvas);
-        ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
     }
 }
 
