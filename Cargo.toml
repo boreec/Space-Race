@@ -1,0 +1,14 @@
+[package]
+name = "space_race"
+version = "0.1.0"
+edition = "2021"
+authors = ["Cyprien Borée <cyprien.boree@tuta.io>"]
+
+[dependencies]
+sdl2 = "0.35.2"
+rand = "0.8.5"
+
+[features]
+default = ["gfx", "ttf"]
+gfx = ["sdl2/gfx"]
+ttf = ["sdl2/ttf"]
