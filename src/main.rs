@@ -4,6 +4,7 @@ use crate::entity::*;
 
 use sdl2::pixels::Color;
 use sdl2::event::Event;
+use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
 use std::time::Duration;
 
@@ -38,17 +39,20 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
         canvas.set_draw_color(Color::RGB(i, 64, 255 - i));
         canvas.clear();
 
-        for event in event_pump.poll_iter() {
-            match event {
-                Event::Quit {..} |
-                Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
-                    gs.is_game_over = true;
-                },
-                _ => {}
-            }
-        }
-
+        handle_events(&mut gs, &mut event_pump);
         canvas.present();
         ::std::thread::sleep(Duration::new(0, 1_000_000_000u32 / 60));
+    }
+}
+
+fn handle_events(gs: &mut GameState, event_pump: &mut EventPump){
+    for event in event_pump.poll_iter() {
+        match event {
+            Event::Quit {..} |
+            Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
+                gs.is_game_over = true;
+            },
+            _ => {}
+        }
     }
 }
