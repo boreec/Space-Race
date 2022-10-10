@@ -16,10 +16,14 @@ pub fn main() {
 
     let mut canvas = window.into_canvas().build().unwrap();
 
+    game_loop(&sdl_context, &mut canvas);
+}
+
+fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
     canvas.set_draw_color(Color::RGB(0, 255, 255));
     canvas.clear();
     canvas.present();
-    let mut event_pump = sdl_context.event_pump().unwrap();
+    let mut event_pump = context.event_pump().unwrap();
     let mut i = 0;
     'running: loop {
         i = (i + 1) % 255;
