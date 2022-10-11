@@ -22,8 +22,12 @@ pub fn draw_missiles(
 
         // draw tail
         canvas.set_draw_color(m.tail.color);
-        canvas.filled_polygon(&m.tail.top_triangle_x, &m.tail.top_triangle_y, m.tail.color);
-        canvas.filled_polygon(&m.tail.bot_triangle_x, &m.tail.bot_triangle_y, m.tail.color);
+        canvas
+            .filled_polygon(&m.tail.top_triangle_x, &m.tail.top_triangle_y, m.tail.color)
+            .expect("Drawing failed for top missile's tail!");
+        canvas
+            .filled_polygon(&m.tail.bot_triangle_x, &m.tail.bot_triangle_y, m.tail.color)
+            .expect("Drawing failed for bottom missile's tail!");
     }
 }
 
