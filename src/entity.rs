@@ -50,8 +50,8 @@ pub struct MissileBody {
 }
 
 pub struct MissileTail {
-    pub top_triangle: Vec<Point>,
-    pub bottom_triangle: Vec<Point>,
+    pub top_triangle:  [Point;3],
+    pub bottom_triangle: [Point;3],
     pub color: Color,
 }
 
