@@ -1,6 +1,7 @@
 use rand::Rng;
 
 use sdl2::pixels::Color;
+use sdl2::rect::Point;
 use sdl2::rect::Rect;
 
 use std::ops::RangeInclusive;
@@ -37,16 +38,20 @@ impl GameState {
     }
 }
 
-#[derive(Copy, Clone)]
 pub struct Missile {
     pub x: i32,
     pub y: i32,
     pub body: MissileBody,
 }
 
-#[derive(Copy, Clone)]
 pub struct MissileBody {
     pub rect: Rect,
+    pub color: Color,
+}
+
+pub struct MissileTail {
+    pub top_triangle: Vec<Point>,
+    pub bottom_triangle: Vec<Point>,
     pub color: Color,
 }
 
