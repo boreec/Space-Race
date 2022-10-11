@@ -14,7 +14,7 @@ pub fn draw_missiles(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
     gs: &GameState
 ){
-    for m in gs.missiles {
+    for m in &gs.missiles {
         let r = Rect::new(m.x, m.y, m.width, m.height);
         canvas.set_draw_color(m.color);
         canvas.fill_rect(r).expect("Drawing failed for missile!");

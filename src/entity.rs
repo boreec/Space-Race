@@ -1,25 +1,39 @@
+use rand::Rng;
+
 use sdl2::pixels::Color;
+
+use std::ops::RangeInclusive;
+
+use crate::WINDOW_WIDTH;
 
 const MISSILE_HEIGHT: u32 = 5;
 const MISSILE_WIDTH: u32 = 10;
 const MISSILE_COLOR: Color = Color::WHITE;
 const MISSILE_QUANTITY: usize = 10;
+const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=(WINDOW_WIDTH - MISSILE_WIDTH);
 
 pub struct GameState {
-    pub missiles: [Missile; MISSILE_QUANTITY],
+    pub missiles: Vec<Missile>,
     pub is_game_over: bool,
 }
 
 impl GameState {
     pub fn new() -> GameState {
+
+        let mut random_missiles = Vec::new();
+
+        for _ in 0..MISSILE_QUANTITY {
+            random_missiles.push(Missile::new());
+        }
+
         return GameState {
             is_game_over: false,
-            missiles: [Missile::new(); MISSILE_QUANTITY],
+            missiles: random_missiles,
         };
     }
 }
 
-#[derive(Clone, Copy)]
+#[derive(Copy, Clone)]
 pub struct Missile {
     pub x: i32,
     pub y: i32,
@@ -30,8 +44,9 @@ pub struct Missile {
 
 impl Missile {
     pub fn new() -> Missile {
+        let mut rng = rand::thread_rng();
         return Missile {
-            x: 0,
+            x: rng.gen_range(MISSILE_SPAWN_RANGE_X) as i32,
             y: 0,
             height: MISSILE_HEIGHT,
             width: MISSILE_WIDTH,
