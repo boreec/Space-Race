@@ -3,7 +3,6 @@ extern crate sdl2;
 use crate::entity::*;
 use crate::view::*;
 
-use sdl2::pixels::Color;
 use sdl2::event::Event;
 use sdl2::EventPump;
 use sdl2::keyboard::Keycode;

@@ -1,6 +1,5 @@
 use crate::sdl2::gfx::primitives::DrawRenderer;
 use sdl2::pixels::Color;
-use sdl2::rect::Rect;
 
 use crate::GameState;
 
