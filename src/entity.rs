@@ -1,7 +1,7 @@
 use sdl2::pixels::Color;
 
-const MISSILE_HEIGHT: i32 = 5;
-const MISSILE_WIDTH: i32 = 10;
+const MISSILE_HEIGHT: u32 = 5;
+const MISSILE_WIDTH: u32 = 10;
 const MISSILE_COLOR: Color = Color::WHITE;
 const MISSILE_QUANTITY: usize = 10;
 
@@ -21,11 +21,11 @@ impl GameState {
 
 #[derive(Clone, Copy)]
 pub struct Missile {
-    x: i32,
-    y: i32,
-    height: i32,
-    width: i32,
-    color: Color,
+    pub x: i32,
+    pub y: i32,
+    pub height: u32,
+    pub width: u32,
+    pub color: Color,
 }
 
 impl Missile {

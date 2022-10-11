@@ -25,7 +25,7 @@ pub fn main() {
         .unwrap();
 
     let mut canvas = window.into_canvas().build().unwrap();
-
+    
     game_loop(&sdl_context, &mut canvas);
 }
 
@@ -34,7 +34,7 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
     let mut event_pump = context.event_pump().unwrap();
     while !gs.is_game_over {
         handle_events(&mut gs, &mut event_pump);
-        draw_game(canvas);
+        draw_game(canvas, &gs);
     }
 }
 
