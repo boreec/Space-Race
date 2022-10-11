@@ -15,9 +15,8 @@ pub fn draw_missiles(
     gs: &GameState
 ){
     for m in &gs.missiles {
-        let r = Rect::new(m.x, m.y, m.width, m.height);
-        canvas.set_draw_color(m.color);
-        canvas.fill_rect(r).expect("Drawing failed for missile!");
+        canvas.set_draw_color(m.color_body);
+        canvas.fill_rect(m.body).expect("Drawing failed for missile!");
     }
 }
 
