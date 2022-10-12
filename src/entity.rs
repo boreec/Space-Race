@@ -87,9 +87,7 @@ impl MissileTail {
     pub fn new(origin_x: i16, origin_y: i16, direction: &MissileDirection) -> MissileTail {
         let top_triangle_xs: [i16;3];
         let top_triangle_ys: [i16;3];
-        let bot_triangle_xs: [i16;3];
         let bot_triangle_ys: [i16;3];
-
         match direction {
             MissileDirection::LEFT => {
                 top_triangle_xs = [
@@ -98,20 +96,18 @@ impl MissileTail {
                     origin_x + MISSILE_WIDTH as i16,
                 ];
                 top_triangle_ys = [origin_y, origin_y, origin_y - MISSILE_TAIL_SIZE as i16];
-                bot_triangle_xs = top_triangle_xs.clone();
                 bot_triangle_ys = [origin_y + MISSILE_HEIGHT as i16, origin_y + MISSILE_HEIGHT as i16, origin_y + (MISSILE_HEIGHT + MISSILE_TAIL_SIZE) as i16];
             }
             MissileDirection::RIGHT => {
                 top_triangle_xs = [origin_x, origin_x, origin_x + MISSILE_TAIL_SIZE as i16];
                 top_triangle_ys = [origin_y, origin_y - MISSILE_TAIL_SIZE as i16, origin_y];
-                bot_triangle_xs = [origin_x, origin_x, origin_x + MISSILE_TAIL_SIZE as i16];
                 bot_triangle_ys = [origin_y + MISSILE_HEIGHT as i16, origin_y + (MISSILE_HEIGHT + MISSILE_TAIL_SIZE) as i16, origin_y + MISSILE_HEIGHT as i16];
             }
         }
         return MissileTail {
             top_triangle_x: top_triangle_xs,
             top_triangle_y: top_triangle_ys,
-            bot_triangle_x: bot_triangle_xs,
+            bot_triangle_x: top_triangle_xs.clone(), // same coordinates
             bot_triangle_y: bot_triangle_ys,
             color: MISSILE_TAIL_COLOR,
         };
