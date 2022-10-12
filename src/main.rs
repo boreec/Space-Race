@@ -14,6 +14,10 @@ const WINDOW_WIDTH: u32 = 800;
 const WINDOW_HEIGHT: u32 = 600;
 const WINDOW_TITLE: &str = "space race";
 
+const FRAME_DURATION: u32 = 50;
+
+struct FrameEvent;
+
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
@@ -31,6 +35,8 @@ pub fn main() {
 fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
     let mut gs = GameState::new();
     let mut event_pump = context.event_pump().unwrap();
+    let ev = context.event().unwrap();
+    ev.register_custom_event::<FrameEvent>().unwrap();
     while !gs.is_game_over {
         handle_events(&mut gs, &mut event_pump);
         draw_game(canvas, &gs);
