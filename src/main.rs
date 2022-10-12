@@ -37,6 +37,15 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
     let mut event_pump = context.event_pump().unwrap();
     let ev = context.event().unwrap();
     ev.register_custom_event::<FrameEvent>().unwrap();
+
+    let timer_subsystem = context.timer().unwrap();
+    let _timer = timer_subsystem.add_timer(
+        FRAME_DURATION,
+        Box::new(|| {
+            ev.push_custom_event(FrameEvent).unwrap();
+            FRAME_DURATION
+        }),
+    );
     while !gs.is_game_over {
         handle_events(&mut gs, &mut event_pump);
         draw_game(canvas, &gs);
