@@ -1,6 +1,8 @@
 # Space Race
 
-This game is an amateur reproduction of Space Race made by Atari.
+This game is an amateur reproduction of the [Space Race](https://en.wikipedia.org/wiki/Space_Race_(video_game)) game initially created by Atari, Inc. in 1973.
+
+This program was built completely with rust and the sdl2 bindings.
 
 To see similar projects I made: https://boreec.fr/projects/
 
