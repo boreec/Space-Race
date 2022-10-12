@@ -11,6 +11,7 @@ use crate::WINDOW_WIDTH;
 
 const MISSILE_HEIGHT: u32 = 5;
 const MISSILE_WIDTH: u32 = 10;
+const MISSILE_SPEED: i64 = 2;
 const MISSILE_TAIL_SIZE: u32 = MISSILE_HEIGHT;
 const MISSILE_HEAD_SIZE: u32 = MISSILE_HEIGHT;
 const MISSILE_BODY_COLOR: Color = Color::WHITE;
@@ -84,8 +85,8 @@ impl MissileBody {
 
     fn move_towards(&mut self, direction: &MissileDirection){
         match direction {
-            MissileDirection::LEFT => { self.rect.set_x(self.rect.x() - 1); }
-            MissileDirection::RIGHT => { self.rect.set_x(self.rect.x() + 1); }
+            MissileDirection::LEFT => { self.rect.set_x(self.rect.x() - MISSILE_SPEED as i32); }
+            MissileDirection::RIGHT => { self.rect.set_x(self.rect.x() + MISSILE_SPEED as i32); }
         }
     }
 }
@@ -123,12 +124,12 @@ impl MissileTail {
     fn move_towards(&mut self, direction: &MissileDirection){
         match direction {
             MissileDirection::LEFT => {
-                self.top_triangle_x = self.top_triangle_x.map(|v| v - 1);
-                self.bot_triangle_x = self.bot_triangle_x.map(|v| v - 1);
+                self.top_triangle_x = self.top_triangle_x.map(|v| v - MISSILE_SPEED as i16);
+                self.bot_triangle_x = self.bot_triangle_x.map(|v| v - MISSILE_SPEED as i16);
             }
             MissileDirection::RIGHT => {
-                self.top_triangle_x = self.top_triangle_x.map(|v| v + 1);
-                self.bot_triangle_x = self.bot_triangle_x.map(|v| v + 1);
+                self.top_triangle_x = self.top_triangle_x.map(|v| v + MISSILE_SPEED as i16);
+                self.bot_triangle_x = self.bot_triangle_x.map(|v| v + MISSILE_SPEED as i16);
             }
         }
     }
@@ -160,10 +161,10 @@ impl MissileHead {
     fn move_towards(&mut self, direction: &MissileDirection){
         match direction {
             MissileDirection::LEFT => {
-                self.triangle_x = self.triangle_x.map(|v| v - 1);
+                self.triangle_x = self.triangle_x.map(|v| v - MISSILE_SPEED as i16);
             }
             MissileDirection::RIGHT => {
-                self.triangle_x = self.triangle_x.map(|v| v + 1);
+                self.triangle_x = self.triangle_x.map(|v| v + MISSILE_SPEED as i16);
             }
         }
     }
