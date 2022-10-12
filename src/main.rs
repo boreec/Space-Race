@@ -47,19 +47,20 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
         }),
     );
     while !gs.is_game_over {
-        handle_events(&mut gs, &mut event_pump);
-        draw_game(canvas, &gs);
+        handle_events(&mut gs, &mut event_pump, canvas);
     }
 }
 
 fn handle_events(
     gs: &mut GameState,
-    event_pump: &mut EventPump){
+    event_pump: &mut EventPump,
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
 
     let event = event_pump.wait_event();
 
     if event.is_user_event() {
-        println!("update missile coordinates!");
+        // update missile coordinates here
+        draw_game(canvas, &gs);
     }
     else {
         match event {
