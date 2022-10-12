@@ -40,6 +40,11 @@ impl GameState {
     }
 }
 
+pub enum MissileDirection {
+    LEFT,
+    RIGHT,
+}
+
 pub struct Missile {
     pub x: i32,
     pub y: i32,
