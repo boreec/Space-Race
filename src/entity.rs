@@ -1,3 +1,4 @@
+use rand::random;
 use rand::Rng;
 
 use sdl2::pixels::Color;
@@ -51,6 +52,7 @@ pub struct Missile {
     pub body: MissileBody,
     pub tail: MissileTail,
     pub head: MissileHead,
+    pub direction: MissileDirection,
 }
 
 pub struct MissileBody {
@@ -111,6 +113,12 @@ impl Missile {
         let pos_x = rng.gen_range(MISSILE_SPAWN_RANGE_X) as i32;
         let pos_y = rng.gen_range(MISSILE_SPAWN_RANGE_Y) as i32;
 
+        let d: MissileDirection;
+        if random::<u8>() % 2 == 0 {
+            d = MissileDirection::LEFT;
+        }else {
+            d = MissileDirection::RIGHT;
+        }
         let r = Rect::new(pos_x, pos_y, MISSILE_WIDTH, MISSILE_HEIGHT);
         let m = MissileBody::new(r);
         let t = MissileTail::new(pos_x as i16, pos_y as i16);
@@ -119,6 +127,7 @@ impl Missile {
         return Missile {
             x: pos_x,
             y: pos_y,
+            direction: d,
             body: m,
             tail: t,
             head: h,
