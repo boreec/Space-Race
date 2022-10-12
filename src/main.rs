@@ -52,8 +52,16 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
     }
 }
 
-fn handle_events(gs: &mut GameState, event_pump: &mut EventPump){
-    for event in event_pump.poll_iter() {
+fn handle_events(
+    gs: &mut GameState,
+    event_pump: &mut EventPump){
+
+    let event = event_pump.wait_event();
+
+    if event.is_user_event() {
+        println!("update missile coordinates!");
+    }
+    else {
         match event {
             Event::Quit {..} |
             Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
