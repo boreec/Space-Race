@@ -143,6 +143,18 @@ impl MissileHead {
             color: MISSILE_HEAD_COLOR,
         };
     }
+
+    fn move_towards(&mut self, direction: &MissileDirection){
+        match direction {
+            MissileDirection::LEFT => {
+                self.triangle_x = self.triangle_x.map(|v| v - 1);
+            }
+            MissileDirection::RIGHT => {
+                self.triangle_x = self.triangle_x.map(|v| v + 1);
+            }
+        }
+    }
+
 }
 
 impl Missile {
@@ -175,5 +187,6 @@ impl Missile {
 
     pub fn update(&mut self) {
         self.body.move_towards(&self.direction);
+        self.head.move_towards(&self.direction);
     }
 }
