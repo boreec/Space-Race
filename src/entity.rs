@@ -42,6 +42,14 @@ impl GameState {
     }
 }
 
+// ** SPACESHIP ** //
+
+pub struct Spaceship {
+    // to do
+}
+
+// ** MISSILES ** //
+
 pub enum MissileDirection {
     LEFT,
     RIGHT,
