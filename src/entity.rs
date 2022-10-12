@@ -97,10 +97,24 @@ impl MissileTail {
 }
 
 impl MissileHead {
-    pub fn new(origin_x: i16, origin_y: i16) -> MissileHead {
+    pub fn new(origin_x: i16, origin_y: i16, direction: &MissileDirection) -> MissileHead {
+        let triangle_xs: [i16;3];
+        let triangle_ys: [i16;3];
+
+        match direction {
+            MissileDirection::LEFT => {
+                triangle_xs = [origin_x, origin_x - MISSILE_HEAD_SIZE as i16, origin_x];
+                triangle_ys = [origin_y, origin_y + MISSILE_HEAD_SIZE as i16 / 2, origin_y + MISSILE_HEIGHT as i16];
+            }
+            MissileDirection::RIGHT => {
+                triangle_xs = [origin_x + MISSILE_WIDTH as i16, origin_x + (MISSILE_WIDTH + MISSILE_HEAD_SIZE) as i16, origin_x + MISSILE_WIDTH as i16];
+                triangle_ys = [origin_y, origin_y + MISSILE_HEIGHT as i16 / 2, origin_y + MISSILE_HEIGHT as i16];
+
+            }
+        }
         return MissileHead {
-            triangle_x: [origin_x + MISSILE_WIDTH as i16, origin_x + (MISSILE_WIDTH + MISSILE_HEAD_SIZE) as i16, origin_x + MISSILE_WIDTH as i16],
-            triangle_y: [origin_y, origin_y + MISSILE_HEIGHT as i16 / 2, origin_y + MISSILE_HEIGHT as i16],
+            triangle_x: triangle_xs,
+            triangle_y: triangle_ys,
             color: MISSILE_HEAD_COLOR,
         };
     }
@@ -122,7 +136,7 @@ impl Missile {
         let r = Rect::new(pos_x, pos_y, MISSILE_WIDTH, MISSILE_HEIGHT);
         let m = MissileBody::new(r);
         let t = MissileTail::new(pos_x as i16, pos_y as i16);
-        let h = MissileHead::new(pos_x as i16, pos_y as i16);
+        let h = MissileHead::new(pos_x as i16, pos_y as i16, &d);
 
         return Missile {
             x: pos_x,
