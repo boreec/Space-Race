@@ -81,6 +81,13 @@ impl MissileBody {
             color: MISSILE_BODY_COLOR,
         };
     }
+
+    fn move_towards(&mut self, direction: &MissileDirection){
+        match direction {
+            MissileDirection::LEFT => { self.rect.set_x(self.rect.x() - 1); }
+            MissileDirection::RIGHT => { self.rect.set_x(self.rect.x() + 1); }
+        }
+    }
 }
 
 impl MissileTail {
@@ -164,5 +171,9 @@ impl Missile {
             tail: t,
             head: h,
         };
+    }
+
+    pub fn update(&mut self) {
+        self.body.move_towards(&self.direction);
     }
 }
