@@ -37,11 +37,22 @@ pub fn draw_missiles(
     }
 }
 
+pub fn draw_spaceships(
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    gs: &GameState
+){
+    // draw p1 spaceship
+    // body
+    canvas.set_draw_color(gs.spaceship_p1.body.color);
+    canvas.fill_rect(gs.spaceship_p1.body.rect).expect("Drawing failed for p1's spaceship's body.");
+}
+
 pub fn draw_game(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
     gs: &GameState
 ){
     draw_background(canvas);
     draw_missiles(canvas, &gs);
+    draw_spaceships(canvas, &gs);
     canvas.present();
 }
