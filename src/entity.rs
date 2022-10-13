@@ -13,6 +13,8 @@ use crate::WINDOW_WIDTH;
 const SPACESHIP_BODY_WIDTH: u32 = 50;
 const SPACESHIP_BODY_HEIGHT: u32 = 150;
 const SPACESHIP_BODY_COLOR: Color = Color::WHITE;
+const SPACESHIP_HEAD_SIZE: u32 = SPACESHIP_BODY_WIDTH;
+const SPACESHIP_HEAD_COLOR: Color = Color::RED;
 const SPACESHIP_P1_X: i32 = (WINDOW_WIDTH / 4 - SPACESHIP_BODY_WIDTH / 2) as i32;
 const SPACESHIP_P1_Y: i32 = (WINDOW_HEIGHT - SPACESHIP_BODY_HEIGHT) as i32;
 const SPACESHIP_P2_X: i32 = SPACESHIP_P1_X + (WINDOW_WIDTH / 2) as i32;
@@ -61,12 +63,14 @@ impl GameState {
 
 pub struct Spaceship {
     pub body: SpaceshipBody,
+    pub head: SpaceshipHead,
 }
 
 impl Spaceship {
     pub fn new(pos_x: i32, pos_y: i32) -> Spaceship {
         return Spaceship {
             body: SpaceshipBody::new(pos_x, pos_y, SPACESHIP_BODY_WIDTH, SPACESHIP_BODY_HEIGHT),
+            head: SpaceshipHead::new(pos_x as i16, pos_y as i16),
         };
     }
 }
@@ -81,6 +85,22 @@ impl SpaceshipBody {
         return SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             color: SPACESHIP_BODY_COLOR,
+        };
+    }
+}
+
+pub struct SpaceshipHead {
+    pub triangle_x: [i16;3],
+    pub triangle_y: [i16;3],
+    pub color: Color,
+}
+
+impl SpaceshipHead {
+    pub fn new(pos_x: i16, pos_y: i16) -> SpaceshipHead {
+        return SpaceshipHead {
+            triangle_x: [pos_x, pos_x + (SPACESHIP_HEAD_SIZE / 2) as i16, pos_x + SPACESHIP_BODY_WIDTH as i16],
+            triangle_y: [pos_y, pos_y - SPACESHIP_HEAD_SIZE as i16, pos_y],
+            color: SPACESHIP_HEAD_COLOR,
         };
     }
 }
