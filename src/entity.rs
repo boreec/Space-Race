@@ -47,7 +47,7 @@ impl GameState {
         return GameState {
             is_game_over: false,
             missiles: random_missiles,
-            spaceship_p1: Spaceship::new(),
+            spaceship_p1: Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y),
         };
     }
 }
@@ -55,13 +55,27 @@ impl GameState {
 // ** SPACESHIP ** //
 
 pub struct Spaceship {
-    // to do
+    body: SpaceshipBody,
 }
 
 impl Spaceship {
-    fn new() -> Spaceship {
+    pub fn new(pos_x: i32, pos_y: i32) -> Spaceship {
         return Spaceship {
-            // to do
+            body: SpaceshipBody::new(pos_x, pos_y, SPACESHIP_BODY_WIDTH, SPACESHIP_BODY_HEIGHT),
+        };
+    }
+}
+
+pub struct SpaceshipBody {
+    rect: Rect,
+    color: Color,
+}
+
+impl SpaceshipBody {
+    pub fn new(pos_x: i32, pos_y: i32, width: u32, height: u32) -> SpaceshipBody {
+        return SpaceshipBody {
+            rect: Rect::new(pos_x, pos_y, width, height),
+            color: SPACESHIP_BODY_COLOR,
         };
     }
 }
