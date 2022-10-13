@@ -55,7 +55,7 @@ impl GameState {
 // ** SPACESHIP ** //
 
 pub struct Spaceship {
-    body: SpaceshipBody,
+    pub body: SpaceshipBody,
 }
 
 impl Spaceship {
@@ -67,8 +67,8 @@ impl Spaceship {
 }
 
 pub struct SpaceshipBody {
-    rect: Rect,
-    color: Color,
+    pub rect: Rect,
+    pub color: Color,
 }
 
 impl SpaceshipBody {
