@@ -23,6 +23,7 @@ const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
 pub struct GameState {
     pub missiles: Vec<Missile>,
+    pub spaceship_p1: Spaceship,
     pub is_game_over: bool,
 }
 
@@ -38,6 +39,7 @@ impl GameState {
         return GameState {
             is_game_over: false,
             missiles: random_missiles,
+            spaceship_p1: Spaceship::new(),
         };
     }
 }
@@ -46,6 +48,14 @@ impl GameState {
 
 pub struct Spaceship {
     // to do
+}
+
+impl Spaceship {
+    fn new() -> Spaceship {
+        return Spaceship {
+            // to do
+        };
+    }
 }
 
 // ** MISSILES ** //
