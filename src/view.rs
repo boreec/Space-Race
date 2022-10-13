@@ -45,11 +45,22 @@ pub fn draw_spaceships(
     // body
     canvas.set_draw_color(gs.spaceship_p1.body.color);
     canvas.fill_rect(gs.spaceship_p1.body.rect).expect("Drawing failed for p1's spaceship's body.");
+    // head
+    canvas.set_draw_color(gs.spaceship_p1.head.color);
+    canvas
+        .filled_polygon(&gs.spaceship_p1.head.triangle_x, &gs.spaceship_p1.head.triangle_y, gs.spaceship_p1.head.color)
+        .expect("Drawing failed for p1's spaceship's head");
 
     // draw p2 spaceship
     // body
     canvas.set_draw_color(gs.spaceship_p2.body.color);
     canvas.fill_rect(gs.spaceship_p2.body.rect).expect("Drawing failed for p2's spaceship's body.");
+    // head
+    canvas.set_draw_color(gs.spaceship_p2.head.color);
+    canvas
+        .filled_polygon(&gs.spaceship_p2.head.triangle_x, &gs.spaceship_p2.head.triangle_y, gs.spaceship_p2.head.color)
+        .expect("Drawing failed for p1's spaceship's head");
+
 }
 
 pub fn draw_game(
