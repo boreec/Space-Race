@@ -60,6 +60,10 @@ fn handle_events(
 
     if event.is_user_event() {
         // update missile coordinates here
+        for m in &mut gs.missiles {
+            m.update();
+        }
+        println!("missiles updated!");
         draw_game(canvas, &gs);
     }
     else {
