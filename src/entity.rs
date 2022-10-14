@@ -68,6 +68,7 @@ impl GameState {
 pub struct Spaceship {
     pub body: SpaceshipBody,
     pub head: SpaceshipHead,
+    pub tail: SpaceshipTail,
 }
 
 impl Spaceship {
@@ -75,6 +76,7 @@ impl Spaceship {
         return Spaceship {
             body: SpaceshipBody::new(pos_x, pos_y, SPACESHIP_BODY_WIDTH, SPACESHIP_BODY_HEIGHT),
             head: SpaceshipHead::new(pos_x as i16, pos_y as i16),
+            tail: SpaceshipTail::new(pos_x as i16, pos_y as i16),
         };
     }
 
