@@ -112,6 +112,8 @@ impl SpaceshipBody {
 
     pub fn move_upward(&mut self){
         self.rect.set_y(self.rect.y() - SPACESHIP_SPEED as i32);
+        self.porthole_1.1 -= SPACESHIP_SPEED as i16;
+        self.porthole_2.1 -= SPACESHIP_SPEED as i16;
     }
 
     pub fn move_downward(&mut self){
