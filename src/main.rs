@@ -33,7 +33,7 @@ pub fn main() {
 }
 
 fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
-    let mut gs = GameState::new();
+    let mut gs: GameState = GameState::new();
     let mut event_pump = context.event_pump().unwrap();
     let ev = context.event().unwrap();
     ev.register_custom_event::<FrameEvent>().unwrap();
@@ -46,8 +46,13 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
             FRAME_DURATION
         }),
     );
-    while !gs.is_game_over {
-        handle_events(&mut gs, &mut event_pump, canvas);
+
+    while gs.is_game_restarted {
+        gs = GameState::new();
+        gs.is_game_restarted = false;
+        while !gs.is_game_over && !gs.is_game_restarted {
+            handle_events(&mut gs, &mut event_pump, canvas);
+        }
     }
 }
 
