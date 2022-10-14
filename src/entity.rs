@@ -167,7 +167,10 @@ impl SpaceshipTail {
                 pos_y + SPACESHIP_BODY_HEIGHT as i16 - SPACESHIP_TAIL_SIZE,
                 pos_y + SPACESHIP_BODY_HEIGHT as i16 + SPACESHIP_TAIL_SIZE,
                 pos_y + SPACESHIP_BODY_HEIGHT as i16],
-            right_triangle_x : [pos_x, pos_x, pos_x + SPACESHIP_TAIL_SIZE],
+            right_triangle_x : [
+                pos_x + SPACESHIP_BODY_WIDTH as i16,
+                pos_x + SPACESHIP_BODY_WIDTH as i16,
+                pos_x + SPACESHIP_BODY_WIDTH as i16 + SPACESHIP_TAIL_SIZE],
             right_triangle_y: [
                 pos_y + SPACESHIP_BODY_HEIGHT as i16 - SPACESHIP_TAIL_SIZE,
                 pos_y + SPACESHIP_BODY_HEIGHT as i16 + SPACESHIP_TAIL_SIZE,
