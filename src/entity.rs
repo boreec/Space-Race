@@ -10,6 +10,7 @@ use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
 
 /* SPACESHIP CONSTANTS */
+const SPACESHIP_SPEED: i64 = 5;
 const SPACESHIP_BODY_WIDTH: u32 = 50;
 const SPACESHIP_BODY_HEIGHT: u32 = 150;
 const SPACESHIP_BODY_COLOR: Color = Color::WHITE;
@@ -99,11 +100,11 @@ impl SpaceshipBody {
     }
 
     pub fn move_upward(&mut self){
-        self.rect.set_y(self.rect.y() - 1);
+        self.rect.set_y(self.rect.y() - SPACESHIP_SPEED as i32);
     }
 
     pub fn move_downward(&mut self){
-        self.rect.set_y(self.rect.y() + 1);
+        self.rect.set_y(self.rect.y() + SPACESHIP_SPEED as i32);
     }
 }
 
@@ -123,11 +124,11 @@ impl SpaceshipHead {
     }
 
     pub fn move_upward(&mut self){
-        self.triangle_y = self.triangle_y.map(|v| v - 1);
+        self.triangle_y = self.triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
     }
 
     pub fn move_downward(&mut self){
-        self.triangle_y = self.triangle_y.map(|v| v + 1);
+        self.triangle_y = self.triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
     }
 }
 
