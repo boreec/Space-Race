@@ -2,6 +2,7 @@ use crate::sdl2::gfx::primitives::DrawRenderer;
 use sdl2::pixels::Color;
 
 use crate::GameState;
+use crate::Spaceship;
 
 const COLOR_BACKGROUND: Color = Color::BLACK;
 
@@ -37,46 +38,34 @@ pub fn draw_missiles(
     }
 }
 
-pub fn draw_spaceships(
+pub fn draw_spaceship(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-    gs: &GameState
+    spaceship: &Spaceship
 ){
-    // draw p1 spaceship
     // body
-    canvas.set_draw_color(gs.spaceship_p1.body.body_color);
-    canvas.fill_rect(gs.spaceship_p1.body.rect).expect("Drawing failed for p1's spaceship's body.");
+    canvas.set_draw_color(spaceship.body.body_color);
+    canvas.fill_rect(spaceship.body.rect).expect("Drawing failed for p1's spaceship's body.");
     // body's porthole #1
-    canvas.set_draw_color(gs.spaceship_p1.body.porthole_color);
+    canvas.set_draw_color(spaceship.body.porthole_color);
     canvas.filled_circle(
-        gs.spaceship_p1.body.porthole_1.0,
-        gs.spaceship_p1.body.porthole_1.1,
-        gs.spaceship_p1.body.porthole_r,
-        gs.spaceship_p1.body.porthole_color
-    ).expect("Drawing failed for p1's first porthole!");
+        spaceship.body.porthole_1.0,
+        spaceship.body.porthole_1.1,
+        spaceship.body.porthole_r,
+        spaceship.body.porthole_color
+    ).expect("Drawing failed for spaceship's first porthole!");
     // body's porthole #2
-    canvas.set_draw_color(gs.spaceship_p1.body.porthole_color);
+    canvas.set_draw_color(spaceship.body.porthole_color);
     canvas.filled_circle(
-        gs.spaceship_p1.body.porthole_2.0,
-        gs.spaceship_p1.body.porthole_2.1,
-        gs.spaceship_p1.body.porthole_r,
-        gs.spaceship_p1.body.porthole_color
-    ).expect("Drawing failed for p1's second porthole!");
+        spaceship.body.porthole_2.0,
+        spaceship.body.porthole_2.1,
+        spaceship.body.porthole_r,
+        spaceship.body.porthole_color
+    ).expect("Drawing failed for spaceship's second porthole!");
     // head
-    canvas.set_draw_color(gs.spaceship_p1.head.color);
+    canvas.set_draw_color(spaceship.head.color);
     canvas
-        .filled_polygon(&gs.spaceship_p1.head.triangle_x, &gs.spaceship_p1.head.triangle_y, gs.spaceship_p1.head.color)
-        .expect("Drawing failed for p1's spaceship's head");
-
-    // draw p2 spaceship
-    // body
-    canvas.set_draw_color(gs.spaceship_p2.body.body_color);
-    canvas.fill_rect(gs.spaceship_p2.body.rect).expect("Drawing failed for p2's spaceship's body.");
-    // head
-    canvas.set_draw_color(gs.spaceship_p2.head.color);
-    canvas
-        .filled_polygon(&gs.spaceship_p2.head.triangle_x, &gs.spaceship_p2.head.triangle_y, gs.spaceship_p2.head.color)
-        .expect("Drawing failed for p1's spaceship's head");
-
+        .filled_polygon(&spaceship.head.triangle_x, &spaceship.head.triangle_y, spaceship.head.color)
+        .expect("Drawing failed for spaceship's head");
 }
 
 pub fn draw_game(
@@ -85,6 +74,7 @@ pub fn draw_game(
 ){
     draw_background(canvas);
     draw_missiles(canvas, &gs);
-    draw_spaceships(canvas, &gs);
+    draw_spaceship(canvas, &gs.spaceship_p1);
+    draw_spaceship(canvas, &gs.spaceship_p2);
     canvas.present();
 }
