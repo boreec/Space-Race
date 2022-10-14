@@ -98,12 +98,14 @@ pub struct SpaceshipBody {
 
 impl SpaceshipBody {
     pub fn new(pos_x: i32, pos_y: i32, width: u32, height: u32) -> SpaceshipBody {
+        let porthole_radius = (width / 3) as i16;
+
         return SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             body_color: SPACESHIP_BODY_COLOR,
-            porthole_1: ((pos_x as i16 + width as i16) / 2, (pos_y as i16 + width as i16 / 2)),
+            porthole_1: ((pos_x as i16 + width as i16 / 2), (pos_y as i16 + width as i16 / 2)),
             porthole_2: ((pos_x as i16 + width as i16) / 2, 2* (pos_y as i16 + width as i16) / 2),
-            porthole_r: (width / 2) as i16,
+            porthole_r: porthole_radius,
             porthole_color: SPACESHIP_PORTHOLE_COLOR,
         };
     }

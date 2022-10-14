@@ -44,7 +44,7 @@ pub fn draw_spaceship(
 ){
     // body
     canvas.set_draw_color(spaceship.body.body_color);
-    canvas.fill_rect(spaceship.body.rect).expect("Drawing failed for p1's spaceship's body.");
+    canvas.fill_rect(spaceship.body.rect).expect("Drawing failed for spaceship's body.");
     // body's porthole #1
     canvas.set_draw_color(spaceship.body.porthole_color);
     canvas.filled_circle(
