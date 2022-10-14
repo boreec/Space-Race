@@ -65,7 +65,15 @@ pub fn draw_spaceship(
     canvas.set_draw_color(spaceship.head.color);
     canvas
         .filled_polygon(&spaceship.head.triangle_x, &spaceship.head.triangle_y, spaceship.head.color)
-        .expect("Drawing failed for spaceship's head");
+        .expect("Drawing failed for spaceship's head!");
+    // tail
+    canvas.set_draw_color(spaceship.tail.color);
+    canvas
+        .filled_polygon(&spaceship.tail.left_triangle_x, &spaceship.tail.left_triangle_y, spaceship.tail.color)
+        .expect("Drawing failed for spaceship's left leg!");
+    canvas
+        .filled_polygon(&spaceship.tail.right_triangle_x, &spaceship.tail.right_triangle_y, spaceship.tail.color)
+        .expect("Drawing failed for spaceship's right leg!");
 }
 
 pub fn draw_game(
