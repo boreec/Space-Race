@@ -45,7 +45,7 @@ pub fn draw_spaceships(
     // body
     canvas.set_draw_color(gs.spaceship_p1.body.body_color);
     canvas.fill_rect(gs.spaceship_p1.body.rect).expect("Drawing failed for p1's spaceship's body.");
-    // body's porthole
+    // body's porthole #1
     canvas.set_draw_color(gs.spaceship_p1.body.porthole_color);
     canvas.filled_circle(
         gs.spaceship_p1.body.porthole_1.0,
@@ -53,6 +53,14 @@ pub fn draw_spaceships(
         gs.spaceship_p1.body.porthole_r,
         gs.spaceship_p1.body.porthole_color
     ).expect("Drawing failed for p1's first porthole!");
+    // body's porthole #2
+    canvas.set_draw_color(gs.spaceship_p1.body.porthole_color);
+    canvas.filled_circle(
+        gs.spaceship_p1.body.porthole_2.0,
+        gs.spaceship_p1.body.porthole_2.1,
+        gs.spaceship_p1.body.porthole_r,
+        gs.spaceship_p1.body.porthole_color
+    ).expect("Drawing failed for p1's second porthole!");
     // head
     canvas.set_draw_color(gs.spaceship_p1.head.color);
     canvas
