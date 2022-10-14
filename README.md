@@ -13,6 +13,10 @@ Use **cargo** to build and run the program:
 cargo run --release
 ```
 
+## How to play ?
+
+The goal is to move your spaceship to the top of the screen while avoiding missiles. If you get touched by a missile you loose time and you restart from the beginning.
+
 ## Troubleshooting
 
 If you have issues building the program, make sure the following packages are installed on the system:
