@@ -43,6 +43,7 @@ pub struct GameState {
     pub spaceship_p1: Spaceship,
     pub spaceship_p2: Spaceship,
     pub is_game_over: bool,
+    pub is_game_restarted: bool,
     pub score_p1: u32,
     pub score_p2: u32,
 }
@@ -58,6 +59,7 @@ impl GameState {
 
         return GameState {
             is_game_over: false,
+            is_game_restarted: false,
             missiles: random_missiles,
             spaceship_p1: Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y),
             spaceship_p2: Spaceship::new(SPACESHIP_P2_X, SPACESHIP_P2_Y),
