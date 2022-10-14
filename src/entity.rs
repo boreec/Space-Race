@@ -17,6 +17,8 @@ const SPACESHIP_BODY_COLOR: Color = Color::WHITE;
 const SPACESHIP_PORTHOLE_COLOR: Color = Color::BLUE;
 const SPACESHIP_HEAD_SIZE: u32 = SPACESHIP_BODY_WIDTH;
 const SPACESHIP_HEAD_COLOR: Color = Color::RED;
+const SPACESHIP_TAIL_SIZE: i16 = SPACESHIP_BODY_WIDTH as i16;
+const SPACESHIP_TAIL_COLOR: Color = Color::RED;
 const SPACESHIP_P1_X: i32 = (WINDOW_WIDTH / 4 - SPACESHIP_BODY_WIDTH / 2) as i32;
 const SPACESHIP_P1_Y: i32 = (WINDOW_HEIGHT - SPACESHIP_BODY_HEIGHT) as i32;
 const SPACESHIP_P2_X: i32 = SPACESHIP_P1_X + (WINDOW_WIDTH / 2) as i32;
@@ -153,6 +155,24 @@ pub struct SpaceshipTail {
     pub right_triangle_x: [i16; 3],
     pub right_triangle_y: [i16; 3],
     pub color: Color,
+}
+
+impl SpaceshipTail {
+    pub fn new(pos_x: i16, pos_y: i16) -> SpaceshipTail {
+        return SpaceshipTail {
+            left_triangle_x: [pos_x, pos_x, pos_x - SPACESHIP_TAIL_SIZE],
+            left_triangle_y: [
+                pos_y + SPACESHIP_BODY_HEIGHT as i16 - SPACESHIP_TAIL_SIZE,
+                pos_y + SPACESHIP_BODY_HEIGHT as i16 + SPACESHIP_TAIL_SIZE,
+                pos_y + SPACESHIP_BODY_HEIGHT as i16],
+            right_triangle_x : [pos_x, pos_x, pos_x + SPACESHIP_TAIL_SIZE],
+            right_triangle_y: [
+                pos_y + SPACESHIP_BODY_HEIGHT as i16 - SPACESHIP_TAIL_SIZE,
+                pos_y + SPACESHIP_BODY_HEIGHT as i16 + SPACESHIP_TAIL_SIZE,
+                pos_y + SPACESHIP_BODY_HEIGHT as i16],
+            color: SPACESHIP_TAIL_COLOR,
+        };
+    }
 }
 
 // ** MISSILES ** //
