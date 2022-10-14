@@ -43,7 +43,7 @@ pub fn draw_spaceships(
 ){
     // draw p1 spaceship
     // body
-    canvas.set_draw_color(gs.spaceship_p1.body.color);
+    canvas.set_draw_color(gs.spaceship_p1.body.body_color);
     canvas.fill_rect(gs.spaceship_p1.body.rect).expect("Drawing failed for p1's spaceship's body.");
     // head
     canvas.set_draw_color(gs.spaceship_p1.head.color);
@@ -53,7 +53,7 @@ pub fn draw_spaceships(
 
     // draw p2 spaceship
     // body
-    canvas.set_draw_color(gs.spaceship_p2.body.color);
+    canvas.set_draw_color(gs.spaceship_p2.body.body_color);
     canvas.fill_rect(gs.spaceship_p2.body.rect).expect("Drawing failed for p2's spaceship's body.");
     // head
     canvas.set_draw_color(gs.spaceship_p2.head.color);
