@@ -78,6 +78,11 @@ impl Spaceship {
         self.body.move_upward();
         self.head.move_upward();
     }
+
+    pub fn move_downward(&mut self){
+        self.body.move_downward();
+        self.head.move_downward();
+    }
 }
 
 pub struct SpaceshipBody {
@@ -95,6 +100,10 @@ impl SpaceshipBody {
 
     pub fn move_upward(&mut self){
         self.rect.set_y(self.rect.y() - 1);
+    }
+
+    pub fn move_downward(&mut self){
+        self.rect.set_y(self.rect.y() + 1);
     }
 }
 
@@ -115,6 +124,10 @@ impl SpaceshipHead {
 
     pub fn move_upward(&mut self){
         self.triangle_y = self.triangle_y.map(|v| v - 1);
+    }
+
+    pub fn move_downward(&mut self){
+        self.triangle_y = self.triangle_y.map(|v| v + 1);
     }
 }
 
