@@ -72,6 +72,9 @@ fn handle_events(
             Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
                 gs.is_game_over = true;
             },
+            Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
+                gs.spaceship_p1.move_upward();
+            }
             _ => {}
         }
     }
