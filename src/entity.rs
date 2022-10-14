@@ -73,6 +73,11 @@ impl Spaceship {
             head: SpaceshipHead::new(pos_x as i16, pos_y as i16),
         };
     }
+
+    pub fn move_upward(&mut self){
+        self.body.move_upward();
+        self.head.move_upward();
+    }
 }
 
 pub struct SpaceshipBody {
@@ -86,6 +91,10 @@ impl SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             color: SPACESHIP_BODY_COLOR,
         };
+    }
+
+    pub fn move_upward(&mut self){
+        self.rect.set_y(self.rect.y() - 1);
     }
 }
 
@@ -102,6 +111,10 @@ impl SpaceshipHead {
             triangle_y: [pos_y, pos_y - SPACESHIP_HEAD_SIZE as i16, pos_y],
             color: SPACESHIP_HEAD_COLOR,
         };
+    }
+
+    pub fn move_upward(&mut self){
+        self.triangle_y = self.triangle_y.map(|v| v - 1);
     }
 }
 
