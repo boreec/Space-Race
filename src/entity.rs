@@ -103,8 +103,8 @@ impl SpaceshipBody {
         return SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             body_color: SPACESHIP_BODY_COLOR,
-            porthole_1: ((pos_x as i16 + width as i16 / 2), (pos_y as i16 + width as i16 / 2)),
-            porthole_2: ((pos_x as i16 + width as i16) / 2, 2* (pos_y as i16 + width as i16) / 2),
+            porthole_1: (pos_x as i16 + width as i16 / 2, (pos_y as i16 + width as i16 / 2)),
+            porthole_2: (pos_x as i16 + width as i16 / 2, 2* (pos_y as i16 + width as i16) / 2),
             porthole_r: porthole_radius,
             porthole_color: SPACESHIP_PORTHOLE_COLOR,
         };
