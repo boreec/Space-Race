@@ -12,7 +12,7 @@ use crate::WINDOW_WIDTH;
 /* SPACESHIP CONSTANTS */
 const SPACESHIP_SPEED: i64 = 5;
 const SPACESHIP_BODY_WIDTH: u32 = 50;
-const SPACESHIP_BODY_HEIGHT: u32 = 150;
+const SPACESHIP_BODY_HEIGHT: u32 = 125;
 const SPACESHIP_BODY_COLOR: Color = Color::WHITE;
 const SPACESHIP_PORTHOLE_COLOR: Color = Color::BLUE;
 const SPACESHIP_HEAD_SIZE: u32 = SPACESHIP_BODY_WIDTH;
@@ -103,8 +103,8 @@ impl SpaceshipBody {
         return SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             body_color: SPACESHIP_BODY_COLOR,
-            porthole_1: (pos_x as i16 + width as i16 / 2, (pos_y as i16 + width as i16 / 2)),
-            porthole_2: (pos_x as i16 + width as i16 / 2, 2* (pos_y as i16 + width as i16) / 2),
+            porthole_1: (pos_x as i16 + width as i16 / 2, pos_y as i16 + porthole_radius * 2),
+            porthole_2: (pos_x as i16 + width as i16 / 2, pos_y as i16 + porthole_radius * 5),
             porthole_r: porthole_radius,
             porthole_color: SPACESHIP_PORTHOLE_COLOR,
         };
