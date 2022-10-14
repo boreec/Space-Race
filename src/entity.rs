@@ -147,6 +147,14 @@ impl SpaceshipHead {
     }
 }
 
+pub struct SpaceshipTail {
+    pub left_triangle_x: [i16; 3],
+    pub left_triangle_y: [i16; 3],
+    pub right_triangle_x: [i16; 3],
+    pub right_triangle_y: [i16; 3],
+    pub color: Color,
+}
+
 // ** MISSILES ** //
 
 pub enum MissileDirection {
