@@ -90,9 +90,9 @@ impl Spaceship {
 pub struct SpaceshipBody {
     pub rect: Rect,
     pub body_color: Color,
-    pub porthole_1: (i32, i32),
-    pub porthole_2: (i32, i32),
-    pub porthole_r: i32,
+    pub porthole_1: (i16, i16),
+    pub porthole_2: (i16, i16),
+    pub porthole_r: i16,
     pub porthole_color: Color,
 }
 
@@ -101,9 +101,9 @@ impl SpaceshipBody {
         return SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             body_color: SPACESHIP_BODY_COLOR,
-            porthole_1: (pos_x + width as i32 / 2, pos_y + width as i32 / 2),
-            porthole_2: (pos_x + width as i32 / 2, 2 * pos_y + width as i32 / 2),
-            porthole_r: width as i32 / 2,
+            porthole_1: ((pos_x as i16 + width as i16) / 2, (pos_y as i16 + width as i16 / 2)),
+            porthole_2: ((pos_x as i16 + width as i16) / 2, 2* (pos_y as i16 + width as i16) / 2),
+            porthole_r: (width / 2) as i16,
             porthole_color: SPACESHIP_PORTHOLE_COLOR,
         };
     }
