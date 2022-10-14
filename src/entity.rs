@@ -93,6 +93,7 @@ pub struct SpaceshipBody {
     pub porthole_1: (i32, i32),
     pub porthole_2: (i32, i32),
     pub porthole_r: i32,
+    pub porthole_color: Color,
 }
 
 impl SpaceshipBody {
@@ -103,6 +104,7 @@ impl SpaceshipBody {
             porthole_1: (pos_x + width as i32 / 2, pos_y + width as i32 / 2),
             porthole_2: (pos_x + width as i32 / 2, 2 * pos_y + width as i32 / 2),
             porthole_r: width as i32 / 2,
+            porthole_color: SPACESHIP_PORTHOLE_COLOR,
         };
     }
 
