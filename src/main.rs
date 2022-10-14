@@ -78,6 +78,9 @@ fn handle_events(
             Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
                 gs.spaceship_p1.move_downward();
             }
+            Event::KeyDown { keycode: Some(Keycode::Space), .. } => {
+                gs.is_game_restarted = true;
+            }
             _ => {}
         }
     }
