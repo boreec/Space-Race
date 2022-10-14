@@ -75,6 +75,9 @@ fn handle_events(
             Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
                 gs.spaceship_p1.move_upward();
             }
+            Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
+                gs.spaceship_p1.move_downward();
+            }
             _ => {}
         }
     }
