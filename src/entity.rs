@@ -83,11 +83,13 @@ impl Spaceship {
     pub fn move_upward(&mut self){
         self.body.move_upward();
         self.head.move_upward();
+        self.tail.move_upward();
     }
 
     pub fn move_downward(&mut self){
         self.body.move_downward();
         self.head.move_downward();
+        self.tail.move_downward();
     }
 }
 
@@ -178,6 +180,17 @@ impl SpaceshipTail {
             color: SPACESHIP_TAIL_COLOR,
         };
     }
+
+    pub fn move_upward(&mut self){
+        self.left_triangle_y = self.left_triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
+        self.right_triangle_y = self.right_triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
+    }
+
+    pub fn move_downward(&mut self){
+        self.left_triangle_y = self.left_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
+        self.right_triangle_y = self.right_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
+    }
+
 }
 
 // ** MISSILES ** //
