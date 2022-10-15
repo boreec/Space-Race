@@ -2,7 +2,6 @@ image: rust:buster
 
 
 before_script:
-  - apt-get update
   - apt-get install -y libsdl2-dev libsdl2-ttf-dev libsdl2-gfx-1.0.0 libsdl2-gfx-dev
   interruptible: true
 
