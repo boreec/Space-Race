@@ -1,6 +1,8 @@
 use crate::sdl2::gfx::primitives::DrawRenderer;
 use sdl2::pixels::Color;
 
+use std::path::Path;
+
 use crate::GameState;
 use crate::Spaceship;
 
@@ -80,7 +82,13 @@ pub fn draw_score(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
     gs: &GameState
 ){
-    // to do
+    let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
+    let texture_creatore = canvas.texture_creator();
+    let schluber_font_path: &Path = Path::new("font/schluber/Schluber.ttf");
+
+    ttf_context
+        .load_font(schluber_font_path, 128)
+        .expect(&format!("Failed to load font {}", schluber_font_path.display()));
 }
 
 pub fn draw_game(
