@@ -200,7 +200,7 @@ impl SpaceshipTail {
 }
 
 // ** MISSILES ** //
-
+#[derive(PartialEq)]
 pub enum MissileDirection {
     LEFT,
     RIGHT,
@@ -347,7 +347,7 @@ impl Missile {
         let m = MissileBody::new(r);
         let t = MissileTail::new(pos_x as i16, pos_y as i16, &d);
         let h = MissileHead::new(pos_x as i16, pos_y as i16, &d);
-
+        
         return Missile {
             x: pos_x,
             y: pos_y,
