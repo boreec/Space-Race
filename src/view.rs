@@ -130,7 +130,6 @@ pub fn draw_score(
 
     canvas.copy(&texture_p1, None, font_rect_p1).expect("Failed to copy p1 texture to canvas");
     canvas.copy(&texture_p2, None, font_rect_p2).expect("Failed to copy p2 texture to canvas");
-
 }
 
 pub fn draw_game(

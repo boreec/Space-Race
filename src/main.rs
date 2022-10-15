@@ -68,7 +68,6 @@ fn handle_events(
         for m in &mut gs.missiles {
             m.update();
         }
-        println!("missiles updated!");
         draw_game(canvas, &gs);
     }
     else {
