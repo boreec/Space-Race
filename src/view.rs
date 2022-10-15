@@ -86,12 +86,51 @@ pub fn draw_score(
     gs: &GameState
 ){
     let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
-    let texture_creatore = canvas.texture_creator();
+    let texture_creator = canvas.texture_creator();
     let schluber_font_path: &Path = Path::new("font/schluber/Schluber.ttf");
 
-    ttf_context
+    let font = ttf_context
         .load_font(schluber_font_path, 128)
         .expect(&format!("Failed to load font {}", schluber_font_path.display()));
+
+    let surface_p1 = font
+        .render(&format!("{}", gs.score_p1))
+        .blended(Color::WHITE)
+        .expect("failed to create font surface for player #1 score");
+
+    let surface_p2 = font
+        .render(&format!("{}", gs.score_p2))
+        .blended(Color::WHITE)
+        .expect("failed to create font surface for player #2 score");
+
+    let screen_padding = 20;
+    let font_rect_width = 30;
+    let font_rect_height = 20;
+    let font_rect_p1 = Rect::new(
+        screen_padding as i32,
+        (WINDOW_HEIGHT - font_rect_height - screen_padding) as i32,
+        font_rect_width,
+        font_rect_height
+    );
+
+    let font_rect_p2 = Rect::new(
+        (WINDOW_WIDTH - font_rect_width - screen_padding) as i32,
+        (WINDOW_HEIGHT - font_rect_height - screen_padding) as i32,
+        font_rect_width,
+        font_rect_height
+    );
+
+    let texture_p1 = texture_creator
+        .create_texture_from_surface(&surface_p1)
+        .expect("Failed to create texture from surface for p1!");
+    
+    let texture_p2 = texture_creator
+        .create_texture_from_surface(&surface_p2)
+        .expect("Failed to create texture from surface for p2!");
+
+    canvas.copy(&texture_p1, None, font_rect_p1).expect("Failed to copy p1 texture to canvas");
+    canvas.copy(&texture_p2, None, font_rect_p2).expect("Failed to copy p2 texture to canvas");
+
 }
 
 pub fn draw_game(
