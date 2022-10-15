@@ -59,7 +59,7 @@ impl GameState {
 
         return GameState {
             is_game_over: false,
-            is_game_restarted: false,
+            is_game_restarted: true,
             missiles: random_missiles,
             spaceship_p1: Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y),
             spaceship_p2: Spaceship::new(SPACESHIP_P2_X, SPACESHIP_P2_Y),
