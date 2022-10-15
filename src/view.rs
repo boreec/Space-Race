@@ -1,10 +1,13 @@
 use crate::sdl2::gfx::primitives::DrawRenderer;
 use sdl2::pixels::Color;
+use sdl2::rect::Rect;
 
 use std::path::Path;
 
 use crate::GameState;
 use crate::Spaceship;
+use crate::WINDOW_WIDTH;
+use crate::WINDOW_HEIGHT;
 
 const COLOR_BACKGROUND: Color = Color::BLACK;
 
