@@ -76,6 +76,13 @@ pub fn draw_spaceship(
         .expect("Drawing failed for spaceship's right leg!");
 }
 
+pub fn draw_score(
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    gs: &GameState
+){
+    // to do
+}
+
 pub fn draw_game(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
     gs: &GameState
@@ -84,5 +91,6 @@ pub fn draw_game(
     draw_missiles(canvas, &gs);
     draw_spaceship(canvas, &gs.spaceship_p1);
     draw_spaceship(canvas, &gs.spaceship_p2);
+    draw_score(canvas, &gs);
     canvas.present();
 }
