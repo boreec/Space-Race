@@ -123,7 +123,7 @@ pub fn draw_score(
     let texture_p1 = texture_creator
         .create_texture_from_surface(&surface_p1)
         .expect("Failed to create texture from surface for p1!");
-    
+
     let texture_p2 = texture_creator
         .create_texture_from_surface(&surface_p2)
         .expect("Failed to create texture from surface for p2!");
