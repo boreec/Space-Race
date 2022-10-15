@@ -359,6 +359,29 @@ impl Missile {
     }
 
     pub fn update(&mut self) {
+
+        // Detect the screen wrappings and reset the coordinates in that case.
+        if self.direction == MissileDirection::LEFT && self.x < 0 {
+            self.x = WINDOW_WIDTH as i32;
+            let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
+            self.body = MissileBody::new(r);
+            self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
+            self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
+        } else if self.direction == MissileDirection::RIGHT && self.x > WINDOW_WIDTH as i32 {
+            self.x = 0;
+            let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
+            self.body = MissileBody::new(r);
+            self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
+            self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
+        }
+
+        // Update coordinates according to the missile's direction.
+        match self.direction {
+            MissileDirection::LEFT => { self.x -= MISSILE_SPEED as i32; }
+            MissileDirection::RIGHT => { self.x += MISSILE_SPEED as i32; }
+        }
+
+        // Update missile components coordinates according to the missile's direction.
         self.body.move_towards(&self.direction);
         self.head.move_towards(&self.direction);
         self.tail.move_towards(&self.direction);
