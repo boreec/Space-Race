@@ -35,7 +35,7 @@ const MISSILE_BODY_COLOR: Color = Color::WHITE;
 const MISSILE_TAIL_COLOR: Color = Color::GREY;
 const MISSILE_HEAD_COLOR: Color = Color::RED;
 const MISSILE_QUANTITY: usize = 10;
-const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=(WINDOW_WIDTH - MISSILE_WIDTH);
+const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=WINDOW_WIDTH;
 const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
 pub struct GameState {
