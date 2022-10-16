@@ -67,6 +67,10 @@ impl GameState {
             score_p2: 0,
         };
     }
+
+    pub fn has_spaceship_scored(spaceship: &Spaceship) -> bool {
+        return spaceship.body.rect.y() + SPACESHIP_BODY_HEIGHT as i32 + SPACESHIP_TAIL_SIZE as i32 <= 0;
+    }
 }
 
 // ** SPACESHIP ** //
