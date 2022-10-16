@@ -137,9 +137,14 @@ pub fn draw_timeline(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
     gs: &GameState
 ){
+    // Don't draw the line if the game time is over.
+    if gs.game_duration.as_secs() < gs.starting_time.elapsed().as_secs() {
+        return;
+    }
+
     let line_width = 10;
     let line_increment = WINDOW_HEIGHT / gs.game_duration.as_secs() as u32;
-    let line_height = line_increment * gs.starting_time.elapsed().as_secs() as u32;
+    let line_height = line_increment * (gs.game_duration.as_secs() - gs.starting_time.elapsed().as_secs()) as u32;
     let timeline_rect = Rect::new(
         (WINDOW_WIDTH / 2 - line_width / 2) as i32,
         (WINDOW_HEIGHT - line_height) as i32,
