@@ -109,6 +109,14 @@ impl Spaceship {
     pub fn can_move_downward(&self) -> bool {
         return SPACESHIP_HEAD_SIZE + self.body.rect.y() as u32 + 2 * SPACESHIP_TAIL_SIZE as u32 <= WINDOW_HEIGHT;
     }
+
+    pub fn collide_with(&self, _missile: &Missile) -> bool {
+        let head_collision: bool = false;
+        let body_collision: bool = false;
+        let tail_collision: bool = false;
+
+        return head_collision || body_collision || tail_collision;
+    }
 }
 
 pub struct SpaceshipBody {
