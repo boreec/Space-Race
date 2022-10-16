@@ -78,6 +78,9 @@ fn handle_events(
             },
             Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
                 gs.spaceship_p1.move_upward();
+                if GameState::has_spaceship_scored(&gs.spaceship_p1) {
+                    gs.score_p1 += 1;
+                }
             }
             Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
                 gs.spaceship_p1.move_downward();
