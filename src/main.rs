@@ -71,6 +71,7 @@ fn handle_events(
         for m in &mut gs.missiles {
             m.update();
         }
+        update_cpu(gs);
         draw_game(canvas, &gs);
     }
     else {
@@ -96,5 +97,13 @@ fn handle_events(
             }
             _ => {}
         }
+    }
+}
+
+fn update_cpu(gs: &mut GameState){
+    gs.spaceship_p2.move_upward();
+    if GameState::has_spaceship_scored(&gs.spaceship_p2) {
+        gs.score_p2 += 1;
+        gs.reset_spaceship_p2();
     }
 }
