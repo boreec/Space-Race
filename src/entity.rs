@@ -389,8 +389,17 @@ impl Missile {
     }
 
     pub fn update(&mut self) {
+        // Check if the missile is going out of the screen.
+        self.check_screen_wrapping();
 
-        // Detect the screen wrappings and reset the coordinates in that case.
+        // Update Missile and its components coordinates according to its direction.
+        self.move_towards();
+        self.body.move_towards(&self.direction);
+        self.head.move_towards(&self.direction);
+        self.tail.move_towards(&self.direction);
+    }
+
+    fn check_screen_wrapping(&mut self){
         if self.direction == MissileDirection::LEFT && self.x < 0 {
             self.x = WINDOW_WIDTH as i32;
             let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
@@ -404,12 +413,6 @@ impl Missile {
             self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
             self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
         }
-
-        // Update Missile and its components coordinates according to its direction.
-        self.move_towards();
-        self.body.move_towards(&self.direction);
-        self.head.move_towards(&self.direction);
-        self.tail.move_towards(&self.direction);
     }
 
     fn move_towards(&mut self){
