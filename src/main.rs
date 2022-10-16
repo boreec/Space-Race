@@ -7,8 +7,6 @@ use sdl2::event::Event;
 use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
 
-use std::time::Duration;
-
 mod entity;
 mod view;
 
@@ -17,8 +15,6 @@ const WINDOW_HEIGHT: u32 = 600;
 const WINDOW_TITLE: &str = "space race";
 
 const FRAME_DURATION: u32 = 50;
-
-const GAME_DURATION: &Duration = &Duration::new(45, 0);
 
 struct FrameEvent;
 
@@ -54,10 +50,10 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
     while gs.is_game_restarted {
         gs = GameState::new();
         gs.is_game_restarted = false;
-        while !gs.is_game_over && !gs.is_game_elapsed(GAME_DURATION) && !gs.is_game_restarted {
+        while !gs.is_game_over && !gs.is_game_elapsed() && !gs.is_game_restarted {
             handle_events(&mut gs, &mut event_pump, canvas);
         }
-        if gs.is_game_elapsed(GAME_DURATION) {
+        if gs.is_game_elapsed() {
             gs.is_game_restarted = true;
         }
     }

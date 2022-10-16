@@ -49,6 +49,7 @@ pub struct GameState {
     pub score_p1: u32,
     pub score_p2: u32,
     pub starting_time: Instant,
+    pub game_duration: Duration,
 }
 
 impl GameState {
@@ -69,6 +70,7 @@ impl GameState {
             score_p1: 0,
             score_p2: 0,
             starting_time: Instant::now(),
+            game_duration: Duration::new(45, 0),
         };
     }
 
@@ -80,8 +82,8 @@ impl GameState {
         self.spaceship_p1 = Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y);
     }
 
-    pub fn is_game_elapsed(&self, game_duration: &Duration) -> bool{
-        return self.starting_time.elapsed().as_secs() > game_duration.as_secs();
+    pub fn is_game_elapsed(&self) -> bool{
+        return self.starting_time.elapsed().as_secs() > self.game_duration.as_secs();
     }
 }
 
