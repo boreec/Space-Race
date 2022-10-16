@@ -5,6 +5,7 @@ use sdl2::pixels::Color;
 use sdl2::rect::Rect;
 
 use std::ops::RangeInclusive;
+use std::time::Duration;
 use std::time::Instant;
 
 use crate::WINDOW_HEIGHT;
@@ -77,6 +78,10 @@ impl GameState {
 
     pub fn reset_spaceship_p1(&mut self){
         self.spaceship_p1 = Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y);
+    }
+
+    pub fn is_game_elapsed(&self, game_duration: &Duration) -> bool{
+        return self.starting_time.elapsed().as_secs() > game_duration.as_secs();
     }
 }
 
