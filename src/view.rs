@@ -10,7 +10,6 @@ use crate::WINDOW_WIDTH;
 use crate::WINDOW_HEIGHT;
 
 const COLOR_BACKGROUND: Color = Color::BLACK;
-const COLOR_TIMELINE: Color = Color::WHITE;
 
 fn draw_background(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
     canvas.set_draw_color(COLOR_BACKGROUND);
@@ -144,6 +143,7 @@ pub fn draw_timeline(
 
     let line_width = 10;
     let line_increment = WINDOW_HEIGHT / gs.game_duration.as_secs() as u32;
+    let completed_rate = (gs.game_duration.as_secs() - gs.starting_time.elapsed().as_secs()) as f64 / gs.game_duration.as_secs() as f64;
     let line_height = line_increment * (gs.game_duration.as_secs() - gs.starting_time.elapsed().as_secs()) as u32;
     let timeline_rect = Rect::new(
         (WINDOW_WIDTH / 2 - line_width / 2) as i32,
@@ -151,7 +151,7 @@ pub fn draw_timeline(
         line_width,
         line_height
     );
-    canvas.set_draw_color(COLOR_TIMELINE);
+    canvas.set_draw_color(Color::RGB(255, (255.0 * completed_rate) as u8, (255.0 * completed_rate) as u8));
     canvas.fill_rect(timeline_rect).expect("Drawing failed for timeline!");
 }
 
