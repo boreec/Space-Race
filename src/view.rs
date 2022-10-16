@@ -10,6 +10,7 @@ use crate::WINDOW_WIDTH;
 use crate::WINDOW_HEIGHT;
 
 const COLOR_BACKGROUND: Color = Color::BLACK;
+const COLOR_TIMELINE: Color = Color::WHITE;
 
 fn draw_background(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
     canvas.set_draw_color(COLOR_BACKGROUND);
@@ -132,6 +133,23 @@ pub fn draw_score(
     canvas.copy(&texture_p2, None, font_rect_p2).expect("Failed to copy p2 texture to canvas");
 }
 
+pub fn draw_timeline(
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    gs: &GameState
+){
+    let line_width = 10;
+    let line_increment = WINDOW_HEIGHT / gs.game_duration.as_secs() as u32;
+    let line_height = line_increment * gs.starting_time.elapsed().as_secs() as u32;
+    let timeline_rect = Rect::new(
+        (WINDOW_WIDTH / 2 - line_width / 2) as i32,
+        (WINDOW_HEIGHT - line_height) as i32,
+        line_width,
+        line_height
+    );
+    canvas.set_draw_color(COLOR_TIMELINE);
+    canvas.fill_rect(timeline_rect).expect("Drawing failed for timeline!");
+}
+
 pub fn draw_game(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
     gs: &GameState
@@ -141,5 +159,6 @@ pub fn draw_game(
     draw_spaceship(canvas, &gs.spaceship_p1);
     draw_spaceship(canvas, &gs.spaceship_p2);
     draw_score(canvas, &gs);
+    draw_timeline(canvas, &gs);
     canvas.present();
 }
