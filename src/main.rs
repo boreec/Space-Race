@@ -7,6 +7,8 @@ use sdl2::event::Event;
 use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
 
+use std::time::Duration;
+
 mod entity;
 mod view;
 
@@ -15,6 +17,8 @@ const WINDOW_HEIGHT: u32 = 600;
 const WINDOW_TITLE: &str = "space race";
 
 const FRAME_DURATION: u32 = 50;
+
+const GAME_DURATION: Duration = Duration::new(45, 0);
 
 struct FrameEvent;
 
