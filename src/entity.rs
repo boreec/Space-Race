@@ -405,15 +405,17 @@ impl Missile {
             self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
         }
 
-        // Update coordinates according to the missile's direction.
+        // Update Missile and its components coordinates according to its direction.
+        self.move_towards();
+        self.body.move_towards(&self.direction);
+        self.head.move_towards(&self.direction);
+        self.tail.move_towards(&self.direction);
+    }
+
+    fn move_towards(&mut self){
         match self.direction {
             MissileDirection::LEFT => { self.x -= MISSILE_SPEED as i32; }
             MissileDirection::RIGHT => { self.x += MISSILE_SPEED as i32; }
         }
-
-        // Update missile components coordinates according to the missile's direction.
-        self.body.move_towards(&self.direction);
-        self.head.move_towards(&self.direction);
-        self.tail.move_towards(&self.direction);
     }
 }
