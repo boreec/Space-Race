@@ -54,7 +54,7 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
     while gs.is_game_restarted {
         gs = GameState::new();
         gs.is_game_restarted = false;
-        while !gs.is_game_over && !gs.is_game_restarted {
+        while !gs.is_game_over && gs.starting_time.elapsed().as_secs() < GAME_DURATION.as_secs() && !gs.is_game_restarted {
             handle_events(&mut gs, &mut event_pump, canvas);
         }
     }
