@@ -5,6 +5,7 @@ use sdl2::pixels::Color;
 use sdl2::rect::Rect;
 
 use std::ops::RangeInclusive;
+use std::time::Instant;
 
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
@@ -46,6 +47,7 @@ pub struct GameState {
     pub is_game_restarted: bool,
     pub score_p1: u32,
     pub score_p2: u32,
+    pub starting_time: Instant,
 }
 
 impl GameState {
@@ -65,6 +67,7 @@ impl GameState {
             spaceship_p2: Spaceship::new(SPACESHIP_P2_X, SPACESHIP_P2_Y),
             score_p1: 0,
             score_p2: 0,
+            starting_time: Instant::now(),
         };
     }
 
