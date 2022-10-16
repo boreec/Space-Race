@@ -107,7 +107,7 @@ impl Spaceship {
     }
 
     pub fn can_move_downward(&mut self) -> bool {
-        return self.body.rect.y() + SPACESHIP_TAIL_SIZE as i32 <= WINDOW_HEIGHT as i32;
+        return SPACESHIP_HEAD_SIZE + self.body.rect.y() as u32 + 2 * SPACESHIP_TAIL_SIZE as u32 <= WINDOW_HEIGHT;
     }
 }
 
