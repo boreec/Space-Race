@@ -26,7 +26,7 @@ const SPACESHIP_P1_X: i32 = (WINDOW_WIDTH / 4 - SPACESHIP_BODY_WIDTH / 2) as i32
 const SPACESHIP_P1_Y: i32 = (WINDOW_HEIGHT - SPACESHIP_BODY_HEIGHT) as i32;
 const SPACESHIP_P2_X: i32 = SPACESHIP_P1_X + (WINDOW_WIDTH / 2) as i32;
 const SPACESHIP_P2_Y: i32 = SPACESHIP_P1_Y;
-
+const SPACESHIP_DEATH_TIME: Duration = Duration::new(3, 0);
 
 /* MISSILE CONSTANTS */
 const MISSILE_HEIGHT: u32 = 5;
@@ -94,10 +94,10 @@ impl GameState {
     pub fn check_collision(&mut self){
         for m in &self.missiles {
             if self.spaceship_p1.collide_with(&m) {
-                self.spaceship_p1 = Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y);
+                self.spaceship_p1.die();
             }
             if self.spaceship_p2.collide_with(&m) {
-                self.spaceship_p2 = Spaceship::new(SPACESHIP_P2_X, SPACESHIP_P2_Y);
+                self.spaceship_p2.die();
             }
         }
     }
@@ -115,6 +115,7 @@ pub struct Spaceship {
     pub head: SpaceshipHead,
     pub tail: SpaceshipTail,
     pub is_alive: bool,
+    pub death_instant: Instant,
 }
 
 impl Spaceship {
@@ -124,7 +125,13 @@ impl Spaceship {
             head: SpaceshipHead::new(pos_x as i16, pos_y as i16),
             tail: SpaceshipTail::new(pos_x as i16, pos_y as i16),
             is_alive: true,
+            death_instant: Instant::now(),
         };
+    }
+
+    pub fn die(&mut self){
+        self.is_alive = false;
+        self.death_instant = Instant::now();
     }
 
     pub fn move_upward(&mut self){
