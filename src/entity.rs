@@ -135,7 +135,7 @@ impl Spaceship {
         return SPACESHIP_HEAD_SIZE + self.body.rect.y() as u32 + 2 * SPACESHIP_TAIL_SIZE as u32 <= WINDOW_HEIGHT;
     }
 
-    pub fn collide_with(&self, _missile: &Missile) -> bool {
+    pub fn collide_with(&self, missile: &Missile) -> bool {
         let head_collision: bool = false;
         let body_collision: bool = false;
         let tail_collision: bool = false;
@@ -177,6 +177,13 @@ impl SpaceshipBody {
         self.rect.set_y(self.rect.y() + SPACESHIP_SPEED as i32);
         self.porthole_1.1 += SPACESHIP_SPEED as i16;
         self.porthole_2.1 += SPACESHIP_SPEED as i16;
+    }
+
+    pub fn is_point_within(&self, x: i32, y: i32) -> bool {
+        return
+            (self.rect.x() <= x && self.rect.x() + self.rect.width() as i32 >= x) &&
+            (self.rect.y() <= y && self.rect.y() + self.rect.height() as i32 >= y);
+
     }
 }
 
