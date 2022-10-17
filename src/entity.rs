@@ -94,9 +94,11 @@ impl GameState {
         for m in &self.missiles {
             if self.spaceship_p1.collide_with(m) {
                 // to do
+                println!("collision occurred between p1 and missile!");
             }
             if self.spaceship_p2.collide_with(m) {
                 // to do
+                println!("collision occurred between p2 and missile!");
             }
         }
     }
@@ -136,9 +138,15 @@ impl Spaceship {
     }
 
     pub fn collide_with(&self, missile: &Missile) -> bool {
-        let head_collision: bool = false;
+        let head_collision: bool;
         let body_collision: bool = false;
         let tail_collision: bool = false;
+
+        head_collision =
+            // between spaceship's body and missile's head.
+            self.body.is_point_within(missile.head.triangle_x[0] as i32, missile.head.triangle_y[0] as i32) ||
+            self.body.is_point_within(missile.head.triangle_x[1] as i32, missile.head.triangle_y[1] as i32) ||
+            self.body.is_point_within(missile.head.triangle_x[2] as i32, missile.head.triangle_y[2] as i32);
 
         return head_collision || body_collision || tail_collision;
     }
