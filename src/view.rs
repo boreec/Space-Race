@@ -5,7 +5,7 @@ use sdl2::rect::Rect;
 use std::path::Path;
 
 use crate::GameState;
-use crate::Spaceship;
+use crate::spaceship::*;
 use crate::WINDOW_WIDTH;
 use crate::WINDOW_HEIGHT;
 

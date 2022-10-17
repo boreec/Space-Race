@@ -9,6 +9,7 @@ use sdl2::keyboard::Keycode;
 
 mod entity;
 mod missile;
+mod spaceship;
 mod view;
 
 const WINDOW_WIDTH: u32 = 800;
