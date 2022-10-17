@@ -2,6 +2,7 @@ use rand::random;
 use rand::Rng;
 
 use sdl2::pixels::Color;
+use sdl2::rect::Point;
 use sdl2::rect::Rect;
 
 use std::ops::RangeInclusive;
@@ -98,10 +99,15 @@ impl GameState {
             }
             if self.spaceship_p2.collide_with(m) {
                 // to do
-                println!("collision occurred between p2 and missile!");
+                // println!("collision occurred between p2 and missile!");
             }
         }
     }
+}
+
+// ** TRAITS ** //
+pub trait ToPoints {
+    fn points(&self) -> Vec<Point>;
 }
 
 // ** SPACESHIP ** //
@@ -138,15 +144,17 @@ impl Spaceship {
     }
 
     pub fn collide_with(&self, missile: &Missile) -> bool {
-        let head_collision: bool;
+
+        let mut head_collision: bool = false;
         let body_collision: bool = false;
         let tail_collision: bool = false;
 
-        head_collision =
-            // between spaceship's body and missile's head.
-            self.body.is_point_within(missile.head.triangle_x[0] as i32, missile.head.triangle_y[0] as i32) ||
-            self.body.is_point_within(missile.head.triangle_x[1] as i32, missile.head.triangle_y[1] as i32) ||
-            self.body.is_point_within(missile.head.triangle_x[2] as i32, missile.head.triangle_y[2] as i32);
+        let m_points = missile.points();
+        let mut h_i = 0;
+        while !head_collision && h_i < m_points.len() {
+            head_collision = self.body.is_point_within(m_points[h_i].x, m_points[h_i].y);
+            h_i += 1;
+        }
 
         return head_collision || body_collision || tail_collision;
     }
@@ -388,6 +396,48 @@ impl MissileHead {
         }
     }
 
+}
+
+impl ToPoints for Missile {
+    fn points(&self) -> Vec<Point> {
+        let mut result = Vec::new();
+        result.append(&mut self.head.points());
+        result.append(&mut self.body.points());
+        result.append(&mut self.tail.points());
+        return result;
+    }
+}
+
+impl ToPoints for MissileHead {
+    fn points(&self) -> Vec<Point> {
+        return vec![
+            Point::new(self.triangle_x[0] as i32, self.triangle_y[0] as i32),
+            Point::new(self.triangle_x[1] as i32, self.triangle_y[1] as i32),
+            Point::new(self.triangle_x[2] as i32, self.triangle_y[2] as i32)];
+    }
+}
+
+impl ToPoints for MissileBody {
+    fn points(&self) -> Vec<Point> {
+        return vec![
+            Point::new(self.rect.x(), self.rect.y()),
+            Point::new(self.rect.x() + self.rect.width() as i32, self.rect.y()),
+            Point::new(self.rect.x(), self.rect.y() + self.rect.height() as i32),
+            Point::new(self.rect.x() + self.rect.width() as i32, self.rect.y() + self.rect.height() as i32)]; 
+    }
+}
+
+impl ToPoints for MissileTail {
+    fn points(&self) -> Vec<Point> {
+        return vec![
+            Point::new(self.top_triangle_x[0] as i32, self.top_triangle_y[0] as i32),
+            Point::new(self.bot_triangle_x[1] as i32, self.top_triangle_y[1] as i32),
+            Point::new(self.bot_triangle_x[2] as i32, self.top_triangle_y[2] as i32),
+            Point::new(self.bot_triangle_x[0] as i32, self.bot_triangle_y[0] as i32),
+            Point::new(self.bot_triangle_x[1] as i32, self.bot_triangle_y[1] as i32),
+            Point::new(self.bot_triangle_x[2] as i32, self.bot_triangle_y[2] as i32)
+        ];
+    }
 }
 
 impl Missile {
