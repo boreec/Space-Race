@@ -105,7 +105,11 @@ fn handle_events(
 
 fn update_cpu(gs: &mut GameState){
     if !gs.spaceship_p2.is_alive {
-        return;
+        if !gs.spaceship_p2.can_respawn(){
+            // to do
+        }else {
+            return;
+        }
     }
     gs.spaceship_p2.move_upward();
     if GameState::has_spaceship_scored(&gs.spaceship_p2) {

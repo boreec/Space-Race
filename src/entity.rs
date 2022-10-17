@@ -150,6 +150,10 @@ impl Spaceship {
         return SPACESHIP_HEAD_SIZE + self.body.rect.y() as u32 + 2 * SPACESHIP_TAIL_SIZE as u32 <= WINDOW_HEIGHT;
     }
 
+    pub fn can_respawn(&self) -> bool {
+        return !self.is_alive && self.death_instant.elapsed().as_secs() > SPACESHIP_DEATH_TIME.as_secs();
+    }
+
     pub fn collide_with(&self, missile: &Missile) -> bool {
 
         let mut head_collision = false;
