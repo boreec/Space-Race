@@ -145,14 +145,16 @@ impl Spaceship {
 
     pub fn collide_with(&self, missile: &Missile) -> bool {
 
-        let mut head_collision: bool = false;
-        let body_collision: bool = false;
-        let tail_collision: bool = false;
+        let mut head_collision = false;
+        let mut body_collision = false;
+        let mut tail_collision = false;
 
         let m_points = missile.points();
         let mut h_i = 0;
-        while !head_collision && h_i < m_points.len() {
-            head_collision = self.body.is_point_within(m_points[h_i].x, m_points[h_i].y);
+        while !head_collision && !body_collision && !tail_collision && h_i < m_points.len() {
+            head_collision = self.head.is_point_within(m_points[h_i].x, m_points[h_i].y);
+            body_collision = self.body.is_point_within(m_points[h_i].x, m_points[h_i].y);
+            tail_collision = self.tail.is_point_within(m_points[h_i].x, m_points[h_i].y);
             h_i += 1;
         }
 
@@ -225,6 +227,10 @@ impl SpaceshipHead {
     pub fn move_downward(&mut self){
         self.triangle_y = self.triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
     }
+
+    pub fn is_point_within(&self, x: i32, y: i32) -> bool {
+        return false;
+    }
 }
 
 pub struct SpaceshipTail {
@@ -265,6 +271,9 @@ impl SpaceshipTail {
         self.right_triangle_y = self.right_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
     }
 
+    pub fn is_point_within(&self, x: i32, y: i32) -> bool {
+        return false;
+    }
 }
 
 // ** MISSILES ** //
