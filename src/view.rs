@@ -161,8 +161,14 @@ pub fn draw_game(
 ){
     draw_background(canvas);
     draw_missiles(canvas, &gs);
-    draw_spaceship(canvas, &gs.spaceship_p1);
-    draw_spaceship(canvas, &gs.spaceship_p2);
+
+    if gs.spaceship_p1.is_alive {
+        draw_spaceship(canvas, &gs.spaceship_p1);
+    }
+    if gs.spaceship_p2.is_alive {
+        draw_spaceship(canvas, &gs.spaceship_p2);
+    }
+
     draw_score(canvas, &gs);
     draw_timeline(canvas, &gs);
     canvas.present();
