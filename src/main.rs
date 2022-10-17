@@ -73,6 +73,11 @@ fn handle_events(
         }
         gs.check_collision();
         update_cpu(gs);
+        if !gs.spaceship_p1.is_alive {
+            if gs.spaceship_p1.can_respawn(){
+                gs.reset_spaceship_p1();
+            }
+        }
         draw_game(canvas, &gs);
     }
     else {
