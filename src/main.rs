@@ -82,14 +82,16 @@ fn handle_events(
                 gs.is_game_over = true;
             },
             Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
-                gs.spaceship_p1.move_upward();
-                if GameState::has_spaceship_scored(&gs.spaceship_p1) {
-                    gs.score_p1 += 1;
-                    gs.reset_spaceship_p1();
+                if gs.spaceship_p1.is_alive {
+                    gs.spaceship_p1.move_upward();
+                    if GameState::has_spaceship_scored(&gs.spaceship_p1) {
+                        gs.score_p1 += 1;
+                        gs.reset_spaceship_p1();
+                    }
                 }
             }
             Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
-                if gs.spaceship_p1.can_move_downward() {
+                if gs.spaceship_p1.is_alive && gs.spaceship_p1.can_move_downward() {
                     gs.spaceship_p1.move_downward();
                 }
             }
@@ -102,6 +104,9 @@ fn handle_events(
 }
 
 fn update_cpu(gs: &mut GameState){
+    if !gs.spaceship_p2.is_alive {
+        return;
+    }
     gs.spaceship_p2.move_upward();
     if GameState::has_spaceship_scored(&gs.spaceship_p2) {
         gs.score_p2 += 1;
