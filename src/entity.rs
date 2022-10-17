@@ -89,6 +89,17 @@ impl GameState {
     pub fn is_game_elapsed(&self) -> bool{
         return self.starting_time.elapsed().as_secs() > self.game_duration.as_secs();
     }
+
+    pub fn check_collision(&self){
+        for m in &self.missiles {
+            if self.spaceship_p1.collide_with(m) {
+                // to do
+            }
+            if self.spaceship_p2.collide_with(m) {
+                // to do
+            }
+        }
+    }
 }
 
 // ** SPACESHIP ** //

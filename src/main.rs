@@ -71,6 +71,7 @@ fn handle_events(
         for m in &mut gs.missiles {
             m.update();
         }
+        gs.check_collision();
         update_cpu(gs);
         draw_game(canvas, &gs);
     }
