@@ -272,7 +272,32 @@ impl SpaceshipTail {
     }
 
     pub fn is_point_within(&self, x: i32, y: i32) -> bool {
-        return false;
+        let area = |x1: i32, y1: i32, x2: i32, y2: i32, x3: i32, y3:i32 | -> f64 {
+            let ab = vec![x2 - x1, y2 - y1];
+            let ac = vec![x3 - x1, y3 - y1];
+            let cross_product = ab[0] * ac[1] - ab[1] * ac[0];
+            return (cross_product as f64 / 2.0 ).abs();
+        };
+
+        let is_point_within_triangle = |triangle_x: &[i16;3], triangle_y: &[i16;3], x: i32, y: i32| -> bool {
+            let xs = [triangle_x[0] as i32, triangle_x[1] as i32, triangle_x[2] as i32];
+            let ys = [triangle_y[0] as i32, triangle_y[1] as i32, triangle_y[2] as i32];
+
+            let a = area(xs[0], ys[0], xs[1], ys[1], xs[2], ys[2]);
+            let a1 = area(x, y, xs[1], ys[1], xs[2], ys[2]);
+            let a2 = area(xs[0], ys[0], x, y, xs[2], ys[2]);
+            let a3 = area(xs[1], ys[1], xs[2], ys[2], x, y);
+
+            let min_x = xs.into_iter().reduce(i32::min).unwrap();
+            let max_x = xs.into_iter().reduce(i32::max).unwrap();
+            let min_y = ys.into_iter().reduce(i32::min).unwrap();
+            let max_y = ys.into_iter().reduce(i32::max).unwrap();
+
+            return a == a1 + a2 + a3 && x > min_x && x < max_x && y > min_y && y < max_y;
+        };
+
+        return is_point_within_triangle(&self.left_triangle_x, &self.left_triangle_y, x, y) ||
+            is_point_within_triangle(&self.right_triangle_x, &self.right_triangle_y, x, y);
     }
 }
 
