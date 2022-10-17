@@ -105,9 +105,11 @@ fn handle_events(
 
 fn update_cpu(gs: &mut GameState){
     if !gs.spaceship_p2.is_alive {
-        if !gs.spaceship_p2.can_respawn(){
-            // to do
+        if gs.spaceship_p2.can_respawn(){
+            gs.reset_spaceship_p2();
+            return;
         }else {
+            // The delay to respawn is not over.
             return;
         }
     }
