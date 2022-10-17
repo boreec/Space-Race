@@ -1,5 +1,6 @@
 extern crate sdl2;
 
+use crate::disclaimer::*;
 use crate::entity::*;
 use crate::view::*;
 
@@ -7,6 +8,7 @@ use sdl2::event::Event;
 use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
 
+mod disclaimer;
 mod entity;
 mod missile;
 mod spaceship;
@@ -30,7 +32,8 @@ pub fn main() {
         .unwrap();
 
     let mut canvas = window.into_canvas().build().unwrap();
-    
+
+    show_disclaimer(&mut canvas);
     game_loop(&sdl_context, &mut canvas);
 }
 
