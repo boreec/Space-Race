@@ -70,16 +70,28 @@ pub fn show_disclaimer(
         WINDOW_HEIGHT - MESSAGE_MARGIN * 2 - TITLE_HEIGHT
     );
 
-    let texture_title = texture_creator
+    let mut texture_title = texture_creator
         .create_texture_from_surface(&surface_title)
         .expect("Failed to create texte for Disclaimer's message's title!");
 
-    let texture_message = texture_creator
+    let mut texture_message = texture_creator
         .create_texture_from_surface(&surface_message)
         .expect("Failed to create texte for Disclaimer's message!");
 
     canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
     canvas.copy(&texture_message, None, font_rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
     canvas.present();
-    ::std::thread::sleep(Duration::new(SCREEN_DURATION, 0));
+    ::std::thread::sleep(Duration::new(SCREEN_DURATION - 1, 0));
+
+    // fade to the black
+    for i in (0..250).rev() {
+        canvas.set_draw_color(Color::BLACK);
+        canvas.clear();
+        texture_title.set_color_mod(i,i,i);
+        texture_message.set_color_mod(i,i,i);
+        canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
+        canvas.copy(&texture_message, None, font_rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
+        canvas.present();
+        ::std::thread::sleep(Duration::from_millis(4));
+    }
 }
