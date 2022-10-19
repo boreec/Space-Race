@@ -8,6 +8,9 @@ use crate::WINDOW_WIDTH;
 
 const TITLE_WIDTH: u32 = 200;
 const TITLE_HEIGHT: u32 = 100;
+const TITLE_STR: &str = "DISCLAIMER";
+
+const SCREEN_DURATION: u64 = 5;
 
 pub fn show_disclaimer(
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>
@@ -24,7 +27,7 @@ pub fn show_disclaimer(
         .expect(&format!("Failed to load font {}", poetsen_font_path.display()));
 
     let surface_title = font
-        .render("DISCLAIMER")
+        .render(TITLE_STR)
         .blended(Color::WHITE)
         .expect("Failed to create font surface for Disclaimer's message's title!");
 
@@ -41,5 +44,5 @@ pub fn show_disclaimer(
 
     canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
     canvas.present();
-    ::std::thread::sleep(Duration::new(3, 0));
+    ::std::thread::sleep(Duration::new(SCREEN_DURATION, 0));
 }
