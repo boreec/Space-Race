@@ -76,7 +76,14 @@ fn handle_events(
         for m in &mut gs.missiles {
             m.update();
         }
-        gs.check_collision();
+        if gs.collision_occurred_for(&gs.spaceship_p1) {
+            gs.spaceship_p1.die();
+            // play sfx here
+        }
+        if gs.collision_occurred_for(&gs.spaceship_p2) {
+            // play sfx here
+            gs.spaceship_p2.die();
+        }
         update_cpu(gs);
         if !gs.spaceship_p1.is_alive {
             if gs.spaceship_p1.can_respawn(){

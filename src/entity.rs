@@ -58,15 +58,13 @@ impl GameState {
         return self.starting_time.elapsed().as_secs() > self.game_duration.as_secs();
     }
 
-    pub fn check_collision(&mut self){
+    pub fn collision_occurred_for(&self, spaceship: &Spaceship) -> bool {
         for m in &self.missiles {
-            if self.spaceship_p1.collide_with(&m) {
-                self.spaceship_p1.die();
-            }
-            if self.spaceship_p2.collide_with(&m) {
-                self.spaceship_p2.die();
+            if spaceship.collide_with(&m) {
+                return true;
             }
         }
+        return false;
     }
 }
 
