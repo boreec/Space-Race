@@ -43,7 +43,7 @@ impl GameSFX {
 
         let sfx_collision_path: &Path = std::path::Path::new("asset/sfx/pew.wav");
         sounds.collision_wav.load(sfx_collision_path)
-            .unwrap();
+            .expect(&format!("failed to load sfx file {} for collision", sfx_collision_path.display()));
         return sounds;
     }
 }
