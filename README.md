@@ -22,6 +22,14 @@ more points than your opponent (on the right), controlled by the computer.
 Every time you get touched by a missile, you respawn after a few seconds at the bottom of the screen!
 Although your opponent keeps moving upward without resting, it may not be the best strategy to win...
 
+## Controls
+
+You can use the following keys during the game:
+* **ESC key** : Quit the game (you can also click on the window's cross).
+* **Space key**: Restart the game.
+* **Up arrow key**: Move your spaceship toward the top of the screen.
+* **Down arrow key**: Move your spaceship toward the bottom of the screen.
+
 ## Troubleshooting
 
 If you have issues building the program, make sure the following packages are installed on the system:
