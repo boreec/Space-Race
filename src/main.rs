@@ -109,6 +109,7 @@ fn handle_events(
         }
         if gs.spaceship_p2.is_alive && gs.collision_occurred_for(&gs.spaceship_p2) {
             gs.spaceship_p2.die();
+            sounds.soloud.play(&sounds.collision_wav);
         }
         update_cpu(gs);
         if !gs.spaceship_p1.is_alive {
