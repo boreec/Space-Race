@@ -54,23 +54,16 @@ pub fn main() {
 
     let mut canvas = window.into_canvas().build().unwrap();
 
-    let mut sounds = GameSFX {
-        soloud: Soloud::default().unwrap(),
-        collision_wav: audio::Wav::default(),
-    };
-    sounds.collision_wav.load(&std::path::Path::new("sfx/pew.wav")).unwrap();
-    
-    
     show_disclaimer(&mut canvas);
-    game_loop(&sdl_context, &mut canvas, &sounds);
+    game_loop(&sdl_context, &mut canvas);
 }
 
 fn game_loop(
     context: &sdl2::Sdl,
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-    sounds: &GameSFX
 ){
     let mut gs: GameState = GameState::new();
+    let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
     let ev = context.event().unwrap();
     ev.register_custom_event::<FrameEvent>().unwrap();
