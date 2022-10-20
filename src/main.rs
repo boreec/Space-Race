@@ -10,6 +10,8 @@ use sdl2::keyboard::Keycode;
 
 use soloud::*;
 
+use std::path::Path;
+
 mod disclaimer;
 mod entity;
 mod missile;
@@ -38,7 +40,10 @@ impl GameSFX {
             soloud: sl,
             collision_wav: audio::Wav::default(),
         };
-        sounds.collision_wav.load(&std::path::Path::new("asset/sfx/pew.wav")).unwrap();
+
+        let sfx_collision_path: &Path = std::path::Path::new("asset/sfx/pew.wav");
+        sounds.collision_wav.load(sfx_collision_path)
+            .unwrap();
         return sounds;
     }
 }
