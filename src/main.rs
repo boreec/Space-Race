@@ -29,6 +29,20 @@ struct GameSFX {
     collision_wav: Wav,
 }
 
+impl GameSFX {
+    pub fn new() -> GameSFX {
+
+        let sl = Soloud::default().expect("Failed to get Soloud object!");
+
+        let mut sounds = GameSFX {
+            soloud: sl,
+            collision_wav: audio::Wav::default(),
+        };
+        sounds.collision_wav.load(&std::path::Path::new("sfx/pew.wav")).unwrap();
+        return sounds;
+    }
+}
+
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
