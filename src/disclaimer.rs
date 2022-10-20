@@ -36,7 +36,7 @@ pub fn show_disclaimer(
 
     let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
     let texture_creator = canvas.texture_creator();
-    let poetsen_font_path: &Path = Path::new("font/poetsen_one/PoetsenOne-Regular.ttf");
+    let poetsen_font_path: &Path = Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf");
 
     let big_font = ttf_context
         .load_font(poetsen_font_path, 128)

@@ -87,7 +87,7 @@ pub fn draw_score(
 ){
     let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
     let texture_creator = canvas.texture_creator();
-    let schluber_font_path: &Path = Path::new("font/schluber/Schluber.ttf");
+    let schluber_font_path: &Path = Path::new("asset/font/schluber/Schluber.ttf");
 
     let font = ttf_context
         .load_font(schluber_font_path, 128)

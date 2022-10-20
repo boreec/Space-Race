@@ -38,7 +38,7 @@ impl GameSFX {
             soloud: sl,
             collision_wav: audio::Wav::default(),
         };
-        sounds.collision_wav.load(&std::path::Path::new("sfx/pew.wav")).unwrap();
+        sounds.collision_wav.load(&std::path::Path::new("asset/sfx/pew.wav")).unwrap();
         return sounds;
     }
 }
