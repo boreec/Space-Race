@@ -15,7 +15,12 @@ cargo run --release
 
 ## How to play ?
 
-The goal is to move your spaceship to the top of the screen while avoiding missiles. If you get touched by a missile you loose time and you restart from the beginning.
+Your goal is to pilot your spaceship (on the left) towards the top of screen, while avoiding missiles.
+You have 45 seconds (indicated by the decreasing timeline in the middle of the screen) in order to score
+more points than your opponent (on the right), controlled by the computer.
+
+Every time you get touched by a missile, you respawn after a few seconds at the bottom of the screen!
+Although your opponent keeps moving upward without resting, it may not be the best strategy to win...
 
 ## Troubleshooting
 
