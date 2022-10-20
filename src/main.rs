@@ -95,11 +95,12 @@ fn handle_events(
         for m in &mut gs.missiles {
             m.update();
         }
-        if gs.collision_occurred_for(&gs.spaceship_p1) {
+
+        if gs.spaceship_p1.is_alive && gs.collision_occurred_for(&gs.spaceship_p1) {
             gs.spaceship_p1.die();
             sounds.soloud.play(&sounds.collision_wav);
         }
-        if gs.collision_occurred_for(&gs.spaceship_p2) {
+        if gs.spaceship_p2.is_alive && gs.collision_occurred_for(&gs.spaceship_p2) {
             gs.spaceship_p2.die();
         }
         update_cpu(gs);
