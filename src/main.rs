@@ -8,6 +8,8 @@ use sdl2::event::Event;
 use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
 
+use soloud::*;
+
 mod disclaimer;
 mod entity;
 mod missile;
@@ -22,6 +24,11 @@ const FRAME_DURATION: u32 = 50;
 
 struct FrameEvent;
 
+struct GameSFX {
+    soloud: Soloud,
+    collision_wav: Wav,
+}
+
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
@@ -33,11 +40,22 @@ pub fn main() {
 
     let mut canvas = window.into_canvas().build().unwrap();
 
+    let mut sounds = GameSFX {
+        soloud: Soloud::default().unwrap(),
+        collision_wav: audio::Wav::default(),
+    };
+    sounds.collision_wav.load(&std::path::Path::new("sfx/pew.wav")).unwrap();
+    
+    
     show_disclaimer(&mut canvas);
-    game_loop(&sdl_context, &mut canvas);
+    game_loop(&sdl_context, &mut canvas, &sounds);
 }
 
-fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
+fn game_loop(
+    context: &sdl2::Sdl,
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    sounds: &GameSFX
+){
     let mut gs: GameState = GameState::new();
     let mut event_pump = context.event_pump().unwrap();
     let ev = context.event().unwrap();
@@ -56,7 +74,7 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
         gs = GameState::new();
         gs.is_game_restarted = false;
         while !gs.is_game_over && !gs.is_game_elapsed() && !gs.is_game_restarted {
-            handle_events(&mut gs, &mut event_pump, canvas);
+            handle_events(&mut gs, &mut event_pump, &sounds, canvas);
         }
         if gs.is_game_elapsed() {
             gs.is_game_restarted = true;
@@ -67,6 +85,7 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
 fn handle_events(
     gs: &mut GameState,
     event_pump: &mut EventPump,
+    sounds: &GameSFX,
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
 
     let event = event_pump.wait_event();
@@ -78,10 +97,9 @@ fn handle_events(
         }
         if gs.collision_occurred_for(&gs.spaceship_p1) {
             gs.spaceship_p1.die();
-            // play sfx here
+            sounds.soloud.play(&sounds.collision_wav);
         }
         if gs.collision_occurred_for(&gs.spaceship_p2) {
-            // play sfx here
             gs.spaceship_p2.die();
         }
         update_cpu(gs);
