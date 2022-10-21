@@ -22,7 +22,6 @@ pub struct GameState {
 
 impl GameState {
     pub fn new() -> GameState {
-
         let mut random_missiles = Vec::new();
 
         for _ in 0..MISSILE_QUANTITY {
@@ -43,18 +42,21 @@ impl GameState {
     }
 
     pub fn has_spaceship_scored(spaceship: &Spaceship) -> bool {
-        return spaceship.body.rect.y() + spaceship.body.rect.height() as i32 + SPACESHIP_TAIL_SIZE as i32 <= 0;
+        return spaceship.body.rect.y()
+            + spaceship.body.rect.height() as i32
+            + SPACESHIP_TAIL_SIZE as i32
+            <= 0;
     }
 
-    pub fn reset_spaceship_p1(&mut self){
+    pub fn reset_spaceship_p1(&mut self) {
         self.spaceship_p1 = Spaceship::new(SPACESHIP_P1_X, SPACESHIP_P1_Y);
     }
 
-    pub fn reset_spaceship_p2(&mut self){
+    pub fn reset_spaceship_p2(&mut self) {
         self.spaceship_p2 = Spaceship::new(SPACESHIP_P2_X, SPACESHIP_P2_Y);
     }
 
-    pub fn is_game_elapsed(&self) -> bool{
+    pub fn is_game_elapsed(&self) -> bool {
         return self.starting_time.elapsed().as_secs() > self.game_duration.as_secs();
     }
 

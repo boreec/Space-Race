@@ -5,8 +5,8 @@ use crate::entity::*;
 use crate::view::*;
 
 use sdl2::event::Event;
-use sdl2::EventPump;
 use sdl2::keyboard::Keycode;
+use sdl2::EventPump;
 
 use soloud::*;
 
@@ -33,7 +33,6 @@ struct GameSFX {
 
 impl GameSFX {
     pub fn new() -> GameSFX {
-
         let sl = Soloud::default().expect("Failed to get Soloud object!");
 
         let mut sounds = GameSFX {
@@ -42,8 +41,13 @@ impl GameSFX {
         };
 
         let sfx_collision_path: &Path = std::path::Path::new("asset/sfx/pew.wav");
-        sounds.collision_wav.load(sfx_collision_path)
-            .expect(&format!("failed to load sfx file {} for collision", sfx_collision_path.display()));
+        sounds
+            .collision_wav
+            .load(sfx_collision_path)
+            .expect(&format!(
+                "failed to load sfx file {} for collision",
+                sfx_collision_path.display()
+            ));
         return sounds;
     }
 }
@@ -52,7 +56,8 @@ pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
 
-    let window = video_subsystem.window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT)
+    let window = video_subsystem
+        .window(WINDOW_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT)
         .position_centered()
         .build()
         .unwrap();
@@ -63,10 +68,7 @@ pub fn main() {
     game_loop(&sdl_context, &mut canvas);
 }
 
-fn game_loop(
-    context: &sdl2::Sdl,
-    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-){
+fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
     let mut gs: GameState = GameState::new();
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
@@ -98,8 +100,8 @@ fn handle_events(
     gs: &mut GameState,
     event_pump: &mut EventPump,
     sounds: &GameSFX,
-    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>){
-
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+) {
     let event = event_pump.wait_event();
 
     if event.is_user_event() {
@@ -118,19 +120,24 @@ fn handle_events(
         }
         update_cpu(gs);
         if !gs.spaceship_p1.is_alive {
-            if gs.spaceship_p1.can_respawn(){
+            if gs.spaceship_p1.can_respawn() {
                 gs.reset_spaceship_p1();
             }
         }
         draw_game(canvas, &gs);
-    }
-    else {
+    } else {
         match event {
-            Event::Quit {..} |
-            Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {
+            Event::Quit { .. }
+            | Event::KeyDown {
+                keycode: Some(Keycode::Escape),
+                ..
+            } => {
                 gs.is_game_over = true;
-            },
-            Event::KeyDown { keycode: Some(Keycode::Up), .. } => {
+            }
+            Event::KeyDown {
+                keycode: Some(Keycode::Up),
+                ..
+            } => {
                 if gs.spaceship_p1.is_alive {
                     gs.spaceship_p1.move_upward();
                     if GameState::has_spaceship_scored(&gs.spaceship_p1) {
@@ -139,12 +146,18 @@ fn handle_events(
                     }
                 }
             }
-            Event::KeyDown { keycode: Some(Keycode::Down), .. } => {
+            Event::KeyDown {
+                keycode: Some(Keycode::Down),
+                ..
+            } => {
                 if gs.spaceship_p1.is_alive && gs.spaceship_p1.can_move_downward() {
                     gs.spaceship_p1.move_downward();
                 }
             }
-            Event::KeyDown { keycode: Some(Keycode::Space), .. } => {
+            Event::KeyDown {
+                keycode: Some(Keycode::Space),
+                ..
+            } => {
                 gs.is_game_restarted = true;
             }
             _ => {}
@@ -152,12 +165,12 @@ fn handle_events(
     }
 }
 
-fn update_cpu(gs: &mut GameState){
+fn update_cpu(gs: &mut GameState) {
     if !gs.spaceship_p2.is_alive {
-        if gs.spaceship_p2.can_respawn(){
+        if gs.spaceship_p2.can_respawn() {
             gs.reset_spaceship_p2();
             return;
-        }else {
+        } else {
             // The delay to respawn is not over.
             return;
         }
