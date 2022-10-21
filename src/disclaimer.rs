@@ -58,14 +58,14 @@ pub fn show_disclaimer(
         .blended_wrapped(Color::WHITE, WINDOW_WIDTH - 2 * MESSAGE_MARGIN)
         .expect("Failed to create font surface for Disclaimer's message!");
 
-    let font_rect_title = Rect::new(
+    let rect_title = Rect::new(
         (WINDOW_WIDTH / 2 - TITLE_WIDTH / 2) as i32,
         0,
         TITLE_WIDTH,
         TITLE_HEIGHT
     );
 
-    let font_rect_message = Rect::new(
+    let rect_message = Rect::new(
         MESSAGE_MARGIN as i32,
         (TITLE_HEIGHT + MESSAGE_MARGIN) as i32,
         WINDOW_WIDTH - MESSAGE_MARGIN,
@@ -81,12 +81,12 @@ pub fn show_disclaimer(
         .expect("Failed to create texte for Disclaimer's message!");
 
     // fade from black
-    fade_message(&mut texture_title, &mut texture_message, font_rect_title, font_rect_message, canvas, FADE_DURATION, false);
+    fade_message(&mut texture_title, &mut texture_message, rect_title, rect_message, canvas, FADE_DURATION, false);
 
-    message_to_screen(&texture_title, &texture_message, font_rect_title, font_rect_message, canvas, SCREEN_DURATION);
+    message_to_screen(&texture_title, &texture_message, rect_title, rect_message, canvas, SCREEN_DURATION);
 
     // fade fo black
-    fade_message(&mut texture_title, &mut texture_message, font_rect_title, font_rect_message, canvas, FADE_DURATION,true);
+    fade_message(&mut texture_title, &mut texture_message, rect_title, rect_message, canvas, FADE_DURATION, true);
 }
 fn message_to_screen(
     title: &Texture,
@@ -100,7 +100,6 @@ fn message_to_screen(
     canvas.copy(message, None, rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
     canvas.present();
     ::std::thread::sleep(Duration::new(duration, 0));
-
 }
 
 fn fade_message(
