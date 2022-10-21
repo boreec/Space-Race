@@ -104,10 +104,7 @@ pub fn draw_score(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>, gs: &G
 
     let font = ttf_context
         .load_font(schluber_font_path, 128)
-        .expect(&format!(
-            "Failed to load font {}",
-            schluber_font_path.display()
-        ));
+        .unwrap_or_else(|_| panic!("Failed to load font {}", schluber_font_path.display()));
 
     let surface_p1 = font
         .render(&format!("{}", gs.score_p1))
