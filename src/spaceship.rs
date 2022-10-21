@@ -272,7 +272,7 @@ impl SpaceshipTail {
                 let min_y = ys.into_iter().reduce(i32::min).unwrap();
                 let max_y = ys.into_iter().reduce(i32::max).unwrap();
 
-                return a == a1 + a2 + a3 && x > min_x && x < max_x && y > min_y && y < max_y;
+                a == a1 + a2 + a3 && x > min_x && x < max_x && y > min_y && y < max_y
             };
 
         return is_point_within_triangle(&self.left_triangle_x, &self.left_triangle_y, x, y)
