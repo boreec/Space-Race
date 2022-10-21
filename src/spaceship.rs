@@ -210,7 +210,7 @@ pub struct SpaceshipTail {
 
 impl SpaceshipTail {
     pub fn new(pos_x: i16, pos_y: i16) -> SpaceshipTail {
-        return SpaceshipTail {
+        SpaceshipTail {
             left_triangle_x: [pos_x, pos_x, pos_x - SPACESHIP_TAIL_SIZE],
             left_triangle_y: [
                 pos_y + SPACESHIP_BODY_HEIGHT as i16 - SPACESHIP_TAIL_SIZE,
@@ -228,7 +228,7 @@ impl SpaceshipTail {
                 pos_y + SPACESHIP_BODY_HEIGHT as i16,
             ],
             color: SPACESHIP_TAIL_COLOR,
-        };
+        }
     }
 
     pub fn move_upward(&mut self) {
