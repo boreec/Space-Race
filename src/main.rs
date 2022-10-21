@@ -122,7 +122,7 @@ fn handle_events(
         if !gs.spaceship_p1.is_alive && gs.spaceship_p1.can_respawn() {
                 gs.reset_spaceship_p1();
         }
-        draw_game(canvas, &gs);
+        draw_game(canvas, gs);
     } else {
         match event {
             Event::Quit { .. }
