@@ -62,7 +62,7 @@ impl GameState {
 
     pub fn collision_occurred_for(&self, spaceship: &Spaceship) -> bool {
         for m in &self.missiles {
-            if spaceship.collide_with(&m) {
+            if spaceship.collide_with(m) {
                 return true;
             }
         }
