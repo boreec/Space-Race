@@ -104,7 +104,7 @@ pub fn show_disclaimer(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
         SCREEN_DURATION,
     );
 
-    // fade fo black
+    // fade to black
     fade_message(
         &mut texture_title,
         &mut texture_message,
