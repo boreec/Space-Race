@@ -188,6 +188,6 @@ pub fn draw_game(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>, gs: &Ga
 
     draw_missiles(canvas, &gs);
     draw_score(canvas, &gs);
-    draw_timeline(canvas, &gs);
+    draw_timeline(canvas, gs);
     canvas.present();
 }
