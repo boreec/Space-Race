@@ -1,5 +1,6 @@
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
+use sdl2::render::Texture;
 
 use std::path::Path;
 use std::time::Duration;
@@ -96,15 +97,26 @@ pub fn show_disclaimer(
     canvas.present();
     ::std::thread::sleep(Duration::new(SCREEN_DURATION - 1, 0));
 
+    fade_message(&mut texture_title, &mut texture_message, font_rect_title, font_rect_message, canvas, FADE_DURATION);
+}
+
+fn fade_message(
+    title: &mut Texture,
+    message: &mut Texture,
+    rect_title: Rect,
+    rect_message: Rect,
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    duration: u64
+) {
     // fade to the black
     for i in (0..250).rev() {
         canvas.set_draw_color(Color::BLACK);
         canvas.clear();
-        texture_title.set_color_mod(i,i,i);
-        texture_message.set_color_mod(i,i,i);
-        canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
-        canvas.copy(&texture_message, None, font_rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
+        title.set_color_mod(i,i,i);
+        message.set_color_mod(i,i,i);
+        canvas.copy(&title, None, rect_title).expect("Failed to copy Disclaimer's title on canvas!");
+        canvas.copy(&message, None, rect_message).expect("Failed to copy Disclaimer's message on canvas!");
         canvas.present();
-        ::std::thread::sleep(Duration::from_millis(1 / FADE_DURATION));
+        ::std::thread::sleep(Duration::from_millis(1 / duration));
     }
 }
