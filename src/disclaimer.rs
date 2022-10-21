@@ -80,23 +80,23 @@ pub fn show_disclaimer(
         .create_texture_from_surface(&surface_message)
         .expect("Failed to create texte for Disclaimer's message!");
 
-    // fade from the black
-    for i in 0..250 {
-        canvas.set_draw_color(Color::BLACK);
-        canvas.clear();
-        texture_title.set_color_mod(i,i,i);
-        texture_message.set_color_mod(i,i,i);
-        canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
-        canvas.copy(&texture_message, None, font_rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
-        canvas.present();
-        ::std::thread::sleep(Duration::from_millis(1 / FADE_DURATION));
-    }
+    // fade from black
+    fade_message(
+        &mut texture_title,
+        &mut texture_message,
+        font_rect_title,
+        font_rect_message,
+        canvas,
+        FADE_DURATION,
+        false
+    );
 
     canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
     canvas.copy(&texture_message, None, font_rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
     canvas.present();
     ::std::thread::sleep(Duration::new(SCREEN_DURATION - 1, 0));
 
+    // fade fo black
     fade_message(
         &mut texture_title,
         &mut texture_message,
