@@ -156,11 +156,11 @@ impl MissileHead {
                 ];
             }
         }
-        return MissileHead {
+        MissileHead {
             triangle_x: triangle_xs,
             triangle_y: triangle_ys,
             color: MISSILE_HEAD_COLOR,
-        };
+        }
     }
 
     fn move_towards(&mut self, direction: &MissileDirection) {
