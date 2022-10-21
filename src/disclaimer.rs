@@ -81,31 +81,26 @@ pub fn show_disclaimer(
         .expect("Failed to create texte for Disclaimer's message!");
 
     // fade from black
-    fade_message(
-        &mut texture_title,
-        &mut texture_message,
-        font_rect_title,
-        font_rect_message,
-        canvas,
-        FADE_DURATION,
-        false
-    );
+    fade_message(&mut texture_title, &mut texture_message, font_rect_title, font_rect_message, canvas, FADE_DURATION, false);
 
-    canvas.copy(&texture_title, None, font_rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
-    canvas.copy(&texture_message, None, font_rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
-    canvas.present();
-    ::std::thread::sleep(Duration::new(SCREEN_DURATION - 1, 0));
+    message_to_screen(&texture_title, &texture_message, font_rect_title, font_rect_message, canvas, SCREEN_DURATION);
 
     // fade fo black
-    fade_message(
-        &mut texture_title,
-        &mut texture_message,
-        font_rect_title,
-        font_rect_message,
-        canvas,
-        FADE_DURATION,
-        true
-    );
+    fade_message(&mut texture_title, &mut texture_message, font_rect_title, font_rect_message, canvas, FADE_DURATION,true);
+}
+fn message_to_screen(
+    title: &Texture,
+    message: &Texture,
+    rect_title: Rect,
+    rect_message: Rect,
+    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    duration: u64
+){
+    canvas.copy(title, None, rect_title).expect("Failed to copy Disclaimer's title texture to canvas!");
+    canvas.copy(message, None, rect_message).expect("Failed to copy Disclaimer's message texture to canvas!");
+    canvas.present();
+    ::std::thread::sleep(Duration::new(duration, 0));
+
 }
 
 fn fade_message(
@@ -128,9 +123,6 @@ fn fade_message(
             title.set_color_mod(250 - i, 250 - i, 250 - i);
             message.set_color_mod(250 - i, 250 - i, 250 - i);
         }
-        canvas.copy(&title, None, rect_title).expect("Failed to copy Disclaimer's title on canvas!");
-        canvas.copy(&message, None, rect_message).expect("Failed to copy Disclaimer's message on canvas!");
-        canvas.present();
-        ::std::thread::sleep(Duration::from_millis(1 / duration));
+        message_to_screen(title, message, rect_title, rect_message, canvas, duration / 250);
     }
 }
