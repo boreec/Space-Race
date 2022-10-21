@@ -119,10 +119,8 @@ fn handle_events(
             sounds.soloud.play(&sounds.collision_wav);
         }
         update_cpu(gs);
-        if !gs.spaceship_p1.is_alive {
-            if gs.spaceship_p1.can_respawn() {
+        if !gs.spaceship_p1.is_alive && gs.spaceship_p1.can_respawn() {
                 gs.reset_spaceship_p1();
-            }
         }
         draw_game(canvas, &gs);
     } else {
