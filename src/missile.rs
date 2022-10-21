@@ -59,10 +59,10 @@ pub struct MissileHead {
 
 impl MissileBody {
     fn new(r: Rect) -> MissileBody {
-        return MissileBody {
+        MissileBody {
             rect: r,
             color: MISSILE_BODY_COLOR,
-        };
+        }
     }
 
     fn move_towards(&mut self, direction: &MissileDirection) {
