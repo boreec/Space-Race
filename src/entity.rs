@@ -66,7 +66,7 @@ impl GameState {
                 return true;
             }
         }
-        return false;
+        false
     }
 }
 
