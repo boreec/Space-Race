@@ -97,7 +97,15 @@ pub fn show_disclaimer(
     canvas.present();
     ::std::thread::sleep(Duration::new(SCREEN_DURATION - 1, 0));
 
-    fade_message(&mut texture_title, &mut texture_message, font_rect_title, font_rect_message, canvas, FADE_DURATION);
+    fade_message(
+        &mut texture_title,
+        &mut texture_message,
+        font_rect_title,
+        font_rect_message,
+        canvas,
+        FADE_DURATION,
+        true
+    );
 }
 
 fn fade_message(
@@ -106,14 +114,20 @@ fn fade_message(
     rect_title: Rect,
     rect_message: Rect,
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-    duration: u64
+    duration: u64,
+    crescendo: bool
 ) {
     // fade to the black
-    for i in (0..250).rev() {
+    for i in 0..250 {
         canvas.set_draw_color(Color::BLACK);
         canvas.clear();
-        title.set_color_mod(i,i,i);
-        message.set_color_mod(i,i,i);
+        if !crescendo {
+            title.set_color_mod(i,i,i);
+            message.set_color_mod(i,i,i);
+        }else {
+            title.set_color_mod(250 - i, 250 - i, 250 - i);
+            message.set_color_mod(250 - i, 250 - i, 250 - i);
+        }
         canvas.copy(&title, None, rect_title).expect("Failed to copy Disclaimer's title on canvas!");
         canvas.copy(&message, None, rect_message).expect("Failed to copy Disclaimer's message on canvas!");
         canvas.present();
