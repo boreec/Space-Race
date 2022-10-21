@@ -44,10 +44,8 @@ impl GameSFX {
         sounds
             .collision_wav
             .load(sfx_collision_path)
-            .expect(&format!(
-                "failed to load sfx file {} for collision",
-                sfx_collision_path.display()
-            ));
+            .unwrap_or_else(|_| panic!("failed to load sfx file {} for collision", sfx_collision_path.display()));
+        
         return sounds;
     }
 }
