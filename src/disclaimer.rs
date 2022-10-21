@@ -40,10 +40,7 @@ pub fn show_disclaimer(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
 
     let big_font = ttf_context
         .load_font(poetsen_font_path, 128)
-        .expect(&format!(
-            "Failed to load font {}",
-            poetsen_font_path.display()
-        ));
+        .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
 
     let small_font = ttf_context
         .load_font(poetsen_font_path, 24)
