@@ -28,7 +28,7 @@ impl GameState {
             random_missiles.push(Missile::new());
         }
 
-        return GameState {
+        GameState {
             is_game_over: false,
             is_game_restarted: true,
             missiles: random_missiles,
@@ -38,7 +38,7 @@ impl GameState {
             score_p2: 0,
             starting_time: Instant::now(),
             game_duration: Duration::new(45, 0),
-        };
+        }
     }
 
     pub fn has_spaceship_scored(spaceship: &Spaceship) -> bool {
