@@ -228,12 +228,11 @@ impl Missile {
         let pos_x = rng.gen_range(MISSILE_SPAWN_RANGE_X) as i32;
         let pos_y = rng.gen_range(MISSILE_SPAWN_RANGE_Y) as i32;
 
-        let d: MissileDirection;
-        if random::<u8>() % 2 == 0 {
-            d = MissileDirection::Left;
+        let d: MissileDirection = if random::<u8>() % 2 == 0 {
+            MissileDirection::Left
         } else {
-            d = MissileDirection::Right;
-        }
+            MissileDirection::Right
+        };
         let r = Rect::new(pos_x, pos_y, MISSILE_WIDTH, MISSILE_HEIGHT);
         let m = MissileBody::new(r);
         let t = MissileTail::new(pos_x as i16, pos_y as i16, &d);
