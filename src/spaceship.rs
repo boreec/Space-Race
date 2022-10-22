@@ -84,7 +84,7 @@ impl Spaceship {
             h_i += 1;
         }
 
-        return head_collision || body_collision || tail_collision;
+        head_collision || body_collision || tail_collision
     }
 }
 
