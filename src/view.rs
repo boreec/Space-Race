@@ -43,10 +43,7 @@ pub fn draw_missiles(canvas: &mut Canvas<Window>, gs: &GameState) {
     }
 }
 
-pub fn draw_spaceship(
-    canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-    spaceship: &Spaceship,
-) {
+pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
     // body
     canvas.set_draw_color(spaceship.body.body_color);
     canvas
