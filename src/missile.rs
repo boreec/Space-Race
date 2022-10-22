@@ -197,7 +197,7 @@ impl ToPoints for MissileHead {
 
 impl ToPoints for MissileBody {
     fn points(&self) -> Vec<Point> {
-        return vec![
+        vec![
             Point::new(self.rect.x(), self.rect.y()),
             Point::new(self.rect.x() + self.rect.width() as i32, self.rect.y()),
             Point::new(self.rect.x(), self.rect.y() + self.rect.height() as i32),
@@ -205,7 +205,7 @@ impl ToPoints for MissileBody {
                 self.rect.x() + self.rect.width() as i32,
                 self.rect.y() + self.rect.height() as i32,
             ),
-        ];
+        ]
     }
 }
 
