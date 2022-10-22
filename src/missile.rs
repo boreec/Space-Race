@@ -211,14 +211,14 @@ impl ToPoints for MissileBody {
 
 impl ToPoints for MissileTail {
     fn points(&self) -> Vec<Point> {
-        return vec![
+        vec![
             Point::new(self.top_triangle_x[0] as i32, self.top_triangle_y[0] as i32),
             Point::new(self.bot_triangle_x[1] as i32, self.top_triangle_y[1] as i32),
             Point::new(self.bot_triangle_x[2] as i32, self.top_triangle_y[2] as i32),
             Point::new(self.bot_triangle_x[0] as i32, self.bot_triangle_y[0] as i32),
             Point::new(self.bot_triangle_x[1] as i32, self.bot_triangle_y[1] as i32),
             Point::new(self.bot_triangle_x[2] as i32, self.bot_triangle_y[2] as i32),
-        ];
+        ]
     }
 }
 
