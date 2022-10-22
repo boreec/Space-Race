@@ -6,6 +6,8 @@ use crate::view::*;
 
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
+use sdl2::render::Canvas;
+use sdl2::video::Window;
 use sdl2::EventPump;
 
 use std::time::Duration;
@@ -48,7 +50,7 @@ pub fn main() {
     run_game(&sdl_context, &mut canvas);
 }
 
-fn run_game(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
+fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>) {
     let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
