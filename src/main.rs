@@ -45,10 +45,10 @@ pub fn main() {
     let mut canvas = window.into_canvas().build().unwrap();
 
     show_disclaimer(&mut canvas);
-    game_loop(&sdl_context, &mut canvas);
+    run_game(&sdl_context, &mut canvas);
 }
 
-fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
+fn run_game(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
     let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
