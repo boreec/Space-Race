@@ -96,7 +96,7 @@ pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
         .expect("Drawing failed for spaceship's right leg!");
 }
 
-pub fn draw_score(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>, gs: &GameState) {
+pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState) {
     let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
     let texture_creator = canvas.texture_creator();
     let schluber_font_path: &Path = Path::new("asset/font/schluber/Schluber.ttf");
