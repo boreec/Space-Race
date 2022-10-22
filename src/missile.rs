@@ -238,14 +238,14 @@ impl Missile {
         let t = MissileTail::new(pos_x as i16, pos_y as i16, &d);
         let h = MissileHead::new(pos_x as i16, pos_y as i16, &d);
 
-        return Missile {
+        Missile {
             x: pos_x,
             y: pos_y,
             direction: d,
             body: m,
             tail: t,
             head: h,
-        };
+        }
     }
 
     pub fn update(&mut self) {
