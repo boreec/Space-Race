@@ -7,7 +7,6 @@ use rand::Rng;
 
 use std::ops::RangeInclusive;
 
-use crate::ToPoints;
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
 
@@ -55,6 +54,11 @@ pub struct MissileHead {
     pub triangle_x: [i16; 3],
     pub triangle_y: [i16; 3],
     pub color: Color,
+}
+
+// ** TRAITS ** //
+pub trait ToPoints {
+    fn points(&self) -> Vec<Point>;
 }
 
 impl MissileBody {

@@ -68,7 +68,3 @@ impl GameState {
     }
 }
 
-// ** TRAITS ** //
-pub trait ToPoints {
-    fn points(&self) -> Vec<Point>;
-}

@@ -4,8 +4,7 @@ use sdl2::rect::Rect;
 use std::time::Duration;
 use std::time::Instant;
 
-use crate::missile::Missile;
-use crate::ToPoints;
+use crate::missile::*;
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
 
