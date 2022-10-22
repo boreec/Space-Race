@@ -4,8 +4,6 @@ use std::time::Instant;
 use crate::missile::*;
 use crate::spaceship::*;
 
-const MISSILE_QUANTITY: usize = 10;
-
 pub struct GameState {
     pub missiles: Vec<Missile>,
     pub spaceship_p1: Spaceship,
@@ -19,10 +17,10 @@ pub struct GameState {
 }
 
 impl GameState {
-    pub fn new() -> GameState {
+    pub fn new(m_quantity: usize) -> GameState {
         let mut random_missiles = Vec::new();
 
-        for _ in 0..MISSILE_QUANTITY {
+        for _ in 0..m_quantity {
             random_missiles.push(Missile::new());
         }
 
