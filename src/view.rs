@@ -172,7 +172,7 @@ pub fn draw_timeline(canvas: &mut Canvas<Window>, gs: &GameState) {
         .expect("Drawing failed for timeline!");
 }
 
-pub fn draw_game(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>, gs: &GameState) {
+pub fn draw_game(canvas: &mut Canvas<Window>, gs: &GameState) {
     draw_background(canvas);
 
     if gs.spaceship_p1.is_alive {
