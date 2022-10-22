@@ -148,7 +148,7 @@ pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState) {
         .expect("Failed to copy p2 texture to canvas");
 }
 
-pub fn draw_timeline(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>, gs: &GameState) {
+pub fn draw_timeline(canvas: &mut Canvas<Window>, gs: &GameState) {
     // Don't draw the line if the game time is over.
     if gs.game_duration.as_secs() < gs.starting_time.elapsed().as_secs() {
         return;
