@@ -1,6 +1,8 @@
 use crate::sdl2::gfx::primitives::DrawRenderer;
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
+use sdl2::render::Canvas;
+use sdl2::video::Window;
 
 use std::path::Path;
 
@@ -16,7 +18,7 @@ fn draw_background(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
     canvas.clear();
 }
 
-pub fn draw_missiles(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>, gs: &GameState) {
+pub fn draw_missiles(canvas: &mut Canvas<Window>, gs: &GameState) {
     for m in &gs.missiles {
         // draw body
         canvas.set_draw_color(m.body.color);
