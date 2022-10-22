@@ -1,5 +1,3 @@
-use sdl2::rect::Point;
-
 use std::time::Duration;
 use std::time::Instant;
 
