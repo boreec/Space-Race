@@ -167,7 +167,7 @@ impl SpaceshipHead {
             let ab = vec![x2 - x1, y2 - y1];
             let ac = vec![x3 - x1, y3 - y1];
             let cross_product = ab[0] * ac[1] - ab[1] * ac[0];
-            return (cross_product as f64 / 2.0).abs();
+            (cross_product as f64 / 2.0).abs()
         };
 
         let is_point_within_triangle =
