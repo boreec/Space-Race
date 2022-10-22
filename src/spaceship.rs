@@ -34,13 +34,13 @@ pub struct Spaceship {
 
 impl Spaceship {
     pub fn new(pos_x: i32, pos_y: i32) -> Spaceship {
-        return Spaceship {
+        Spaceship {
             body: SpaceshipBody::new(pos_x, pos_y, SPACESHIP_BODY_WIDTH, SPACESHIP_BODY_HEIGHT),
             head: SpaceshipHead::new(pos_x as i16, pos_y as i16),
             tail: SpaceshipTail::new(pos_x as i16, pos_y as i16),
             is_alive: true,
             death_instant: Instant::now(),
-        };
+        }
     }
 
     pub fn die(&mut self) {
