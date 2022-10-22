@@ -187,11 +187,11 @@ impl ToPoints for Missile {
 
 impl ToPoints for MissileHead {
     fn points(&self) -> Vec<Point> {
-        return vec![
+        vec![
             Point::new(self.triangle_x[0] as i32, self.triangle_y[0] as i32),
             Point::new(self.triangle_x[1] as i32, self.triangle_y[1] as i32),
             Point::new(self.triangle_x[2] as i32, self.triangle_y[2] as i32),
-        ];
+        ]
     }
 }
 
