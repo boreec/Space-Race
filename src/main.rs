@@ -10,6 +10,7 @@ use sdl2::EventPump;
 
 use soloud::*;
 
+use std::time::Duration;
 use std::path::Path;
 
 mod disclaimer;
@@ -22,7 +23,11 @@ const WINDOW_WIDTH: u32 = 800;
 const WINDOW_HEIGHT: u32 = 600;
 const WINDOW_TITLE: &str = "space race";
 
+// The time between two frames in milliseconds.
 const FRAME_DURATION: u32 = 50;
+
+// The time for 1 game in seconds.
+const GAME_DURATION: Duration = Duration::new(45, 0);
 
 const MISSILE_QUANTITY: usize = 10;
 struct FrameEvent;
@@ -73,7 +78,7 @@ pub fn main() {
 }
 
 fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
-    let mut gs: GameState = GameState::new(MISSILE_QUANTITY);
+    let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
     let ev = context.event().unwrap();
@@ -89,7 +94,7 @@ fn game_loop(context: &sdl2::Sdl, canvas: &mut sdl2::render::Canvas<sdl2::video:
     );
 
     while gs.is_game_restarted {
-        gs = GameState::new(MISSILE_QUANTITY);
+        gs = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
         gs.is_game_restarted = false;
         while !gs.is_game_over && !gs.is_game_elapsed() && !gs.is_game_restarted {
             handle_events(&mut gs, &mut event_pump, &sounds, canvas);

@@ -17,7 +17,7 @@ pub struct GameState {
 }
 
 impl GameState {
-    pub fn new(m_quantity: usize) -> GameState {
+    pub fn new(m_quantity: usize, g_duration: Duration) -> GameState {
         let mut random_missiles = Vec::new();
 
         for _ in 0..m_quantity {
@@ -33,7 +33,7 @@ impl GameState {
             score_p1: 0,
             score_p2: 0,
             starting_time: Instant::now(),
-            game_duration: Duration::new(45, 0),
+            game_duration: g_duration,
         }
     }
 
