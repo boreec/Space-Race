@@ -1,8 +1,11 @@
+use std::path::Path;
 use std::time::Duration;
 use std::time::Instant;
 
 use crate::missile::*;
 use crate::spaceship::*;
+
+use soloud::*;
 
 pub struct GameState {
     pub missiles: Vec<Missile>,
@@ -14,6 +17,11 @@ pub struct GameState {
     pub score_p2: u32,
     pub starting_time: Instant,
     pub game_duration: Duration,
+}
+
+pub struct GameSFX {
+    pub soloud: Soloud,
+    pub collision_wav: Wav,
 }
 
 impl GameState {
@@ -64,3 +72,25 @@ impl GameState {
     }
 }
 
+impl GameSFX {
+    pub fn new() -> GameSFX {
+        let sl = Soloud::default().expect("Failed to get Soloud object!");
+
+        let mut sounds = GameSFX {
+            soloud: sl,
+            collision_wav: audio::Wav::default(),
+        };
+
+        let sfx_collision_path: &Path = std::path::Path::new("asset/sfx/pew.wav");
+        sounds
+            .collision_wav
+            .load(sfx_collision_path)
+            .unwrap_or_else(|_| {
+                panic!(
+                    "failed to load sfx file {} for collision",
+                    sfx_collision_path.display()
+                )
+            });
+        sounds
+    }
+}

@@ -8,10 +8,7 @@ use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::EventPump;
 
-use soloud::*;
-
 use std::time::Duration;
-use std::path::Path;
 
 mod disclaimer;
 mod entity;
@@ -19,6 +16,7 @@ mod missile;
 mod spaceship;
 mod view;
 
+// Window constants used to setup the game's window.
 const WINDOW_WIDTH: u32 = 800;
 const WINDOW_HEIGHT: u32 = 600;
 const WINDOW_TITLE: &str = "space race";
@@ -30,36 +28,9 @@ const FRAME_DURATION: u32 = 50;
 const GAME_DURATION: Duration = Duration::new(45, 0);
 
 const MISSILE_QUANTITY: usize = 10;
+
 struct FrameEvent;
 
-struct GameSFX {
-    soloud: Soloud,
-    collision_wav: Wav,
-}
-
-impl GameSFX {
-    pub fn new() -> GameSFX {
-        let sl = Soloud::default().expect("Failed to get Soloud object!");
-
-        let mut sounds = GameSFX {
-            soloud: sl,
-            collision_wav: audio::Wav::default(),
-        };
-
-        let sfx_collision_path: &Path = std::path::Path::new("asset/sfx/pew.wav");
-        sounds
-            .collision_wav
-            .load(sfx_collision_path)
-            .unwrap_or_else(|_| {
-                panic!(
-                    "failed to load sfx file {} for collision",
-                    sfx_collision_path.display()
-                )
-            });
-
-        sounds
-    }
-}
 
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
