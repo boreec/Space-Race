@@ -143,7 +143,7 @@ pub struct SpaceshipHead {
 
 impl SpaceshipHead {
     pub fn new(pos_x: i16, pos_y: i16) -> SpaceshipHead {
-        return SpaceshipHead {
+        SpaceshipHead {
             triangle_x: [
                 pos_x,
                 pos_x + (SPACESHIP_HEAD_SIZE / 2) as i16,
@@ -151,7 +151,7 @@ impl SpaceshipHead {
             ],
             triangle_y: [pos_y, pos_y - SPACESHIP_HEAD_SIZE as i16, pos_y],
             color: SPACESHIP_HEAD_COLOR,
-        };
+        }
     }
 
     pub fn move_upward(&mut self) {
