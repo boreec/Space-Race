@@ -275,7 +275,7 @@ impl SpaceshipTail {
                 a == a1 + a2 + a3 && x > min_x && x < max_x && y > min_y && y < max_y
             };
 
-        return is_point_within_triangle(&self.left_triangle_x, &self.left_triangle_y, x, y)
-            || is_point_within_triangle(&self.right_triangle_x, &self.right_triangle_y, x, y);
+        is_point_within_triangle(&self.left_triangle_x, &self.left_triangle_y, x, y)
+            || is_point_within_triangle(&self.right_triangle_x, &self.right_triangle_y, x, y)
     }
 }
