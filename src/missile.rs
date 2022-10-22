@@ -109,7 +109,7 @@ impl MissileTail {
         MissileTail {
             top_triangle_x: top_triangle_xs,
             top_triangle_y: top_triangle_ys,
-            bot_triangle_x: top_triangle_xs.clone(), // same coordinates
+            bot_triangle_x: top_triangle_xs, // same coordinates
             bot_triangle_y: bot_triangle_ys,
             color: MISSILE_TAIL_COLOR,
         }
