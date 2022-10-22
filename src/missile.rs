@@ -23,7 +23,7 @@ const MISSILE_HEAD_COLOR: Color = Color::RED;
 const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=WINDOW_WIDTH;
 const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
-#[derive(PartialEq)]
+#[derive(PartialEq, Eq)]
 pub enum MissileDirection {
     Left,
     Right,
