@@ -181,7 +181,7 @@ impl ToPoints for Missile {
         result.append(&mut self.head.points());
         result.append(&mut self.body.points());
         result.append(&mut self.tail.points());
-        return result;
+        result
     }
 }
 
