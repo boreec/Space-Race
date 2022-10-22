@@ -44,7 +44,12 @@ impl GameSFX {
         sounds
             .collision_wav
             .load(sfx_collision_path)
-            .unwrap_or_else(|_| panic!("failed to load sfx file {} for collision", sfx_collision_path.display()));
+            .unwrap_or_else(|_| {
+                panic!(
+                    "failed to load sfx file {} for collision",
+                    sfx_collision_path.display()
+                )
+            });
 
         sounds
     }
@@ -118,7 +123,7 @@ fn handle_events(
         }
         update_cpu(gs);
         if !gs.spaceship_p1.is_alive && gs.spaceship_p1.can_respawn() {
-                gs.reset_spaceship_p1();
+            gs.reset_spaceship_p1();
         }
         draw_game(canvas, gs);
     } else {

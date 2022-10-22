@@ -66,8 +66,7 @@ impl Spaceship {
     }
 
     pub fn can_respawn(&self) -> bool {
-        !self.is_alive
-            && self.death_instant.elapsed().as_secs() > SPACESHIP_DEATH_TIME.as_secs()
+        !self.is_alive && self.death_instant.elapsed().as_secs() > SPACESHIP_DEATH_TIME.as_secs()
     }
 
     pub fn collide_with(&self, missile: &Missile) -> bool {
