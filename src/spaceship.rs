@@ -130,8 +130,8 @@ impl SpaceshipBody {
     }
 
     pub fn is_point_within(&self, x: i32, y: i32) -> bool {
-        return (self.rect.x() <= x && self.rect.x() + self.rect.width() as i32 >= x)
-            && (self.rect.y() <= y && self.rect.y() + self.rect.height() as i32 >= y);
+        (self.rect.x() <= x && self.rect.x() + self.rect.width() as i32 >= x)
+            && (self.rect.y() <= y && self.rect.y() + self.rect.height() as i32 >= y)
     }
 }
 
