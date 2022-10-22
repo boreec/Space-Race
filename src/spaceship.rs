@@ -101,7 +101,7 @@ impl SpaceshipBody {
     pub fn new(pos_x: i32, pos_y: i32, width: u32, height: u32) -> SpaceshipBody {
         let porthole_radius = (width / 3) as i16;
 
-        return SpaceshipBody {
+        SpaceshipBody {
             rect: Rect::new(pos_x, pos_y, width, height),
             body_color: SPACESHIP_BODY_COLOR,
             porthole_1: (
@@ -114,7 +114,7 @@ impl SpaceshipBody {
             ),
             porthole_r: porthole_radius,
             porthole_color: SPACESHIP_PORTHOLE_COLOR,
-        };
+        }
     }
 
     pub fn move_upward(&mut self) {
