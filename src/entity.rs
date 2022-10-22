@@ -20,8 +20,8 @@ pub struct GameState {
 }
 
 pub struct GameSFX {
-    pub soloud: Soloud,
-    pub collision_wav: Wav,
+    soloud: Soloud,
+    collision_wav: Wav,
 }
 
 impl GameState {
@@ -92,5 +92,9 @@ impl GameSFX {
                 )
             });
         sounds
+    }
+
+    pub fn play_collision(&self) {
+        self.soloud.play(&self.collision_wav);
     }
 }
