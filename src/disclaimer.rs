@@ -1,6 +1,8 @@
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
+use sdl2::render::Canvas;
 use sdl2::render::Texture;
+use sdl2::video::Window;
 
 use std::path::Path;
 use std::time::Duration;
@@ -30,7 +32,7 @@ const MESSAGE_MARGIN: u32 = 20;
 const FADE_DURATION: u64 = 1;
 const SCREEN_DURATION: u64 = 8;
 
-pub fn show_disclaimer(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
+pub fn show_disclaimer(canvas: &mut Canvas<Window>) {
     canvas.set_draw_color(Color::BLACK);
     canvas.clear();
 
