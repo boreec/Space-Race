@@ -52,10 +52,13 @@ pub fn main() {
     
     let gf = GameFont::new();
     show_disclaimer(&gf, &mut canvas);
-    run_game(&sdl_context, &mut canvas);
+    run_game(&sdl_context, &mut canvas, &gf);
 }
 
-fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>) {
+fn run_game(
+    context: &sdl2::Sdl, 
+    canvas: &mut Canvas<Window>,
+    gf: &GameFont) {
     let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
@@ -75,10 +78,10 @@ fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>) {
         gs = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
         gs.is_game_restarted = false;
         while !gs.is_game_over && !gs.is_game_elapsed() && !gs.is_game_restarted {
-            handle_events(&mut gs, &mut event_pump, &sounds, canvas);
+            handle_events(&mut gs, &mut event_pump, &sounds, canvas, &gf);
         }
         if gs.is_game_elapsed() {
-            gs.is_game_restarted = show_game_over(&mut gs, canvas);
+            gs.is_game_restarted = show_game_over(&mut gs, &gf, canvas);
         }
     }
 }
@@ -88,6 +91,7 @@ fn handle_events(
     event_pump: &mut EventPump,
     sounds: &GameSFX,
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
+    gf: &GameFont
 ) {
     let event = event_pump.wait_event();
 
@@ -109,7 +113,7 @@ fn handle_events(
         if !gs.spaceship_p1.is_alive && gs.spaceship_p1.can_respawn() {
             gs.reset_spaceship_p1();
         }
-        draw_game(canvas, gs);
+        draw_game(canvas, gs, gf);
     } else {
         match event {
             Event::Quit { .. }

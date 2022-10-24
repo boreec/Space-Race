@@ -37,15 +37,14 @@ pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
     canvas.set_draw_color(Color::BLACK);
     canvas.clear();
 
-    let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
     let texture_creator = canvas.texture_creator();
     let poetsen_font_path: &Path = Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf");
 
-    let big_font = ttf_context
+    let big_font = gf.context
         .load_font(poetsen_font_path, 128)
         .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
 
-    let small_font = ttf_context
+    let small_font = gf.context
         .load_font(poetsen_font_path, 24)
         .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
 

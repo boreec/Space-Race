@@ -7,6 +7,7 @@ use sdl2::video::Window;
 use std::path::Path;
 
 use crate::spaceship::*;
+use crate::GameFont;
 use crate::GameState;
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
@@ -96,12 +97,11 @@ pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
         .expect("Drawing failed for spaceship's right leg!");
 }
 
-pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState) {
-    let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization failed!");
+pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     let texture_creator = canvas.texture_creator();
     let schluber_font_path: &Path = Path::new("asset/font/schluber/Schluber.ttf");
 
-    let font = ttf_context
+    let font = gf.context
         .load_font(schluber_font_path, 128)
         .unwrap_or_else(|_| panic!("Failed to load font {}", schluber_font_path.display()));
 
@@ -172,7 +172,7 @@ pub fn draw_timeline(canvas: &mut Canvas<Window>, gs: &GameState) {
         .expect("Drawing failed for timeline!");
 }
 
-pub fn draw_game(canvas: &mut Canvas<Window>, gs: &GameState) {
+pub fn draw_game(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     draw_background(canvas);
 
     if gs.spaceship_p1.is_alive {
@@ -183,7 +183,7 @@ pub fn draw_game(canvas: &mut Canvas<Window>, gs: &GameState) {
     }
 
     draw_missiles(canvas, gs);
-    draw_score(canvas, gs);
+    draw_score(canvas, gs, gf);
     draw_timeline(canvas, gs);
     canvas.present();
 }

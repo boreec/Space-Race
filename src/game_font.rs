@@ -1,7 +1,7 @@
 use sdl2::ttf::*;
 
 pub struct GameFont {
-    context: Sdl2TtfContext,
+    pub context: Sdl2TtfContext,
 }
 
 impl GameFont {
