@@ -109,4 +109,8 @@ impl GameSFX {
     pub fn play_collision(&self) {
         self.soloud.play(&self.collision_wav);
     }
+
+    pub fn play_score(&self) {
+        self.soloud.play(&self.score_wav);
+    }
 }
