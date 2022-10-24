@@ -1,6 +1,7 @@
 extern crate sdl2;
 
 use crate::disclaimer::*;
+use crate::game_font::*;
 use crate::game_over::*;
 use crate::entity::*;
 use crate::view::*;
@@ -14,6 +15,7 @@ use sdl2::EventPump;
 use std::time::Duration;
 
 mod disclaimer;
+mod game_font;
 mod game_over;
 mod entity;
 mod missile;
@@ -47,7 +49,8 @@ pub fn main() {
         .unwrap();
 
     let mut canvas = window.into_canvas().build().unwrap();
-
+    
+    let gf = GameFont::new();
     show_disclaimer(&mut canvas);
     run_game(&sdl_context, &mut canvas);
 }
