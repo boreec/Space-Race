@@ -51,7 +51,7 @@ pub fn main() {
     let mut canvas = window.into_canvas().build().unwrap();
     
     let gf = GameFont::new();
-    show_disclaimer(&mut canvas);
+    show_disclaimer(&gf, &mut canvas);
     run_game(&sdl_context, &mut canvas);
 }
 

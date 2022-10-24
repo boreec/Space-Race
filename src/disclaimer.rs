@@ -7,6 +7,7 @@ use sdl2::video::Window;
 use std::path::Path;
 use std::time::Duration;
 
+use crate::GameFont;
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
 
@@ -32,7 +33,7 @@ const MESSAGE_MARGIN: u32 = 20;
 const FADE_DURATION: u64 = 1;
 const SCREEN_DURATION: u64 = 8;
 
-pub fn show_disclaimer(canvas: &mut Canvas<Window>) {
+pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
     canvas.set_draw_color(Color::BLACK);
     canvas.clear();
 
