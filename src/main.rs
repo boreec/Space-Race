@@ -100,7 +100,7 @@ fn handle_events(
             gs.spaceship_p2.die();
             sounds.play_collision();
         }
-        update_cpu(gs);
+        update_cpu(gs, &sounds);
         if !gs.spaceship_p1.is_alive && gs.spaceship_p1.can_respawn() {
             gs.reset_spaceship_p1();
         }
@@ -121,6 +121,7 @@ fn handle_events(
                 if gs.spaceship_p1.is_alive {
                     gs.spaceship_p1.move_upward();
                     if GameState::has_spaceship_scored(&gs.spaceship_p1) {
+                        sounds.play_score();
                         gs.score_p1 += 1;
                         gs.reset_spaceship_p1();
                     }
@@ -145,7 +146,7 @@ fn handle_events(
     }
 }
 
-fn update_cpu(gs: &mut GameState) {
+fn update_cpu(gs: &mut GameState, sounds: &GameSFX) {
     if !gs.spaceship_p2.is_alive {
         if gs.spaceship_p2.can_respawn() {
             gs.reset_spaceship_p2();
@@ -157,6 +158,7 @@ fn update_cpu(gs: &mut GameState) {
     }
     gs.spaceship_p2.move_upward();
     if GameState::has_spaceship_scored(&gs.spaceship_p2) {
+        sounds.play_score();
         gs.score_p2 += 1;
         gs.reset_spaceship_p2();
     }
