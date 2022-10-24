@@ -1,6 +1,7 @@
 extern crate sdl2;
 
 use crate::disclaimer::*;
+use crate::game_over::*;
 use crate::entity::*;
 use crate::view::*;
 
@@ -13,6 +14,7 @@ use sdl2::EventPump;
 use std::time::Duration;
 
 mod disclaimer;
+mod game_over;
 mod entity;
 mod missile;
 mod spaceship;
@@ -29,7 +31,7 @@ const FRAME_DURATION: u32 = 50;
 // The time for 1 game in seconds.
 const GAME_DURATION: Duration = Duration::new(45, 0);
 
-const MISSILE_QUANTITY: usize = 10;
+const MISSILE_QUANTITY: usize = 20;
 
 struct FrameEvent;
 
@@ -73,7 +75,7 @@ fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>) {
             handle_events(&mut gs, &mut event_pump, &sounds, canvas);
         }
         if gs.is_game_elapsed() {
-            gs.is_game_restarted = true;
+            gs.is_game_restarted = show_game_over(&mut gs, canvas);
         }
     }
 }
