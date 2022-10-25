@@ -5,6 +5,7 @@ use std::path::Path;
 pub struct GameFont<'a> {
     pub context: Sdl2TtfContext,
     pub poetsen_path: Box<&'a Path>,
+    pub schluber_path: Box<&'a Path>,
 }
 
 impl GameFont<'_> {
@@ -16,6 +17,7 @@ impl GameFont<'_> {
         GameFont {
             context: ct,
             poetsen_path: Box::new(Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf")),
+            schluber_path: Box::new(Path::new("asset/font/schluber/Schluber.ttf")),
         }
     }
 
