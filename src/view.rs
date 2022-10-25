@@ -4,8 +4,6 @@ use sdl2::rect::Rect;
 use sdl2::render::Canvas;
 use sdl2::video::Window;
 
-use std::path::Path;
-
 use crate::spaceship::*;
 use crate::GameFont;
 use crate::GameState;
@@ -99,11 +97,8 @@ pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
 
 pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     let texture_creator = canvas.texture_creator();
-    let schluber_font_path: &Path = Path::new("asset/font/schluber/Schluber.ttf");
 
-    let font = gf.context
-        .load_font(schluber_font_path, 128)
-        .unwrap_or_else(|_| panic!("Failed to load font {}", schluber_font_path.display()));
+    let font = gf.get_font(&gf.schluber_path, 128);
 
     let surface_p1 = font
         .render(&format!("{}", gs.score_p1))
