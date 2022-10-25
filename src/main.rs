@@ -109,7 +109,7 @@ fn handle_events(
             gs.spaceship_p2.die();
             sounds.play_collision();
         }
-        update_cpu(gs, &sounds);
+        update_cpu(gs, sounds);
         if !gs.spaceship_p1.is_alive && gs.spaceship_p1.can_respawn() {
             gs.reset_spaceship_p1();
         }
