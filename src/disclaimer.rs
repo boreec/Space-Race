@@ -4,7 +4,6 @@ use sdl2::render::Canvas;
 use sdl2::render::Texture;
 use sdl2::video::Window;
 
-use std::path::Path;
 use std::time::Duration;
 
 use crate::GameFont;
@@ -38,15 +37,9 @@ pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
     canvas.clear();
 
     let texture_creator = canvas.texture_creator();
-    let poetsen_font_path: &Path = Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf");
-
-    let big_font = gf.context
-        .load_font(poetsen_font_path, 128)
-        .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
-
-    let small_font = gf.context
-        .load_font(poetsen_font_path, 24)
-        .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
+    
+    let big_font = gf.get_font(&gf.poetsen_path, 128);
+    let small_font = gf.get_font(&gf.poetsen_path, 24);
 
     let surface_title = big_font
         .render(TITLE_STR)

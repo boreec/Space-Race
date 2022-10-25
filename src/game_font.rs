@@ -4,10 +4,10 @@ use std::path::Path;
 
 pub struct GameFont<'a> {
     pub context: Sdl2TtfContext,
-    poetsen_path: &'a Path,
+    pub poetsen_path: Box<&'a Path>,
 }
 
-impl GameFont<'static> {
+impl GameFont<'_> {
     pub fn new() -> GameFont<'static> {
 
         let ct = sdl2::ttf::init().
@@ -15,7 +15,7 @@ impl GameFont<'static> {
     
         GameFont {
             context: ct,
-            poetsen_path: Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf"),
+            poetsen_path: Box::new(Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf")),
         }
     }
 
@@ -25,5 +25,5 @@ impl GameFont<'static> {
             .unwrap_or_else(|_| panic!("Failed to load font {}", path.display()))
     }
 
-    
-}
+} 
+
