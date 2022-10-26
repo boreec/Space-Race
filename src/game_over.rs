@@ -1,6 +1,8 @@
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
 use sdl2::render::Canvas;
+use sdl2::surface::Surface;
+use sdl2::ttf::Font;
 use sdl2::video::Window;
 
 use std::cmp::Ordering;
@@ -38,12 +40,9 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
             Ordering::Equal => { DRAW_TITLE },
             Ordering::Greater => { VICTORY_TITLE },
         };
-    
-    let surface_title = big_font
-        .render(title_str)
-        .blended(Color::WHITE)
-        .expect("Failed to create font surface for Game over's screen!");
-    
+
+    let surface_title = gf.surface_from_str(title_str, big_font, Color::WHITE);
+
     let rect_title = Rect::new(
         (WINDOW_WIDTH / 2 - TITLE_WIDTH / 2) as i32,
         0,
@@ -67,7 +66,7 @@ fn handle_events() -> bool {
     // to do
     let start = Instant::now();
     while start.elapsed().as_secs() < SCREEN_DURATION {
-        
+        ::std::thread::sleep(Duration::new(1,0));    
     }
     return true;
 }
