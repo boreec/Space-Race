@@ -5,6 +5,7 @@ use sdl2::video::Window;
 
 use std::cmp::Ordering;
 use std::path::Path;
+use std::time::Duration;
 
 use crate::GameFont;
 use crate::GameState;
@@ -23,6 +24,7 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
     canvas.clear();
     
     let poetsen_font_path: &Path = Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf");
+    let texture_creator = canvas.texture_creator();
 
     let big_font = gf.context
         .load_font(poetsen_font_path, 128)
@@ -39,6 +41,11 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
             Ordering::Greater => { VICTORY_TITLE },
         };
     
+    let surface_title = big_font
+        .render(title_str)
+        .blended(Color::WHITE)
+        .expect("Failed to create font surface for Game over's screen!");
+    
     let rect_title = Rect::new(
         (WINDOW_WIDTH / 2 - TITLE_WIDTH / 2) as i32,
         0,
@@ -46,7 +53,16 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
         TITLE_HEIGHT,
     );
     
-    loop {}
+    let mut texture_title = texture_creator
+        .create_texture_from_surface(&surface_title)
+        .expect("Failed to created texture for Game Over's screen title!");
+    
+    canvas
+        .copy(&texture_title, None, rect_title)
+        .expect("Failed to copy Game Over's Title's texture to canvas!");
+    canvas.present();
+    ::std::thread::sleep(Duration::new(3, 0));
+    
     true
 }
 
