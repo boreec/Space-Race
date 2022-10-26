@@ -6,6 +6,7 @@ use sdl2::video::Window;
 use std::cmp::Ordering;
 use std::path::Path;
 use std::time::Duration;
+use std::time::Instant;
 
 use crate::GameFont;
 use crate::GameState;
@@ -18,6 +19,8 @@ const DRAW_TITLE: &str= "DRAW";
 
 const TITLE_WIDTH: u32 = 200;
 const TITLE_HEIGHT: u32 = 100;
+
+const SCREEN_DURATION: u64 = 10;
 
 pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Window>) -> bool {
     canvas.set_draw_color(Color::BLACK);
@@ -62,6 +65,9 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
 
 fn handle_events() -> bool {
     // to do
-    ::std::thread::sleep(Duration::new(3, 0));
+    let start = Instant::now();
+    while start.elapsed().as_secs() < SCREEN_DURATION {
+        
+    }
     return true;
 }
