@@ -23,16 +23,11 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
     canvas.set_draw_color(Color::BLACK);
     canvas.clear();
     
-    let poetsen_font_path: &Path = Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf");
     let texture_creator = canvas.texture_creator();
 
-    let big_font = gf.context
-        .load_font(poetsen_font_path, 128)
-        .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
+    let big_font = gf.get_font(&gf.poetsen_path, 128);
     
-    let small_font = gf.context
-        .load_font(poetsen_font_path, 24)
-        .unwrap_or_else(|_| panic!("Failed to load font {}", poetsen_font_path.display()));
+    let small_font = gf.get_font(&gf.poetsen_path, 128);
 
     let title_str: &str = 
         match gs.score_p1.cmp(&gs.score_p2) {
