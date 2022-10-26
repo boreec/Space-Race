@@ -78,7 +78,7 @@ fn run_game(
         gs = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
         gs.is_game_restarted = false;
         while !gs.is_game_over && !gs.is_game_elapsed() && !gs.is_game_restarted {
-            handle_events(&mut gs, &mut event_pump, &sounds, canvas, &gf);
+            handle_events(&mut gs, &mut event_pump, &sounds, canvas, gf);
         }
         if gs.is_game_elapsed() {
             gs.is_game_restarted = show_game_over(&mut gs, gf, canvas);
