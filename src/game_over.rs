@@ -48,7 +48,7 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
         TITLE_HEIGHT,
     );
     
-    let mut texture_title = texture_creator
+    let texture_title = texture_creator
         .create_texture_from_surface(&surface_title)
         .expect("Failed to created texture for Game Over's screen title!");
     
@@ -56,8 +56,12 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
         .copy(&texture_title, None, rect_title)
         .expect("Failed to copy Game Over's Title's texture to canvas!");
     canvas.present();
-    ::std::thread::sleep(Duration::new(3, 0));
     
-    true
+    return handle_events();
 }
 
+fn handle_events() -> bool {
+    // to do
+    ::std::thread::sleep(Duration::new(3, 0));
+    return true;
+}
