@@ -1,4 +1,7 @@
-use sdl2::ttf::*;
+use sdl2::pixels::Color;
+use sdl2::surface::Surface;
+use sdl2::ttf::Font;
+use sdl2::ttf::Sdl2TtfContext;
 
 use std::path::Path;
 
@@ -26,6 +29,12 @@ impl GameFont<'_> {
             .load_font(path, point_size)
             .unwrap_or_else(|_| panic!("Failed to load font {}", path.display()))
     }
-
+    
+    pub fn surface_from_str<'a>(text: &str, font: Font<'a, 'a>, color: Color) -> Surface<'a> {
+        font
+            .render(text)
+            .blended(color)
+            .unwrap_or_else(|_| panic!("Failed to create surface from str {}", text))
+    }
 } 
 
