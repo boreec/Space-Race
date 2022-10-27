@@ -32,6 +32,7 @@ You can use the following keys during the game:
 
 ### Images
 ![](asset/img/disclaimer.png)
+![](asset/img/game.png)
 
 ## Troubleshooting
 
