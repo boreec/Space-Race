@@ -122,8 +122,8 @@ fn handle_game_over_events(ev: &mut EventPump) -> bool {
         for event in ev.poll_iter() {
             match event {
                 Event::Quit {..} |
-                Event:: KeyDown { keycode: Some(Keycode::Escape), .. } => 
-                {return false},
+                Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {return false},
+                Event::KeyDown { keycode: Some(Keycode::Space), .. } => {return true},
                 _ => {}, 
             }
         }
