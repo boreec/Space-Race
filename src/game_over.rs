@@ -59,10 +59,10 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
         .expect("Failed to copy Game Over's Title's texture to canvas!");
     canvas.present();
     
-    return handle_events();
+    return handle_game_over_events();
 }
 
-fn handle_events() -> bool {
+fn handle_game_over_events() -> bool {
     // to do
     let start = Instant::now();
     while start.elapsed().as_secs() < SCREEN_DURATION {
