@@ -1,9 +1,10 @@
 extern crate sdl2;
 
 use crate::disclaimer::*;
-use crate::entity::*;
 use crate::game_font::*;
 use crate::game_over::*;
+use crate::game_sfx::*;
+use crate::game_state::*;
 use crate::view::*;
 
 use sdl2::event::Event;
@@ -15,9 +16,10 @@ use sdl2::EventPump;
 use std::time::Duration;
 
 mod disclaimer;
-mod entity;
 mod game_font;
 mod game_over;
+mod game_sfx;
+mod game_state;
 mod missile;
 mod spaceship;
 mod view;
@@ -48,13 +50,16 @@ pub fn main() {
         .unwrap();
 
     let mut canvas = window.into_canvas().build().unwrap();
-
+    
     let gf = GameFont::new();
     show_disclaimer(&gf, &mut canvas);
     run_game(&sdl_context, &mut canvas, &gf);
 }
 
-fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>, gf: &GameFont) {
+fn run_game(
+    context: &sdl2::Sdl, 
+    canvas: &mut Canvas<Window>,
+    gf: &GameFont) {
     let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
@@ -87,7 +92,7 @@ fn handle_events(
     event_pump: &mut EventPump,
     sounds: &GameSFX,
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-    gf: &GameFont,
+    gf: &GameFont
 ) {
     let event = event_pump.wait_event();
 
