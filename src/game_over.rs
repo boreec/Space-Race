@@ -3,14 +3,10 @@ use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
 use sdl2::rect::Rect;
 use sdl2::render::Canvas;
-use sdl2::surface::Surface;
-use sdl2::ttf::Font;
 use sdl2::video::Window;
 use sdl2::EventPump;
 
 use std::cmp::Ordering;
-use std::path::Path;
-use std::time::Duration;
 use std::time::Instant;
 
 use crate::GameFont;
@@ -116,7 +112,7 @@ pub fn show_game_over(
 
 
 fn handle_game_over_events(ev: &mut EventPump) -> bool {
-    // to do
+    
     let start = Instant::now();
     while start.elapsed().as_secs() < SCREEN_DURATION {
         for event in ev.poll_iter() {
