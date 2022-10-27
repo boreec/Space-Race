@@ -1,10 +1,10 @@
 extern crate sdl2;
 
 use crate::disclaimer::*;
-use crate::game_font::*;
+use crate::game_font::GameFont;
 use crate::game_over::*;
-use crate::game_sfx::*;
-use crate::game_state::*;
+use crate::game_sfx::GameSFX;
+use crate::game_state::GameState;
 use crate::view::*;
 
 use sdl2::event::Event;
