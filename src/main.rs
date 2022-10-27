@@ -81,7 +81,7 @@ fn run_game(
             handle_events(&mut gs, &mut event_pump, &sounds, canvas, gf);
         }
         if gs.is_game_elapsed() {
-            gs.is_game_restarted = show_game_over(&mut gs, gf, canvas);
+            gs.is_game_restarted = show_game_over(&mut gs, gf, canvas, &mut event_pump);
         }
     }
 }

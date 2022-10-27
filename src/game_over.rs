@@ -4,7 +4,7 @@ use sdl2::render::Canvas;
 use sdl2::surface::Surface;
 use sdl2::ttf::Font;
 use sdl2::video::Window;
-
+use sdl2::EventPump;
 use std::cmp::Ordering;
 use std::path::Path;
 use std::time::Duration;
@@ -27,7 +27,11 @@ const REPLAY_HEIGHT: u32 = 30;
 const SCREEN_PADDING: i32 = 20;
 const SCREEN_DURATION: u64 = 10;
 
-pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Window>) -> bool {
+pub fn show_game_over(
+    gs: &mut GameState, 
+    gf: &GameFont, 
+    canvas: &mut Canvas<Window>,
+    ev: &mut EventPump) -> bool {
     canvas.set_draw_color(Color::BLACK);
     canvas.clear();
     
@@ -104,10 +108,10 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
     
     canvas.present();
     
-    return handle_game_over_events();
+    return handle_game_over_events(ev);
 }
 
-fn handle_game_over_events() -> bool {
+fn handle_game_over_events(ev: &mut EventPump) -> bool {
     // to do
     let start = Instant::now();
     while start.elapsed().as_secs() < SCREEN_DURATION {
