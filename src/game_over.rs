@@ -22,6 +22,7 @@ const DRAW_TITLE: &str= "DRAW";
 const TITLE_WIDTH: u32 = 200;
 const TITLE_HEIGHT: u32 = 100;
 
+const SCREEN_PADDING: i32 = 20;
 const SCREEN_DURATION: u64 = 10;
 
 pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Window>) -> bool {
@@ -40,9 +41,18 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
             Ordering::Equal => { DRAW_TITLE },
             Ordering::Greater => { VICTORY_TITLE },
         };
-
+    
+    let message_str: &str = 
+        match gs.score_p1.cmp(&gs.score_p2) {
+            Ordering::Less => {"You lost! Are you going to stop on a defeat ?"},
+            Ordering::Equal => { "It's a tie! One single point would have been enough to win!"},
+            Ordering::Greater => { "You won! You have nothing to prove anymore!"},        
+        };
+    
     let surface_title = gf.surface_from_str(title_str, &big_font, Color::WHITE);
-
+    
+    let surface_message = gf.surface_from_str(message_str, &small_font, Color::WHITE);
+    
     let rect_title = Rect::new(
         (WINDOW_WIDTH / 2 - TITLE_WIDTH / 2) as i32,
         0,
@@ -50,13 +60,28 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
         TITLE_HEIGHT,
     );
     
+    let rect_message = Rect::new(
+        SCREEN_PADDING,
+        (WINDOW_HEIGHT / 2) as i32,
+        WINDOW_WIDTH - SCREEN_PADDING as u32,
+        30
+    );
+    
     let texture_title = texture_creator
         .create_texture_from_surface(&surface_title)
-        .expect("Failed to created texture for Game Over's screen title!");
+        .expect("Failed to create texture for Game Over's screen title!");
+    
+    let texture_message = texture_creator
+        .create_texture_from_surface(&surface_message)
+        .expect("Failed to create texture for Game Over's main message!");
     
     canvas
         .copy(&texture_title, None, rect_title)
         .expect("Failed to copy Game Over's Title's texture to canvas!");
+    canvas
+        .copy(&texture_message, None, rect_message)
+        .expect("Failed to copy Game Over's message's texture to canvas!");
+    
     canvas.present();
     
     return handle_game_over_events();
