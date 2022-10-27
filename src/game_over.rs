@@ -41,7 +41,7 @@ pub fn show_game_over(gs: &mut GameState, gf: &GameFont, canvas: &mut Canvas<Win
             Ordering::Greater => { VICTORY_TITLE },
         };
 
-    let surface_title = gf.surface_from_str(title_str, big_font, Color::WHITE);
+    let surface_title = gf.surface_from_str(title_str, &big_font, Color::WHITE);
 
     let rect_title = Rect::new(
         (WINDOW_WIDTH / 2 - TITLE_WIDTH / 2) as i32,

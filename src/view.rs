@@ -99,12 +99,9 @@ pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     let texture_creator = canvas.texture_creator();
 
     let font = gf.get_font(&gf.schluber_path, 128);
-
-    let surface_p1 = font
-        .render(&format!("{}", gs.score_p1))
-        .blended(Color::WHITE)
-        .expect("failed to create font surface for player #1 score");
-
+    
+    let surface_p1 = gf.surface_from_str(&format!("{}", gs.score_p1), &font, Color::WHITE);
+    
     let surface_p2 = font
         .render(&format!("{}", gs.score_p2))
         .blended(Color::WHITE)

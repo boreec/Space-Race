@@ -30,7 +30,7 @@ impl GameFont<'_> {
             .unwrap_or_else(|_| panic!("Failed to load font {}", path.display()))
     }
     
-    pub fn surface_from_str<'a>(&self, text: &str, font: Font<'a, 'a>, color: Color) -> Surface<'a> {
+    pub fn surface_from_str<'a>(&self, text: &str, font: &Font<'a, 'a>, color: Color) -> Surface<'a> {
         font
             .render(text)
             .blended(color)
