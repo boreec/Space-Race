@@ -31,9 +31,9 @@ You can use the following keys during the game:
 * **Down arrow key**: Move your spaceship toward the bottom of the screen.
 
 ### Images
-![](asset/img/disclaimer.png)
-![](asset/img/game.png)
-![](asset/img/game_over.png)
+<img src="asset/img/disclaimer.png" alt="disclaimer" width="200"/>
+<img src="asset/img/game.png" alt="game" width="200"/>
+<img src="asset/img/game_over" alt="game_over" width="200"/>
 
 ## Troubleshooting
 
