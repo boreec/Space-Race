@@ -37,12 +37,12 @@ pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
     canvas.clear();
 
     let texture_creator = canvas.texture_creator();
-
-    let big_font = gf.get_font(&gf.poetsen_path, 128);
-    let small_font = gf.get_font(&gf.poetsen_path, 24);
+    
+    let big_font = gf.get_font(gf.poetsen_path, 128);
+    let small_font = gf.get_font(gf.poetsen_path, 24);
 
     let surface_title = gf.surface_from_str(TITLE_STR, &big_font, Color::WHITE);
-
+    
     let surface_message = small_font
         .render(MESSAGE_STR)
         .blended_wrapped(Color::WHITE, WINDOW_WIDTH - 2 * MESSAGE_MARGIN)

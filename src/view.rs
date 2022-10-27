@@ -98,10 +98,10 @@ pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
 pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     let texture_creator = canvas.texture_creator();
 
-    let font = gf.get_font(&gf.schluber_path, 128);
-
+    let font = gf.get_font(gf.schluber_path, 128);
+    
     let surface_p1 = gf.surface_from_str(&format!("{}", gs.score_p1), &font, Color::WHITE);
-
+    
     let surface_p2 = gf.surface_from_str(&format!("{}", gs.score_p2), &font, Color::WHITE);
 
     let screen_padding = 20;
