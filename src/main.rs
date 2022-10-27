@@ -35,8 +35,6 @@ const GAME_DURATION: Duration = Duration::new(45, 0);
 
 const MISSILE_QUANTITY: usize = 20;
 
-struct FrameEvent;
-
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
