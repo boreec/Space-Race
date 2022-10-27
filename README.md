@@ -33,7 +33,7 @@ You can use the following keys during the game:
 ### Images
 <img src="asset/img/disclaimer.png" alt="disclaimer" width="200"/>
 <img src="asset/img/game.png" alt="game" width="200"/>
-<img src="asset/img/game_over" alt="game_over" width="200"/>
+<img src="asset/img/game_over.png" alt="game_over" width="200"/>
 
 ## Troubleshooting
 
