@@ -102,10 +102,7 @@ pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     
     let surface_p1 = gf.surface_from_str(&format!("{}", gs.score_p1), &font, Color::WHITE);
     
-    let surface_p2 = font
-        .render(&format!("{}", gs.score_p2))
-        .blended(Color::WHITE)
-        .expect("failed to create font surface for player #2 score");
+    let surface_p2 = gf.surface_from_str(&format!("{}", gs.score_p2), &font, Color::WHITE);
 
     let screen_padding = 20;
     let font_rect_width = 30;
