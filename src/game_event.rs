@@ -8,6 +8,8 @@ use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::EventPump;
 
+pub struct FrameEvent;
+
 pub fn handle_game_events(
     gs: &mut GameState,
     event_pump: &mut EventPump,
