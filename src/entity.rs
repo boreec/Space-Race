@@ -94,15 +94,12 @@ impl GameSFX {
                     sfx_collision_path.display()
                 )
             });
-        sounds
-            .score_wav
-            .load(sfx_score_path)
-            .unwrap_or_else(|_| {
-                panic!(
-                    "failed to load sfx file {} for score",
-                    sfx_score_path.display()
-                )
-            });
+        sounds.score_wav.load(sfx_score_path).unwrap_or_else(|_| {
+            panic!(
+                "failed to load sfx file {} for score",
+                sfx_score_path.display()
+            )
+        });
         sounds
     }
 

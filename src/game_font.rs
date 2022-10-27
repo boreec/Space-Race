@@ -13,10 +13,8 @@ pub struct GameFont<'a> {
 
 impl GameFont<'_> {
     pub fn new() -> GameFont<'static> {
+        let ct = sdl2::ttf::init().unwrap_or_else(|_| panic!("Failed to initialize SDL_TTF!"));
 
-        let ct = sdl2::ttf::init().
-            unwrap_or_else(|_| panic!("Failed to initialize SDL_TTF!"));
-    
         GameFont {
             context: ct,
             poetsen_path: Box::new(Path::new("asset/font/poetsen_one/PoetsenOne-Regular.ttf")),
@@ -29,12 +27,15 @@ impl GameFont<'_> {
             .load_font(path, point_size)
             .unwrap_or_else(|_| panic!("Failed to load font {}", path.display()))
     }
-    
-    pub fn surface_from_str<'a>(&self, text: &str, font: &Font<'a, 'a>, color: Color) -> Surface<'a> {
-        font
-            .render(text)
+
+    pub fn surface_from_str<'a>(
+        &self,
+        text: &str,
+        font: &Font<'a, 'a>,
+        color: Color,
+    ) -> Surface<'a> {
+        font.render(text)
             .blended(color)
             .unwrap_or_else(|_| panic!("Failed to create surface from str {}", text))
     }
-} 
-
+}
