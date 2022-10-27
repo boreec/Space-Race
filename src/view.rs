@@ -17,7 +17,7 @@ fn draw_background(canvas: &mut sdl2::render::Canvas<sdl2::video::Window>) {
     canvas.clear();
 }
 
-pub fn draw_missiles(canvas: &mut Canvas<Window>, gs: &GameState) {
+fn draw_missiles(canvas: &mut Canvas<Window>, gs: &GameState) {
     for m in &gs.missiles {
         // draw body
         canvas.set_draw_color(m.body.color);
@@ -42,7 +42,7 @@ pub fn draw_missiles(canvas: &mut Canvas<Window>, gs: &GameState) {
     }
 }
 
-pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
+fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
     // body
     canvas.set_draw_color(spaceship.body.body_color);
     canvas
@@ -95,7 +95,7 @@ pub fn draw_spaceship(canvas: &mut Canvas<Window>, spaceship: &Spaceship) {
         .expect("Drawing failed for spaceship's right leg!");
 }
 
-pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
+fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
     let texture_creator = canvas.texture_creator();
 
     let font = gf.get_font(gf.schluber_path, 128);
@@ -137,7 +137,7 @@ pub fn draw_score(canvas: &mut Canvas<Window>, gs: &GameState, gf: &GameFont) {
         .expect("Failed to copy p2 texture to canvas");
 }
 
-pub fn draw_timeline(canvas: &mut Canvas<Window>, gs: &GameState) {
+fn draw_timeline(canvas: &mut Canvas<Window>, gs: &GameState) {
     // Don't draw the line if the game time is over.
     if gs.game_duration.as_secs() < gs.starting_time.elapsed().as_secs() {
         return;
