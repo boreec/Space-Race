@@ -115,14 +115,13 @@ fn handle_game_over_events(ev: &mut EventPump) -> bool {
     
     let start = Instant::now();
     while start.elapsed().as_secs() < SCREEN_DURATION {
-        for event in ev.poll_iter() {
+        let event = ev.wait_event();
             match event {
                 Event::Quit {..} |
                 Event::KeyDown { keycode: Some(Keycode::Escape), .. } => { return false; },
                 Event::KeyDown { keycode: Some(Keycode::Space), .. } => { return true; },
                 _ => {}, 
             }
-        }
     }
     false
 }
