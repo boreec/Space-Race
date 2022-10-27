@@ -107,7 +107,7 @@ pub fn show_game_over(
     
     canvas.present();
     
-    return handle_game_over_events(ev);
+    handle_game_over_events(ev)
 }
 
 
@@ -118,11 +118,11 @@ fn handle_game_over_events(ev: &mut EventPump) -> bool {
         for event in ev.poll_iter() {
             match event {
                 Event::Quit {..} |
-                Event::KeyDown { keycode: Some(Keycode::Escape), .. } => {return false},
-                Event::KeyDown { keycode: Some(Keycode::Space), .. } => {return true},
+                Event::KeyDown { keycode: Some(Keycode::Escape), .. } => { return false; },
+                Event::KeyDown { keycode: Some(Keycode::Space), .. } => { return true; },
                 _ => {}, 
             }
         }
     }
-    return false;
+    false
 }
