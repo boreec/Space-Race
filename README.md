@@ -4,6 +4,8 @@ This game is an amateur reproduction of the [Space Race](https://en.wikipedia.or
 
 This program was built completely with rust and the sdl2 bindings.
 
+I made a brief video of the game running on [youtube](https://www.youtube.com/watch?v=bzm3udWB7Kc)
+
 To see similar projects I made: https://boreec.fr/projects/
 
 ## How to run ?
