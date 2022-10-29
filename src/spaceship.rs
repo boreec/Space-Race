@@ -28,7 +28,7 @@ pub struct Spaceship {
     pub head: SpaceshipHead,
     pub tail: SpaceshipTail,
     pub is_alive: bool,
-    pub death_instant: Instant,
+    pub death_instant: Option<Instant>,
 }
 
 impl Spaceship {
@@ -38,13 +38,13 @@ impl Spaceship {
             head: SpaceshipHead::new(pos_x as i16, pos_y as i16),
             tail: SpaceshipTail::new(pos_x as i16, pos_y as i16),
             is_alive: true,
-            death_instant: Instant::now(),
+            death_instant: Some(Instant::now()),
         }
     }
 
     pub fn die(&mut self) {
         self.is_alive = false;
-        self.death_instant = Instant::now();
+        self.death_instant = Some(Instant::now());
     }
 
     pub fn move_upward(&mut self) {
@@ -65,7 +65,13 @@ impl Spaceship {
     }
 
     pub fn can_respawn(&self) -> bool {
-        !self.is_alive && self.death_instant.elapsed().as_secs() > SPACESHIP_DEATH_TIME.as_secs()
+        !self.is_alive
+            && self
+                .death_instant
+                .expect("no last death registered!")
+                .elapsed()
+                .as_secs()
+                > SPACESHIP_DEATH_TIME.as_secs()
     }
 
     pub fn collide_with(&self, missile: &Missile) -> bool {
