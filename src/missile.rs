@@ -28,6 +28,9 @@ pub enum MissileDirection {
     Right,
 }
 
+/// The **Missile** entity that must be avoided in order to win 
+/// the game. The struct is comprised three substruct: 
+/// **MissileHead**, **MissileBody** and **MissileTail**.
 pub struct Missile {
     pub x: i32,
     pub y: i32,
