@@ -19,8 +19,7 @@ cargo run --release
 
 If you are interested in the code, you can read the documentation with:
 ```bash
-cargo doc
-firefox target/doc/space_race/index.html
+cargo doc --open
 ```
 
 ## Gameplay
