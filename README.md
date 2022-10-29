@@ -15,6 +15,14 @@ Use **cargo** to build and run the program:
 cargo run --release
 ```
 
+## Documentation
+
+If you are interested in the code, you can read the documentation with:
+```bash
+cargo doc
+firefox target/doc/space_race/index.html
+```
+
 ## Gameplay
 
 Your goal is to pilot your spaceship (on the left) towards the top of screen, while avoiding missiles.
