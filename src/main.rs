@@ -13,14 +13,31 @@ use sdl2::video::Window;
 
 use std::time::Duration;
 
+/// Show a short diclaimer message before the game.
 mod disclaimer;
+
+/// Handle the events that happen during the game.
 mod game_event;
+
+/// Handle the fonts used in the disclaimer, game and game over.
 mod game_font;
+
+/// Show a game over screen.
 mod game_over;
+
+/// Handle the sounds used in the game (scoring and collision).
 mod game_sfx;
+
+/// Manage the entities, scores and game related data.
 mod game_state;
+
+/// The **Missile** entity.
 mod missile;
+
+/// The **Spaceship** entity.
 mod spaceship;
+
+/// Handle all drawing functions to the window.
 mod view;
 
 /// Window's width in pixels.
