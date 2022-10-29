@@ -125,6 +125,8 @@ impl SpaceshipBody {
     }
 }
 
+/// The **SpaceshipHead** struct is the top part of **Spaceship**.
+/// its shape is made of one triangle.
 pub struct SpaceshipHead {
     pub triangle_x: [i16; 3],
     pub triangle_y: [i16; 3],
