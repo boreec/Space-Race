@@ -10,10 +10,16 @@ use crate::GameFont;
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
 
+/// Title's width of the disclaimer's title (in pixels).
 const TITLE_WIDTH: u32 = 200;
+
+/// Title's height of the disclaimer's title (in pixels).
 const TITLE_HEIGHT: u32 = 100;
+
+/// Title's content.
 const TITLE_STR: &str = "DISCLAIMER";
 
+/// Message's content.
 const MESSAGE_STR: &str = "
 This game is an amateur reproduction of the Space Race game
 originally developped by Atari, inc. in 1973. No media or
