@@ -6,6 +6,7 @@ use crate::game_font::GameFont;
 use crate::game_over::*;
 use crate::game_sfx::GameSFX;
 use crate::game_state::GameState;
+use crate::spaceship::*;
 
 use sdl2::render::Canvas;
 use sdl2::video::Window;

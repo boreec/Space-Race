@@ -31,7 +31,7 @@ pub struct Spaceship {
     pub death_instant: Option<Instant>,
 }
 
-trait SpaceshipMovevement {
+pub trait SpaceshipMovement {
     fn move_upward(&mut self) -> ();
     fn move_downward(&mut self) -> ();    
 }
@@ -50,18 +50,6 @@ impl Spaceship {
     pub fn die(&mut self) {
         self.is_alive = false;
         self.death_instant = Some(Instant::now());
-    }
-
-    pub fn move_upward(&mut self) {
-        self.body.move_upward();
-        self.head.move_upward();
-        self.tail.move_upward();
-    }
-
-    pub fn move_downward(&mut self) {
-        self.body.move_downward();
-        self.head.move_downward();
-        self.tail.move_downward();
     }
 
     pub fn can_move_downward(&self) -> bool {
@@ -126,18 +114,6 @@ impl SpaceshipBody {
         }
     }
 
-    pub fn move_upward(&mut self) {
-        self.rect.set_y(self.rect.y() - SPACESHIP_SPEED as i32);
-        self.porthole_1.1 -= SPACESHIP_SPEED as i16;
-        self.porthole_2.1 -= SPACESHIP_SPEED as i16;
-    }
-
-    pub fn move_downward(&mut self) {
-        self.rect.set_y(self.rect.y() + SPACESHIP_SPEED as i32);
-        self.porthole_1.1 += SPACESHIP_SPEED as i16;
-        self.porthole_2.1 += SPACESHIP_SPEED as i16;
-    }
-
     pub fn is_point_within(&self, x: i32, y: i32) -> bool {
         (self.rect.x() <= x && self.rect.x() + self.rect.width() as i32 >= x)
             && (self.rect.y() <= y && self.rect.y() + self.rect.height() as i32 >= y)
@@ -161,14 +137,6 @@ impl SpaceshipHead {
             triangle_y: [pos_y, pos_y - SPACESHIP_HEAD_SIZE as i16, pos_y],
             color: SPACESHIP_HEAD_COLOR,
         }
-    }
-
-    pub fn move_upward(&mut self) {
-        self.triangle_y = self.triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
-    }
-
-    pub fn move_downward(&mut self) {
-        self.triangle_y = self.triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
     }
 
     pub fn is_point_within(&self, x: i32, y: i32) -> bool {
@@ -207,16 +175,6 @@ impl SpaceshipTail {
         }
     }
 
-    pub fn move_upward(&mut self) {
-        self.left_triangle_y = self.left_triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
-        self.right_triangle_y = self.right_triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
-    }
-
-    pub fn move_downward(&mut self) {
-        self.left_triangle_y = self.left_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
-        self.right_triangle_y = self.right_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
-    }
-
     pub fn is_point_within(&self, x: i32, y: i32) -> bool {
         is_point_within_triangle(&self.left_triangle_x, &self.left_triangle_y, x, y)
             || is_point_within_triangle(&self.right_triangle_x, &self.right_triangle_y, x, y)
@@ -253,4 +211,54 @@ fn is_point_within_triangle(triangle_x: &[i16; 3], triangle_y: &[i16; 3], x: i32
     let max_y = ys.into_iter().reduce(i32::max).unwrap();
 
     a == a1 + a2 + a3 && x > min_x && x < max_x && y > min_y && y < max_y
+}
+
+impl SpaceshipMovement for Spaceship {  
+    fn move_upward(&mut self) {
+        self.body.move_upward();
+        self.head.move_upward();
+        self.tail.move_upward();
+    }
+
+    fn move_downward(&mut self) {
+        self.body.move_downward();
+        self.head.move_downward();
+        self.tail.move_downward();
+    }
+}
+
+impl SpaceshipMovement for SpaceshipHead {    
+    fn move_upward(&mut self) {
+        self.triangle_y = self.triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
+    }
+
+    fn move_downward(&mut self) {
+        self.triangle_y = self.triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
+    }
+}
+
+impl SpaceshipMovement for SpaceshipBody {    
+    fn move_upward(&mut self) {
+        self.rect.set_y(self.rect.y() - SPACESHIP_SPEED as i32);
+        self.porthole_1.1 -= SPACESHIP_SPEED as i16;
+        self.porthole_2.1 -= SPACESHIP_SPEED as i16;
+    }
+
+    fn move_downward(&mut self) {
+        self.rect.set_y(self.rect.y() + SPACESHIP_SPEED as i32);
+        self.porthole_1.1 += SPACESHIP_SPEED as i16;
+        self.porthole_2.1 += SPACESHIP_SPEED as i16;
+    }
+}
+
+impl SpaceshipMovement for SpaceshipTail {   
+    fn move_upward(&mut self) {
+        self.left_triangle_y = self.left_triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
+        self.right_triangle_y = self.right_triangle_y.map(|v| v - SPACESHIP_SPEED as i16);
+    }
+
+    fn move_downward(&mut self) {
+        self.left_triangle_y = self.left_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
+        self.right_triangle_y = self.right_triangle_y.map(|v| v + SPACESHIP_SPEED as i16);
+    }
 }

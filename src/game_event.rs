@@ -1,8 +1,9 @@
 use crate::update_cpu;
+use crate::view::*;
 use crate::GameFont;
 use crate::GameSFX;
 use crate::GameState;
-use crate::view::*;
+use crate::spaceship::*;
 
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
@@ -15,7 +16,7 @@ pub fn handle_game_events(
     event_pump: &mut EventPump,
     sounds: &GameSFX,
     canvas: &mut sdl2::render::Canvas<sdl2::video::Window>,
-    gf: &GameFont
+    gf: &GameFont,
 ) {
     let event = event_pump.wait_event();
 
