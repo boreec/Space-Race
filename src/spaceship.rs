@@ -151,6 +151,8 @@ impl SpaceshipHead {
     }
 }
 
+/// The **SpaceshipTail** struct represents the lower part of a **Spaceship**.
+/// It is made of two triangles located at lower sides of the **SpaceshipBody**.
 pub struct SpaceshipTail {
     pub left_triangle_x: [i16; 3],
     pub left_triangle_y: [i16; 3],
