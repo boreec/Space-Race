@@ -23,6 +23,9 @@ pub const SPACESHIP_P2_X: i32 = SPACESHIP_P1_X + (WINDOW_WIDTH / 2) as i32;
 pub const SPACESHIP_P2_Y: i32 = SPACESHIP_P1_Y;
 const SPACESHIP_DEATH_TIME: Duration = Duration::new(1, 0);
 
+/// The **Spaceship** struct is the main entity managed by the player
+/// and the computer. The struct is comprised of three substructs:
+/// **SpaceshipHead**, **SpaceshipBody** and **SpaceshipTail**.
 pub struct Spaceship {
     pub body: SpaceshipBody,
     pub head: SpaceshipHead,
