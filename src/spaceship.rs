@@ -88,6 +88,8 @@ impl Spaceship {
     }
 }
 
+/// The **SpaceshipBody** struct is the middle part of **Spaceship**.
+/// Its shape is rectangular and it contains two portholes.
 pub struct SpaceshipBody {
     pub rect: Rect,
     pub body_color: Color,
