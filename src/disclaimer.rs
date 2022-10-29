@@ -27,9 +27,13 @@ of mine on boreec.fr.
 \n
 Have fun!";
 
+/// Space between the screen and the message (in pixels).
 const MESSAGE_MARGIN: u32 = 20;
 
+/// The duration of fading when the text appears and disappears (in seconds).
 const FADE_DURATION: u64 = 1;
+
+/// The duration of the screen (in seconds).
 const SCREEN_DURATION: u64 = 8;
 
 pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
@@ -37,12 +41,12 @@ pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
     canvas.clear();
 
     let texture_creator = canvas.texture_creator();
-    
+
     let big_font = gf.get_font(gf.poetsen_path, 128);
     let small_font = gf.get_font(gf.poetsen_path, 24);
 
     let surface_title = gf.surface_from_str(TITLE_STR, &big_font, Color::WHITE);
-    
+
     let surface_message = small_font
         .render(MESSAGE_STR)
         .blended_wrapped(Color::WHITE, WINDOW_WIDTH - 2 * MESSAGE_MARGIN)
