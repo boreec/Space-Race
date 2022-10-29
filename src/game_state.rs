@@ -4,6 +4,11 @@ use std::time::Instant;
 use crate::missile::*;
 use crate::spaceship::*;
 
+/// A **GameState** struct represents the state of the game
+/// at any point during the execution. This struct contains
+/// many attributes that handle the game entities like **Missile**
+/// and **Spaceships**. It also handle the scores, the game duration,
+/// and others.
 pub struct GameState {
     pub missiles: Vec<Missile>,
     pub spaceship_p1: Spaceship,
