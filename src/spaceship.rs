@@ -34,6 +34,9 @@ pub struct Spaceship {
     pub death_instant: Option<Instant>,
 }
 
+/// This trait defines the movements for a **Spaceship** and its 
+/// comprised components. The only two movements allowed are upward
+/// and downward.
 pub trait SpaceshipMovement {
     fn move_upward(&mut self) -> ();
     fn move_downward(&mut self) -> ();    
