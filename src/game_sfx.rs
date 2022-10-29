@@ -2,6 +2,9 @@ use soloud::*;
 
 use std::path::Path;
 
+/// The **GameSFX** struct contains the data related to sounds
+/// used in the game, especially when a **Spaceship** scores or
+/// collides with a **Missile**.
 pub struct GameSFX {
     soloud: Soloud,
     collision_wav: Wav,
