@@ -23,17 +23,22 @@ mod missile;
 mod spaceship;
 mod view;
 
-// Window constants used to setup the game's window.
+/// Window's width in pixels.
 const WINDOW_WIDTH: u32 = 800;
-const WINDOW_HEIGHT: u32 = 600;
-const WINDOW_TITLE: &str = "space race";
 
-// The time between two frames in milliseconds.
+/// Window's height in pixels.
+const WINDOW_HEIGHT: u32 = 600;
+
+/// Title of the window.
+const WINDOW_TITLE: &str = "Space Race by Cyprien Borée";
+
+/// The time between two frames in milliseconds.
 const FRAME_DURATION: u32 = 50;
 
-// The time for 1 game in seconds.
+/// The time for 1 game in seconds.
 const GAME_DURATION: Duration = Duration::new(45, 0);
 
+/// The amount of **Missile** entities in the game.
 const MISSILE_QUANTITY: usize = 20;
 
 pub fn main() {
