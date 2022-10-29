@@ -46,16 +46,13 @@ pub fn main() {
         .unwrap();
 
     let mut canvas = window.into_canvas().build().unwrap();
-    
+
     let gf = GameFont::new();
     show_disclaimer(&gf, &mut canvas);
     run_game(&sdl_context, &mut canvas, &gf);
 }
 
-fn run_game(
-    context: &sdl2::Sdl, 
-    canvas: &mut Canvas<Window>,
-    gf: &GameFont) {
+fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>, gf: &GameFont) {
     let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
     let mut event_pump = context.event_pump().unwrap();
@@ -82,8 +79,6 @@ fn run_game(
         }
     }
 }
-
-
 
 fn update_cpu(gs: &mut GameState, sounds: &GameSFX) {
     if !gs.spaceship_p2.is_alive {
