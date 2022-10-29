@@ -31,6 +31,11 @@ pub struct Spaceship {
     pub death_instant: Option<Instant>,
 }
 
+trait SpaceshipMovevement {
+    fn move_upward(&mut self) -> ();
+    fn move_downward(&mut self) -> ();    
+}
+
 impl Spaceship {
     pub fn new(pos_x: i32, pos_y: i32) -> Spaceship {
         Spaceship {
