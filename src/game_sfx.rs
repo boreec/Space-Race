@@ -42,7 +42,8 @@ impl GameSFX {
         });
         sounds
     }
-
+    
+    /// Play the audio file set to be used when a collision occurs.
     pub fn play_collision(&self) {
         self.soloud.play(&self.collision_wav);
     }
