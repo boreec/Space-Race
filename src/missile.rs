@@ -205,6 +205,8 @@ impl ToPoints for MissileTail {
     }
 }
 
+/// Define the movements a **Missile** and its components can make.
+/// The movements depends on the values defined by **MissileDirection** enum.
 pub trait MissileMovement {
     fn move_toward(&mut self, direction: &MissileDirection) -> ();   
 }
