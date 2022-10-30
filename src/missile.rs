@@ -40,6 +40,8 @@ pub struct Missile {
     pub direction: MissileDirection,
 }
 
+/// The **MissileBody** struct represents the main part of a **Missile**.
+/// It is made of a single rectangular shape.
 pub struct MissileBody {
     pub rect: Rect,
     pub color: Color,
