@@ -29,9 +29,15 @@ const MISSILE_HEAD_SIZE: u32 = MISSILE_HEIGHT;
 /// The value is the same as **MISSILE_HEIGHT** and **MISSILE_HEAD_SIZE**. 
 const MISSILE_TAIL_SIZE: u32 = MISSILE_HEIGHT;
 
-const MISSILE_BODY_COLOR: Color = Color::WHITE;
-const MISSILE_TAIL_COLOR: Color = Color::GREY;
+/// The color of the triangle representing the **MissileHead**.
 const MISSILE_HEAD_COLOR: Color = Color::RED;
+
+/// The color of the rectangle representing the **MissileBody**.
+const MISSILE_BODY_COLOR: Color = Color::WHITE;
+
+/// The color of the triangles representing the **MissileTail**. 
+const MISSILE_TAIL_COLOR: Color = Color::GREY;
+
 const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=WINDOW_WIDTH;
 const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
