@@ -24,7 +24,7 @@ const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
 /// Define the main direction of a missile and its components.
 /// A missile can only move in two directions: to the *left* or to the *right*.
-#[derive(PartialEq, Eq)]
+#[derive(Clone, Copy, PartialEq, Eq)]
 pub enum MissileDirection {
     Left,
     Right,
@@ -75,22 +75,15 @@ pub trait ToPoints {
     fn points(&self) -> Vec<Point>;
 }
 
+pub trait MissileMovement {
+    fn move_toward(&mut self, direction: &MissileDirection) -> ();   
+}
+
 impl MissileBody {
     fn new(r: Rect) -> MissileBody {
         MissileBody {
             rect: r,
             color: MISSILE_BODY_COLOR,
-        }
-    }
-
-    fn move_towards(&mut self, direction: &MissileDirection) {
-        match direction {
-            MissileDirection::Left => {
-                self.rect.set_x(self.rect.x() - MISSILE_SPEED as i32);
-            }
-            MissileDirection::Right => {
-                self.rect.set_x(self.rect.x() + MISSILE_SPEED as i32);
-            }
         }
     }
 }
@@ -132,19 +125,6 @@ impl MissileTail {
             color: MISSILE_TAIL_COLOR,
         }
     }
-
-    fn move_towards(&mut self, direction: &MissileDirection) {
-        match direction {
-            MissileDirection::Left => {
-                self.top_triangle_x = self.top_triangle_x.map(|v| v - MISSILE_SPEED as i16);
-                self.bot_triangle_x = self.bot_triangle_x.map(|v| v - MISSILE_SPEED as i16);
-            }
-            MissileDirection::Right => {
-                self.top_triangle_x = self.top_triangle_x.map(|v| v + MISSILE_SPEED as i16);
-                self.bot_triangle_x = self.bot_triangle_x.map(|v| v + MISSILE_SPEED as i16);
-            }
-        }
-    }
 }
 
 impl MissileHead {
@@ -178,17 +158,6 @@ impl MissileHead {
             triangle_x: triangle_xs,
             triangle_y: triangle_ys,
             color: MISSILE_HEAD_COLOR,
-        }
-    }
-
-    fn move_towards(&mut self, direction: &MissileDirection) {
-        match direction {
-            MissileDirection::Left => {
-                self.triangle_x = self.triangle_x.map(|v| v - MISSILE_SPEED as i16);
-            }
-            MissileDirection::Right => {
-                self.triangle_x = self.triangle_x.map(|v| v + MISSILE_SPEED as i16);
-            }
         }
     }
 }
@@ -240,6 +209,60 @@ impl ToPoints for MissileTail {
     }
 }
 
+impl MissileMovement for MissileHead {
+    fn move_toward(&mut self, direction: &MissileDirection) {
+        match direction {
+            MissileDirection::Left => {
+                self.triangle_x = self.triangle_x.map(|v| v - MISSILE_SPEED as i16);
+            }
+            MissileDirection::Right => {
+                self.triangle_x = self.triangle_x.map(|v| v + MISSILE_SPEED as i16);
+            }
+        }
+    }
+}
+
+impl MissileMovement for MissileBody {
+    fn move_toward(&mut self, direction: &MissileDirection) {
+        match direction {
+            MissileDirection::Left => {
+                self.rect.set_x(self.rect.x() - MISSILE_SPEED as i32);
+            }
+            MissileDirection::Right => {
+                self.rect.set_x(self.rect.x() + MISSILE_SPEED as i32);
+            }
+        }
+    }    
+}
+
+impl MissileMovement for MissileTail {
+    fn move_toward(&mut self, direction: &MissileDirection) {
+        match direction {
+            MissileDirection::Left => {
+                self.top_triangle_x = self.top_triangle_x.map(|v| v - MISSILE_SPEED as i16);
+                self.bot_triangle_x = self.bot_triangle_x.map(|v| v - MISSILE_SPEED as i16);
+            }
+            MissileDirection::Right => {
+                self.top_triangle_x = self.top_triangle_x.map(|v| v + MISSILE_SPEED as i16);
+                self.bot_triangle_x = self.bot_triangle_x.map(|v| v + MISSILE_SPEED as i16);
+            }
+        }
+    }    
+}
+
+impl MissileMovement for Missile {
+    fn move_toward(&mut self, direction: &MissileDirection) {
+        match direction {
+            MissileDirection::Left => {
+                self.x -= MISSILE_SPEED as i32;
+            }
+            MissileDirection::Right => {
+                self.x += MISSILE_SPEED as i32;
+            }
+        }
+    }    
+}
+
 impl Missile {
     pub fn new() -> Missile {
         let mut rng = rand::thread_rng();
@@ -271,10 +294,10 @@ impl Missile {
         self.check_screen_wrapping();
 
         // Update Missile and its components coordinates according to its direction.
-        self.move_towards();
-        self.body.move_towards(&self.direction);
-        self.head.move_towards(&self.direction);
-        self.tail.move_towards(&self.direction);
+        self.move_toward(&self.direction.clone());
+        self.body.move_toward(&self.direction);
+        self.head.move_toward(&self.direction);
+        self.tail.move_toward(&self.direction);
     }
 
     fn check_screen_wrapping(&mut self) {
@@ -290,17 +313,6 @@ impl Missile {
             self.body = MissileBody::new(r);
             self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
             self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
-        }
-    }
-
-    fn move_towards(&mut self) {
-        match self.direction {
-            MissileDirection::Left => {
-                self.x -= MISSILE_SPEED as i32;
-            }
-            MissileDirection::Right => {
-                self.x += MISSILE_SPEED as i32;
-            }
         }
     }
 }
