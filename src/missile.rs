@@ -19,11 +19,16 @@ const MISSILE_WIDTH: u32 = 10;
 /// The speed of **Missile** entity and its components (in pixels).
 const MISSILE_SPEED: i64 = 2;
 
+/// The size used to build the triangle representing the **MissileHead**.
+/// It corresponds to the height of the triangle. For the sake of aesthetics,
+/// The value is the same as **MISSILE_HEIGHT** and **MISSILE_TAIL_SIZE**.
+const MISSILE_HEAD_SIZE: u32 = MISSILE_HEIGHT;
+
 /// The size used to build the triangles representing the **MissileTail**.
 /// It corresponds to the height of the triangles. For the sake of aesthetics,
-/// The value is the same as **MISSILE_HEIGHT**. 
+/// The value is the same as **MISSILE_HEIGHT** and **MISSILE_HEAD_SIZE**. 
 const MISSILE_TAIL_SIZE: u32 = MISSILE_HEIGHT;
-const MISSILE_HEAD_SIZE: u32 = MISSILE_HEIGHT;
+
 const MISSILE_BODY_COLOR: Color = Color::WHITE;
 const MISSILE_TAIL_COLOR: Color = Color::GREY;
 const MISSILE_HEAD_COLOR: Color = Color::RED;
