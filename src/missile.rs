@@ -38,6 +38,8 @@ const MISSILE_BODY_COLOR: Color = Color::WHITE;
 /// The color of the triangles representing the **MissileTail**. 
 const MISSILE_TAIL_COLOR: Color = Color::GREY;
 
+/// The X axis range where a **Missile** can spawn.
+/// It's basically the whole screen's width.
 const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=WINDOW_WIDTH;
 const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
