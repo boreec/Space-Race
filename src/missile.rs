@@ -22,6 +22,8 @@ const MISSILE_HEAD_COLOR: Color = Color::RED;
 const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=WINDOW_WIDTH;
 const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
+/// Define the main direction of a missile and its components.
+/// A missile can only move in two directions: to the *left* or to the *right*.
 #[derive(PartialEq, Eq)]
 pub enum MissileDirection {
     Left,
