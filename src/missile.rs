@@ -68,6 +68,60 @@ pub struct MissileHead {
     pub color: Color,
 }
 
+impl Missile {
+    pub fn new() -> Missile {
+        let mut rng = rand::thread_rng();
+        let pos_x = rng.gen_range(MISSILE_SPAWN_RANGE_X) as i32;
+        let pos_y = rng.gen_range(MISSILE_SPAWN_RANGE_Y) as i32;
+
+        let d: MissileDirection = if random::<u8>() % 2 == 0 {
+            MissileDirection::Left
+        } else {
+            MissileDirection::Right
+        };
+        let r = Rect::new(pos_x, pos_y, MISSILE_WIDTH, MISSILE_HEIGHT);
+        let m = MissileBody::new(r);
+        let t = MissileTail::new(pos_x as i16, pos_y as i16, &d);
+        let h = MissileHead::new(pos_x as i16, pos_y as i16, &d);
+
+        Missile {
+            x: pos_x,
+            y: pos_y,
+            direction: d,
+            body: m,
+            tail: t,
+            head: h,
+        }
+    }
+
+    pub fn update(&mut self) {
+        // Check if the missile is going out of the screen.
+        self.check_screen_wrapping();
+
+        // Update Missile and its components coordinates according to its direction.
+        self.move_toward(&self.direction.clone());
+        self.body.move_toward(&self.direction);
+        self.head.move_toward(&self.direction);
+        self.tail.move_toward(&self.direction);
+    }
+
+    fn check_screen_wrapping(&mut self) {
+        if self.direction == MissileDirection::Left && self.x < 0 {
+            self.x = WINDOW_WIDTH as i32;
+            let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
+            self.body = MissileBody::new(r);
+            self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
+            self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
+        } else if self.direction == MissileDirection::Right && self.x > WINDOW_WIDTH as i32 {
+            self.x = 0;
+            let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
+            self.body = MissileBody::new(r);
+            self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
+            self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
+        }
+    }
+}
+
 impl MissileBody {
     fn new(r: Rect) -> MissileBody {
         MissileBody {
@@ -263,58 +317,4 @@ impl MissileMovement for MissileTail {
             }
         }
     }    
-}
-
-impl Missile {
-    pub fn new() -> Missile {
-        let mut rng = rand::thread_rng();
-        let pos_x = rng.gen_range(MISSILE_SPAWN_RANGE_X) as i32;
-        let pos_y = rng.gen_range(MISSILE_SPAWN_RANGE_Y) as i32;
-
-        let d: MissileDirection = if random::<u8>() % 2 == 0 {
-            MissileDirection::Left
-        } else {
-            MissileDirection::Right
-        };
-        let r = Rect::new(pos_x, pos_y, MISSILE_WIDTH, MISSILE_HEIGHT);
-        let m = MissileBody::new(r);
-        let t = MissileTail::new(pos_x as i16, pos_y as i16, &d);
-        let h = MissileHead::new(pos_x as i16, pos_y as i16, &d);
-
-        Missile {
-            x: pos_x,
-            y: pos_y,
-            direction: d,
-            body: m,
-            tail: t,
-            head: h,
-        }
-    }
-
-    pub fn update(&mut self) {
-        // Check if the missile is going out of the screen.
-        self.check_screen_wrapping();
-
-        // Update Missile and its components coordinates according to its direction.
-        self.move_toward(&self.direction.clone());
-        self.body.move_toward(&self.direction);
-        self.head.move_toward(&self.direction);
-        self.tail.move_toward(&self.direction);
-    }
-
-    fn check_screen_wrapping(&mut self) {
-        if self.direction == MissileDirection::Left && self.x < 0 {
-            self.x = WINDOW_WIDTH as i32;
-            let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
-            self.body = MissileBody::new(r);
-            self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
-            self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
-        } else if self.direction == MissileDirection::Right && self.x > WINDOW_WIDTH as i32 {
-            self.x = 0;
-            let r = Rect::new(self.x, self.y, MISSILE_WIDTH, MISSILE_HEIGHT);
-            self.body = MissileBody::new(r);
-            self.tail = MissileTail::new(self.x as i16, self.y as i16, &self.direction);
-            self.head = MissileHead::new(self.x as i16, self.y as i16, &self.direction);
-        }
-    }
 }
