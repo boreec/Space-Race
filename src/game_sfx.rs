@@ -48,6 +48,7 @@ impl GameSFX {
         self.soloud.play(&self.collision_wav);
     }
 
+    /// Play the audio file set to be used when a player scores.
     pub fn play_score(&self) {
         self.soloud.play(&self.score_wav);
     }
