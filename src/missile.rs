@@ -68,17 +68,6 @@ pub struct MissileHead {
     pub color: Color,
 }
 
-/// Trait used to return a **Missile** and its components as a vector of points.
-/// The points can then be used to compute the collisions with another object, like
-/// a **Spaceship**.
-pub trait ToPoints {
-    fn points(&self) -> Vec<Point>;
-}
-
-pub trait MissileMovement {
-    fn move_toward(&mut self, direction: &MissileDirection) -> ();   
-}
-
 impl MissileBody {
     fn new(r: Rect) -> MissileBody {
         MissileBody {
@@ -162,6 +151,13 @@ impl MissileHead {
     }
 }
 
+/// Trait used to return a **Missile** and its components as a vector of points.
+/// The points can then be used to compute the collisions with another object, like
+/// a **Spaceship**.
+pub trait ToPoints {
+    fn points(&self) -> Vec<Point>;
+}
+
 impl ToPoints for Missile {
     fn points(&self) -> Vec<Point> {
         let mut result = Vec::new();
@@ -209,6 +205,23 @@ impl ToPoints for MissileTail {
     }
 }
 
+pub trait MissileMovement {
+    fn move_toward(&mut self, direction: &MissileDirection) -> ();   
+}
+
+impl MissileMovement for Missile {
+    fn move_toward(&mut self, direction: &MissileDirection) {
+        match direction {
+            MissileDirection::Left => {
+                self.x -= MISSILE_SPEED as i32;
+            }
+            MissileDirection::Right => {
+                self.x += MISSILE_SPEED as i32;
+            }
+        }
+    }    
+}
+
 impl MissileMovement for MissileHead {
     fn move_toward(&mut self, direction: &MissileDirection) {
         match direction {
@@ -245,19 +258,6 @@ impl MissileMovement for MissileTail {
             MissileDirection::Right => {
                 self.top_triangle_x = self.top_triangle_x.map(|v| v + MISSILE_SPEED as i16);
                 self.bot_triangle_x = self.bot_triangle_x.map(|v| v + MISSILE_SPEED as i16);
-            }
-        }
-    }    
-}
-
-impl MissileMovement for Missile {
-    fn move_toward(&mut self, direction: &MissileDirection) {
-        match direction {
-            MissileDirection::Left => {
-                self.x -= MISSILE_SPEED as i32;
-            }
-            MissileDirection::Right => {
-                self.x += MISSILE_SPEED as i32;
             }
         }
     }    
