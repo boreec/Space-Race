@@ -57,6 +57,9 @@ pub struct MissileTail {
     pub color: Color,
 }
 
+/// The **MissileHead** struct is the *top* of the **Missile**. Its orientation is
+/// the same as the **Missile**'s direction. It is made of a single triangle pointing
+/// toward the **Missile**'s direction.
 pub struct MissileHead {
     pub triangle_x: [i16; 3],
     pub triangle_y: [i16; 3],
