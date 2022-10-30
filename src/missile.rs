@@ -68,7 +68,9 @@ pub struct MissileHead {
     pub color: Color,
 }
 
-// ** TRAITS ** //
+/// Trait used to return a **Missile** and its components as a vector of points.
+/// The points can then be used to compute the collisions with another object, like
+/// a **Spaceship**.
 pub trait ToPoints {
     fn points(&self) -> Vec<Point>;
 }
