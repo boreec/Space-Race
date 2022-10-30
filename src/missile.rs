@@ -10,9 +10,12 @@ use std::ops::RangeInclusive;
 use crate::WINDOW_HEIGHT;
 use crate::WINDOW_WIDTH;
 
-/* MISSILE CONSTANTS */
+/// The height of a **MissileBody** rectangle (in pixels).
 const MISSILE_HEIGHT: u32 = 5;
+
+/// The width of a **MissileBody** rectangle (in pixels).
 const MISSILE_WIDTH: u32 = 10;
+
 const MISSILE_SPEED: i64 = 2;
 const MISSILE_TAIL_SIZE: u32 = MISSILE_HEIGHT;
 const MISSILE_HEAD_SIZE: u32 = MISSILE_HEIGHT;
