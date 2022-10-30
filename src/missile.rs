@@ -41,6 +41,10 @@ const MISSILE_TAIL_COLOR: Color = Color::GREY;
 /// The X axis range where a **Missile** can spawn.
 /// It's basically the whole screen's width.
 const MISSILE_SPAWN_RANGE_X: RangeInclusive<u32> = 0..=WINDOW_WIDTH;
+
+/// The Y axis range where a **Missile** can spawn.
+/// It's from the top of the screen to the **Spaceship** area,
+/// in order to let them spawn without killing them instantly.
 const MISSILE_SPAWN_RANGE_Y: RangeInclusive<u32> = 0..=(WINDOW_HEIGHT - 200);
 
 /// Define the main direction of a missile and its components.
