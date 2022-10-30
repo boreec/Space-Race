@@ -47,6 +47,8 @@ pub struct MissileBody {
     pub color: Color,
 }
 
+/// The **MissileTail** struct represents the side opposite to the **Missile**'s
+/// direction. It is made of two triangles on each sides of the **MissileBody**.
 pub struct MissileTail {
     pub top_triangle_x: [i16; 3],
     pub top_triangle_y: [i16; 3],
