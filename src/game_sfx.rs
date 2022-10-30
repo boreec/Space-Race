@@ -12,6 +12,8 @@ pub struct GameSFX {
 }
 
 impl GameSFX {
+    
+    /// Create a GameSFX struct with paths to sounds set by default.
     pub fn new() -> GameSFX {
         let sl = Soloud::default().expect("Failed to get Soloud object!");
 
