@@ -65,6 +65,9 @@ impl Spaceship {
         self.death_instant = Some(Instant::now());
     }
 
+    /// Check if the **Spaceship** can move downward (towards the bottom of
+    /// the screen). Return false if the lower part of the **Spaceship** 
+    /// (**SpaceshipTail**) is going to go over the edge of the screen. 
     pub fn can_move_downward(&self) -> bool {
         SPACESHIP_HEAD_SIZE + self.body.rect.y() as u32 + 2 * SPACESHIP_TAIL_SIZE as u32
             <= WINDOW_HEIGHT
