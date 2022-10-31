@@ -134,6 +134,8 @@ fn message_to_screen(
     ::std::thread::sleep(Duration::new(duration, 0));
 }
 
+/// Used by show_disclaimer() to fade the message at the beginning and
+/// at the end of disclaimer's screen duration.
 fn fade_message(
     title: &mut Texture,
     message: &mut Texture,
