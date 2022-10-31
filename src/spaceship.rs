@@ -73,6 +73,9 @@ impl Spaceship {
             <= WINDOW_HEIGHT
     }
 
+    /// Check if the **Spaceship** can respawn in the game after it was
+    /// killed. The two conditions for the respawn is to be dead and
+    /// if enough time has passed since the time of death (**death_instant**).
     pub fn can_respawn(&self) -> bool {
         !self.is_alive
             && self
