@@ -42,6 +42,8 @@ const FADE_DURATION: u64 = 1;
 /// The duration of the screen (in seconds).
 const SCREEN_DURATION: u64 = 8;
 
+/// Display a disclaimer screen on the provided window and with the
+/// given fonts. 
 pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
     canvas.set_draw_color(Color::BLACK);
     canvas.clear();
