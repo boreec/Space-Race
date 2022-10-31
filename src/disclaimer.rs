@@ -113,6 +113,9 @@ pub fn show_disclaimer(gf: &GameFont, canvas: &mut Canvas<Window>) {
         true,
     );
 }
+
+/// Used by show_disclaimer() to copy the disclaimer's title and
+/// messages to screen for a specified duration.
 fn message_to_screen(
     title: &Texture,
     message: &Texture,
