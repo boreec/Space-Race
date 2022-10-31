@@ -41,6 +41,8 @@ pub trait SpaceshipMovement {
     
     /// Move towards the top of the window.
     fn move_upward(&mut self) -> ();
+    
+    /// Move towards the bottom of the window.
     fn move_downward(&mut self) -> ();    
 }
 
