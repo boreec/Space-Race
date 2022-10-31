@@ -58,7 +58,8 @@ impl Spaceship {
             death_instant: Some(Instant::now()),
         }
     }
-
+    
+    /// Set is_alive bool to false and register the death **Instant**. 
     pub fn die(&mut self) {
         self.is_alive = false;
         self.death_instant = Some(Instant::now());
