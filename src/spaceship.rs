@@ -38,6 +38,8 @@ pub struct Spaceship {
 /// comprised components. The only two movements allowed are upward
 /// and downward.
 pub trait SpaceshipMovement {
+    
+    /// Move towards the top of the window.
     fn move_upward(&mut self) -> ();
     fn move_downward(&mut self) -> ();    
 }
