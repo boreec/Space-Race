@@ -86,6 +86,9 @@ impl Spaceship {
                 > SPACESHIP_DEATH_TIME.as_secs()
     }
 
+    /// Check if a collision occurs between a **Spaceship** and a **Missile**.
+    /// The collision test is applied on every points of **Missile** being
+    /// within any part of the **Spaceship** and its components.
     pub fn collide_with(&self, missile: &Missile) -> bool {
         let mut head_collision = false;
         let mut body_collision = false;
