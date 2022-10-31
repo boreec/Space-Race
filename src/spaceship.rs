@@ -47,6 +47,8 @@ pub trait SpaceshipMovement {
 }
 
 impl Spaceship {
+    
+    /// Create a new **Spaceship** object on the given coordinates.
     pub fn new(pos_x: i32, pos_y: i32) -> Spaceship {
         Spaceship {
             body: SpaceshipBody::new(pos_x, pos_y, SPACESHIP_BODY_WIDTH, SPACESHIP_BODY_HEIGHT),
