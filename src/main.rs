@@ -58,6 +58,8 @@ const GAME_DURATION: Duration = Duration::new(45, 0);
 /// The amount of **Missile** entities in the game.
 const MISSILE_QUANTITY: usize = 20;
 
+/// Program's entry point. Initialize the window, its canvas
+/// and the fonts used by the game.
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
