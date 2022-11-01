@@ -157,6 +157,11 @@ impl MissileBody {
 }
 
 impl MissileTail {
+
+    /// Create a new **MissileTail** struct with a given point corresponding
+    /// to the origin of the **MissileBody**. Moreover, a **MissileDirection**
+    /// is also given in order to know on which side of of the **Missile** the
+    /// tail will be attached.
     pub fn new(origin_x: i16, origin_y: i16, direction: &MissileDirection) -> MissileTail {
         let top_triangle_xs: [i16; 3];
         let top_triangle_ys: [i16; 3];
