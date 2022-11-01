@@ -118,7 +118,8 @@ impl Missile {
             head: h,
         }
     }
-
+    
+    /// Update the **Missile** position.
     pub fn update(&mut self) {
         // Check if the missile is going out of the screen.
         self.check_screen_wrapping();
@@ -129,7 +130,9 @@ impl Missile {
         self.head.move_toward(&self.direction);
         self.tail.move_toward(&self.direction);
     }
-
+    
+    /// Check if a **Missile** is going out of the screen. If it is the case,
+    /// telepots all its components to the opposite side of the screen.
     fn check_screen_wrapping(&mut self) {
         if self.direction == MissileDirection::Left && self.x < 0 {
             self.x = WINDOW_WIDTH as i32;
