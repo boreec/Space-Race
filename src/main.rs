@@ -77,6 +77,7 @@ pub fn main() {
     run_game(&sdl_context, &mut canvas, &gf);
 }
 
+/// Initialize the game main components and run the game loop.
 fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>, gf: &GameFont) {
     let mut gs: GameState = GameState::new(MISSILE_QUANTITY, GAME_DURATION);
     let sounds: GameSFX = GameSFX::new();
