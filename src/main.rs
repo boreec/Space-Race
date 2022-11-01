@@ -106,6 +106,9 @@ fn run_game(context: &sdl2::Sdl, canvas: &mut Canvas<Window>, gf: &GameFont) {
     }
 }
 
+/// Update the position for the Spaceship controled by
+/// the CPU. Its behaviour is quite simple: always toward
+/// the top of the screen.
 fn update_cpu(gs: &mut GameState, sounds: &GameSFX) {
     if !gs.spaceship_p2.is_alive {
         if gs.spaceship_p2.can_respawn() {
