@@ -201,6 +201,10 @@ impl MissileTail {
 }
 
 impl MissileHead {
+    
+    /// Create a new **MissileHead** struct with a given point corresponding to
+    /// the origin of the **MissileBody** and a **MissileDirection** in order to
+    /// know on which side of the **Missile** to draw the head.
     pub fn new(origin_x: i16, origin_y: i16, direction: &MissileDirection) -> MissileHead {
         let triangle_xs: [i16; 3];
         let triangle_ys: [i16; 3];
