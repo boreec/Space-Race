@@ -2,7 +2,7 @@ image: rust:buster
 
 before_script:
   - apt-get update
-  - apt-get install -y libsdl2-dev
+  - apt-get install -y cmake libsdl2-dev
 
 compile:
   stage: build
