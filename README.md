@@ -42,10 +42,11 @@ You can use the following keys during the game:
 * **Down arrow key**: Move your spaceship toward the bottom of the screen.
 
 ### Images
+<p float="left">
 <img src="asset/img/disclaimer.png" alt="disclaimer" width="200"/>
 <img src="asset/img/game.png" alt="game" width="200"/>
 <img src="asset/img/game_over.png" alt="game_over" width="200"/>
-
+</p>
 ## Troubleshooting
 
 If you have issues building the program, make sure the following packages are installed on the system:
