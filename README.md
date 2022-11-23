@@ -1,3 +1,5 @@
+warning: this repository is a backup mirror for https://gitlab.com/boreec/space-race
+
 # Space Race
 
 This game is an amateur reproduction of the [Space Race](https://en.wikipedia.org/wiki/Space_Race_(video_game)) game initially created by Atari, Inc. in 1973.
